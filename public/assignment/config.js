@@ -8,36 +8,29 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when("#/home", {
-                templateUrl: "home/home.view.html",
-                controller: "HomeController"
+            .when("/home", {
+                templateUrl: "views/home/home.view.html"
             })
-            .when("#/admin", {
-                templateUrl: "admin/admin.view.html",
-                controller: "AdminController"
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.html"
             })
-            .when("#/forms", {
-                templateUrl: "forms/forms.view.html",
-                controller: "FormsController"
+            .when("/forms", {
+                templateUrl: "views/forms/forms.view.html"
             })
-            .when("#/fields", {
-                templateUrl: "forms/fields.view.html",
-                controller: "FieldsController"
+            .when("/fields", {
+                templateUrl: "views/forms/fields.view.html"
             })
-            .when("#/login", {
-                templateUrl: "users/login.view.html",
-                controller: "LoginController"
+            .when("/login", {
+                templateUrl: "views/users/login.view.html"
             })
-            .when("#/profile", {
-                templateUrl: "users/profile.view.html",
-                controller: "ProfileController"
+            .when("/profile", {
+                templateUrl: "views/users/profile.view.html"
             })
-            .when("#/register", {
-                templateUrl: "users/register.view.html",
-                controller: "RegisterController"
+            .when("/register", {
+                templateUrl: "views/users/register.view.html"
             })
             .otherwise({
-                redirectTo: "home/home.view.html"
+                redirectTo: "/home"
             });
     }
 })();
