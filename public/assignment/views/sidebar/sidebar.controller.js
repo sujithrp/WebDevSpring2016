@@ -4,9 +4,9 @@
 (function() {
     angular
         .module("FormBuilderApp")
-        .controller("HeaderController", HeaderController);
+        .controller("SidebarController", SidebarController);
 
-    function HeaderController($scope) {
+    function SidebarController($scope) {
     }
 
 })();
