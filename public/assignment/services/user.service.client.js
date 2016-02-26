@@ -67,6 +67,7 @@
 
             for (userIndex in usersArr) {
                 var user = usersArr[userIndex];
+                console.log(user);
                 if (username === user.username && password === user.password) {
                     //User Found
                     callback(user);
@@ -83,9 +84,16 @@
         };
 
         UserService.createUser = function(user, callback) {
-            user._id = (new Date).getTime();
-            usersArr.push(user);
-            callback(user);
+            var newUser = {
+                _id: (new Date).getTime(),
+                firstName: null,
+                lastName: null,
+                username: user.username,
+                password: user.password,
+                roles: null
+            };
+            usersArr.push(newUser);
+            callback(newUser);
         };
 
         UserService.deleteUserById = function(userId, callback) {
@@ -106,16 +114,23 @@
             for (userIndex in usersArr) {
                 var userObj = usersArr[userIndex];
                 if (userId === userObj._id) {
+                    userObj.username = user.username;
+                    userObj.password = user.password;
                     userObj.firstName = user.firstName;
                     userObj.lastName = user.lastName;
-                    userObj.username = user.user;
-                    userObj.password = user.password;
                     userObj.roles = user.roles;
                     callback(userObj);
                 }
             }
-        }
+        };
 
+        return {
+            usersArr: usersArr,
+            findUserByCredentials: UserService.findUserByCredentials,
+            findAllUsers: UserService.findAllUsers,
+            createUser: UserService.createUser,
+            deleteUserById: UserService.deleteUserById,
+            updateUser: UserService.updateUser
+        };
     }
-
 })();

@@ -8,16 +8,16 @@
 
     function LoginController($rootScope, $scope, $location, UserService) {
 
-        $scope.login = function(user) {
-            UserService.findUserByCredentials(user.username,user.password,callback);
-        };
-
-        $scope.callback = function(userResponseObj) {
+        var callback = function(userResponseObj) {
             if (!userResponseObj) {
                 $rootScope.currentUser = userResponseObj;
                 $location.url("/profile");
             }
-        }
+        };
+
+        $scope.login = function(user) {
+            UserService.findUserByCredentials(user.username,user.password,callback);
+        };
 
     }
 
