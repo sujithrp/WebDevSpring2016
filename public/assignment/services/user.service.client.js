@@ -106,6 +106,7 @@
                     callback(usersArr);
                 }
             }
+            callback(null);
         };
 
         UserService.updateUser = function(userId, user, callback) {
@@ -122,6 +123,7 @@
                     callback(userObj);
                 }
             }
+            callback(null);
         };
 
         return {
