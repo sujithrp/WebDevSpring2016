@@ -1,12 +1,14 @@
 /**
  * Created by SujithNarayan on 2/25/2016.
  */
-(function() {
+(function () {
+    "use strict";
     angular
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
     function FormService($rootScope) {
+
         var formsArr = [];
         formsArr = [
             {
@@ -26,7 +28,7 @@
             }
         ];
 
-        FormService.createFormForUser = function(userId, form, callback) {
+        FormService.createFormForUser = function (userId, form, callback) {
             var newForm = {
                 _id: (new Date).getTime(),
                 title: form.formname,
@@ -36,11 +38,11 @@
             callback(newForm);
         };
 
-        FormService.setCurrentFormsArr = function(formsArr) {
+        FormService.setCurrentFormsArr = function (formsArr) {
             $rootScope.currentFormsArr = formsArr;
         };
 
-        FormService.findAllFormsForUser = function(userId,callback) {
+        FormService.findAllFormsForUser = function (userId,callback) {
             var formIndex;
             var foundFormsArr = [];
             for (formIndex in formsArr) {
@@ -57,20 +59,21 @@
             }
         };
 
-        FormService.deleteFormById = function(formId, callback) {
+        FormService.deleteFormById = function (formId, existingFormsArr, callback) {
             var formIndex;
 
-            for (formIndex in formsArr) {
-                var form = formsArr[formIndex];
+            for (formIndex in existingFormsArr) {
+                var form = existingFormsArr[formIndex];
                 if (formId === form._id) {
-                    formsArr.splice(formIndex, 1);
-                    callback(formsArray);
+                    existingFormsArr.splice(formIndex, 1);
+                    callback(existingFormsArr);
+                    return;
                 }
             }
             callback(null);
         };
 
-        FormService.updateFormById = function(formId, newForm, callback) {
+        FormService.updateFormById = function (formId, newForm, callback) {
             var formIndex;
 
             for (formIndex in formsArr) {
