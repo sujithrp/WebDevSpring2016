@@ -6,9 +6,15 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($rootScope, $scope, $location, FormService) {
-        $scope.forms = FormService.formsArr;
+    function FormController($rootScope, $scope, FormService) {
         var user = $rootScope.currentUser;
+
+        var findFormCallback = function(formsArr) {
+            $scope.formsArr = formsArr;
+            console.log($scope.formsArr);
+        };
+
+        FormService.findAllFormsForUser(user._id,findFormCallback);
 
         var addFormCallback = function(newForm) {};
 

@@ -9,10 +9,8 @@
     function LoginController($rootScope, $scope, $location, UserService) {
 
         var callback = function(userResponseObj) {
-            if (!userResponseObj) {
-                $rootScope.currentUser = userResponseObj;
-                $location.url("/profile");
-            }
+            UserService.setCurrentUser(userResponseObj);
+            $location.url("/profile");
         };
 
         $scope.login = function(user) {

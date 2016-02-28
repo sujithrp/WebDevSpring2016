@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($rootScope) {
         var usersArr = [];
         usersArr = [
             {
@@ -71,12 +71,15 @@
                 if (username === user.username && password === user.password) {
                     //User Found
                     callback(user);
-                }
-                else {
-                    // User not found
-                    callback(null);
+                    return;
                 }
             }
+            // User not found
+            callback(null);
+        };
+
+        UserService.setCurrentUser = function(user) {
+            $rootScope.currentUser = user;
         };
 
         UserService.findAllUsers = function(callback) {
@@ -104,6 +107,7 @@
                 if (userId === user._id) {
                     usersArr.splice(userIndex, 1);
                     callback(usersArr);
+                    return;
                 }
             }
             callback(null);
@@ -121,6 +125,7 @@
                     userObj.lastName = user.lastName;
                     userObj.roles = user.roles;
                     callback(userObj);
+                    return;
                 }
             }
             callback(null);
@@ -132,7 +137,8 @@
             findAllUsers: UserService.findAllUsers,
             createUser: UserService.createUser,
             deleteUserById: UserService.deleteUserById,
-            updateUser: UserService.updateUser
+            updateUser: UserService.updateUser,
+            setCurrentUser: UserService.setCurrentUser
         };
     }
 })();

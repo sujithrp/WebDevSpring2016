@@ -9,7 +9,7 @@
     function RegisterController($rootScope, $scope, $location, UserService) {
 
         var callback = function(userObjResponse) {
-            $rootScope.currentUser = userObjResponse;
+            UserService.setCurrentUser(userObjResponse);
             $location.url("/profile");
         };
 
