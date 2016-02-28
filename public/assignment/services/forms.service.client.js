@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService() {
+    function FormService($rootScope) {
         var formsArr = [];
         formsArr = [
             {
@@ -29,11 +29,15 @@
         FormService.createFormForUser = function(userId, form, callback) {
             var newForm = {
                 _id: (new Date).getTime(),
-                title: form.name,
+                title: form.formname,
                 userId: userId
             };
             formsArr.push(newForm);
             callback(newForm);
+        };
+
+        FormService.setCurrentFormsArr = function(formsArr) {
+            $rootScope.currentFormsArr = formsArr;
         };
 
         FormService.findAllFormsForUser = function(userId,callback) {
@@ -45,8 +49,8 @@
                     foundFormsArr.push(form);
                 }
             }
-            if (formsArr.length === 0) {
-                callback(formsArr);
+            if (foundFormsArr.length !== 0) {
+                callback(foundFormsArr);
             }
             else {
                 callback(null);
@@ -86,7 +90,8 @@
             createFormForUser: FormService.createFormForUser,
             findAllFormsForUser: FormService.findAllFormsForUser,
             deleteFormById: FormService.deleteFormById,
-            updateFormById: FormService.updateFormById
+            updateFormById: FormService.updateFormById,
+            setCurrentFormsArr: FormService.setCurrentFormsArr
         };
     }
 })();

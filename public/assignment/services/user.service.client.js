@@ -67,7 +67,6 @@
 
             for (userIndex in usersArr) {
                 var user = usersArr[userIndex];
-                console.log(user);
                 if (username === user.username && password === user.password) {
                     //User Found
                     callback(user);

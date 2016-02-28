@@ -6,36 +6,34 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($rootScope, $scope, FormService) {
-        var user = $rootScope.currentUser;
+    function FormController($rootScope, $location, $scope, FormService) {
 
-        var findFormCallback = function(formsArr) {
-            $scope.formsArr = formsArr;
-            console.log($scope.formsArr);
+        // FIND FORM FOR A PARTICULAR USER
+        var findFormCallback = function(foundFormsArr) {
+            FormService.setCurrentFormsArr(foundFormsArr);
         };
 
-        FormService.findAllFormsForUser(user._id,findFormCallback);
+        FormService.findAllFormsForUser($rootScope.currentUser._id,findFormCallback);
 
-        var addFormCallback = function(newForm) {};
+
+        // ADD FORM FOR A PARTICULAR USER
+        var addFormCallback = function(newForm) {
+            var existingForms = $rootScope.currentFormsArr;
+            existingForms.push(newForm);
+            FormService.setCurrentFormsArr(existingForms);
+            $scope.form = null;
+        };
 
         $scope.addForm = function(form) {
-            FormService.createFormForUser(user._id,form,addFormCallback);
+            FormService.createFormForUser($rootScope.currentUser._id,form,addFormCallback);
         };
 
-        $scope.updateForm = function(form) {
+        // SELECT A PARTICULAR FORM
+        $scope.selectForm = function(selectedFormIndex) {
+            $scope.form = $rootScope.currentFormsArr[selectedFormIndex];
+            $scope.form.formname = $scope.form.title;
         };
 
-        $scope.selectForm = function(index) {
-            var selectedForm = FormService.formsArr[index];
-            $scope.form.name = selectedForm.title;
-        };
-
-        var deleteFormCallback = function(arrayOfForms) {};
-
-        $scope.deleteForm = function(index) {
-            var formToBeDeleted = FormService.formsArr[index];
-            FormService.deleteFormById(formToBeDeleted._id,deleteFormCallback);
-        };
 
     }
 

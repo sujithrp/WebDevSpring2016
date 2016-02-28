@@ -18,17 +18,13 @@
 
                 <tbody>
                 <tr>
-                    <td> <input ng-model="form.name" type="text" class="form-control" id="inputFormName" placeholder="name"> </td>
+                    <td> <input ng-model="form.formname" type="text" class="form-control" id="inputFormName" placeholder="name"> </td>
                     <td> <a ng-click="addForm(form)"> <span class="glyphicon glyphicon-plus"></span> </a> <a ng-click="updateForm(form)"> <span class="glyphicon glyphicon-ok"></span> </a> </td>
                 </tr>
-                <ul>
-                    <li ng-repeat="form in formsArr">
-                        <tr>
-                            <td> {{form.name}} </td>
-                            <td> <a ng-click="deleteForm($index)"> <span class="glyphicon glyphicon-remove"></span> </a> <a ng-click="selectForm($index)"> <span class="glyphicon glyphicon-pencil"></span> </a> </td>
-                        </tr>
-                    </li>
-                </ul>
+                <tr ng-repeat="form in currentFormsArr">
+                    <td> {{form.title}} </td>
+                    <td> <a ng-click="deleteForm($index)"> <span class="glyphicon glyphicon-remove"></span> </a> <a ng-click="selectForm($index)"> <span class="glyphicon glyphicon-pencil"></span> </a> </td>
+                </tr>
                 </tbody>
             </table>
         </div>
