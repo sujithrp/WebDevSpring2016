@@ -120,6 +120,6 @@ CHANGES I HAVE ADDED
     font-size: large;
 }
 
-/*ul.nav li.dropdown:hover > ul.dropdown-menu {*/
-    /*display: block;*/
-/*}*/
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+}

@@ -17,6 +17,13 @@
                 </div>
                 <!--<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>-->
             </form>
+            <!--<ul class="nav navbar-nav navbar-center">-->
+                <!--<li><a href="#">NBA</a></li>-->
+                <!--<li><a href="#">NBA</a></li>-->
+                <!--<li><a href="#">NBA</a></li>-->
+                <!--<li><a href="#">NBA</a></li>-->
+                <!--<li><a href="#">NBA</a></li>-->
+            <!--</ul>-->
             <ul class="nav navbar-nav navbar-center">
                     <!--<button type="submit" class="btn btn-default">-->
                         <!--<span class="glyphicon glyphicon-search"></span>-->
@@ -24,52 +31,52 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NFL <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">New England Patriots</a></li>
-                        <li><a href="#">Green Bay Packers</a></li>
-                        <li><a href="#">Dallas Cowboys</a></li>
-                        <li><a href="#">Seattle Seahawks</a></li>
-                        <li><a href="#">Pittsburgh Steelers</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">New England Patriots</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Green Bay Packers</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Dallas Cowboys</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Seattle Seahawks</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Pittsburgh Steelers</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NBA <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Boston Celtics</a></li>
-                        <li><a href="#">Detroit Pistons</a></li>
-                        <li><a href="#">Miami Heat</a></li>
-                        <li><a href="#">Golden State Warriors</a></li>
-                        <li><a href="#">Indiana Pacers</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Boston Celtics</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Detroit Pistons</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Miami Heat</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Golden State Warriors</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Indiana Pacers</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">AC Milan</a></li>
-                        <li><a href="#">Manchester United</a></li>
-                        <li><a href="#">Paris St Germain</a></li>
-                        <li><a href="#">FC Barcelona</a></li>
-                        <li><a href="#">Borussia Dortmund</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">AC Milan</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Manchester United</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Paris St Germain</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">FC Barcelona</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Borussia Dortmund</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> MLB <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Boston Red Sox</a></li>
-                        <li><a href="#">New York Yankees</a></li>
-                        <li><a href="#">LA Dodgers</a></li>
-                        <li><a href="#">Chicago White Sox</a></li>
-                        <li><a href="#">San Francisco Giants</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Boston Red Sox</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">New York Yankees</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">LA Dodgers</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Chicago White Sox</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">San Francisco Giants</a></li>
                     </ul>
                 </li>
                 <li><a href="#">CRICKET</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-show="!currentUser" ng-class="{'active': location.url() == '/register'}"><a href="#/register">Register</a></li>
-                <li ng-show="!currentUser" ng-class="{'active': location.url() == '/login'}"><a href="#/login">Login</a></li>
-                <li ng-show="currentUser" ng-class="{'active': location.url() == '/profile'}"><a href="#/profile">{{currentUser.username}}</a></li>
-                <li ng-show="currentUser"><a href="#" ng-click="logout()">Logout</a></li>
-                <li ng-show="currentUser && currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
+                <li ng-show="!currentUser" ng-class="{'active': location.url() == '/register'}"><a href="#/register" data-toggle="collapse" data-target=".navbar-collapse">Register</a></li>
+                <li ng-show="!currentUser" ng-class="{'active': location.url() == '/login'}"><a href="#/login" data-toggle="collapse" data-target=".navbar-collapse">Login</a></li>
+                <li ng-show="currentUser" ng-class="{'active': location.url() == '/profile'}"><a href="#/profile" data-toggle="collapse" data-target=".navbar-collapse">{{currentUser.username}}</a></li>
+                <li ng-show="currentUser"><a href="#" ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse">Logout</a></li>
+                <li ng-show="currentUser && currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': location.url() == '/admin'}"><a href="#/admin" data-toggle="collapse" data-target=".navbar-collapse">Admin</a></li>
             </ul>
         </div>
     </div>
