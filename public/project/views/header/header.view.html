@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -7,12 +7,69 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/home">Inside The Game</a>
+            <a href="#" class="pull-left"><img src="app_logo.JPG"></a>
         </div>
+
         <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search for teams...">
+                </div>
+                <!--<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>-->
+            </form>
+            <ul class="nav navbar-nav navbar-center">
+                    <!--<button type="submit" class="btn btn-default">-->
+                        <!--<span class="glyphicon glyphicon-search"></span>-->
+                    <!--</button>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NFL <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">New England Patriots</a></li>
+                        <li><a href="#">Green Bay Packers</a></li>
+                        <li><a href="#">Dallas Cowboys</a></li>
+                        <li><a href="#">Seattle Seahawks</a></li>
+                        <li><a href="#">Pittsburgh Steelers</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NBA <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Boston Celtics</a></li>
+                        <li><a href="#">Detroit Pistons</a></li>
+                        <li><a href="#">Miami Heat</a></li>
+                        <li><a href="#">Golden State Warriors</a></li>
+                        <li><a href="#">Indiana Pacers</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">AC Milan</a></li>
+                        <li><a href="#">Manchester United</a></li>
+                        <li><a href="#">Paris St Germain</a></li>
+                        <li><a href="#">FC Barcelona</a></li>
+                        <li><a href="#">Borussia Dortmund</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> MLB <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Boston Red Sox</a></li>
+                        <li><a href="#">New York Yankees</a></li>
+                        <li><a href="#">LA Dodgers</a></li>
+                        <li><a href="#">Chicago White Sox</a></li>
+                        <li><a href="#">San Francisco Giants</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">CRICKET</a></li>
+
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active': location.url() == '/register'}"><a href="#/register">Register</a></li>
-                <li ng-class="{'active': location.url() == '/login'}"><a href="#/login">Login</a></li>
+                <li ng-show="!currentUser" ng-class="{'active': location.url() == '/register'}"><a href="#/register">Register</a></li>
+                <li ng-show="!currentUser" ng-class="{'active': location.url() == '/login'}"><a href="#/login">Login</a></li>
+                <li ng-show="currentUser" ng-class="{'active': location.url() == '/profile'}"><a href="#/profile">{{currentUser.username}}</a></li>
+                <li ng-show="currentUser"><a href="#" ng-click="logout()">Logout</a></li>
+                <li ng-show="currentUser && currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
             </ul>
         </div>
     </div>
