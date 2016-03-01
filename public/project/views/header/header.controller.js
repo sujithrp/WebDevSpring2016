@@ -14,6 +14,10 @@
         $scope.logout = function() {
             UserService.setCurrentUser(null);
             $location.url('/home');
+        };
+
+        $scope.search = function(searchedItem) {
+            alert(searchedItem);
         }
     }
 
