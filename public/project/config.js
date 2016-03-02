@@ -26,6 +26,10 @@
                 templateUrl: "views/users/register.view.html",
                 controller: "RegisterController"
             })
+            .when("/search/:title", {
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

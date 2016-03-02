@@ -16,10 +16,13 @@
             $location.url('/home');
         };
 
-        $scope.search = function(searchedItem) {
-            alert(searchedItem);
+        $scope.search = function(searchedItem,leagueItem) {
+            if (searchedItem != null && leagueItem != null) {
+                $location.url("/search/"+searchedItem);
+                $scope.searchedItem = '';
+            }
+
         }
     }
-
 
 })();

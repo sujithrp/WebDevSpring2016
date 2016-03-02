@@ -13,32 +13,23 @@
         <div id="navbar" class="navbar-collapse collapse">
 
             <form class="navbar-form navbar-left" role="search">
-                <div class="input-group" ng-controller="SearchController">
+                <div class="input-group">
                 <input ng-model="searchedItem" type="text" class="form-control" placeholder="Search..."/>
                 <span class="input-group-addon">
-                    <a class="glyphicon glyphicon-search" ng-click="search(searchedItem)"></a>
+                    <a class="glyphicon glyphicon-search" ng-click="search(searchedItem,leagueItem)"></a>
                 </span>
                 </div>
-                <!--<div class="form-group">-->
-                    <!--<input ng-model="searchedItem" type="text" class="form-control search-bar" placeholder="Search for teams...">-->
-                    <!--<span class="glyphicon glyphicon-search" ng-click="search(searchedItem)"></span>-->
-
-                    <!--&lt;!&ndash;<button ng-click="search(searchedItem)" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>&ndash;&gt;-->
-                <!--</div>-->
-                <!--<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>-->
+                <div class="dropdown">
+                    <select ng-model="leagueItem" class="form-control">
+                        <option value="" disabled="disabled" selected="selected">Please select the league . . .</option>
+                        <option value="NBA">NBA</option>
+                        <option value="NFL">NFL</option>
+                        <option value="Soccer">Soccer</option>
+                        <option value="MLB">MLB</option>
+                    </select>
+                </div>
             </form>
-
-            <!--<ul class="nav navbar-nav navbar-center">-->
-                <!--<li><a href="#">NBA</a></li>-->
-                <!--<li><a href="#">NBA</a></li>-->
-                <!--<li><a href="#">NBA</a></li>-->
-                <!--<li><a href="#">NBA</a></li>-->
-                <!--<li><a href="#">NBA</a></li>-->
-            <!--</ul>-->
             <ul class="nav navbar-nav navbar-center">
-                    <!--<button type="submit" class="btn btn-default">-->
-                        <!--<span class="glyphicon glyphicon-search"></span>-->
-                    <!--</button>-->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">NFL <b class="caret"></b></a>
                     <ul class="dropdown-menu">

@@ -123,3 +123,13 @@ CHANGES I HAVE ADDED
 ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
 }
+
+img.thumbnail {
+    display: inline;
+    max-width: 230px;
+    max-height: 300px;
+}
+
+.thumbContainer {
+    text-align: center;
+}

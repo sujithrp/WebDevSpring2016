@@ -7,9 +7,10 @@
         .module("SportsApp")
         .controller("SearchController", searchController);
 
-    function searchController($scope, $http, CacheService) {
+    function searchController($scope, $http, $location, $routeParams, CacheService) {
 
         var id;
+
 
         var nameToIdCallback = function(returnedId) {
             if (returnedId != null) {
@@ -33,6 +34,28 @@
             //$http.get(url)
             //    .then(function(response) {
             //    console.log(response);
+            //});
+
+            var apiKey = "GnQeYWlWrkG63BdGu9qBo82NbAriUUDDAj4/6a/NeAs=";
+            apiKeyEnc = btoa("ignored:"+apiKey);
+            name = encodeURIComponent(name);
+
+            var bingUrl = "/bing/Image?Query='"+name.toString()+"'&$format=json";
+            //var bingUrl = "/bing/"+name;
+            // MAIN REQUEST CODE
+            //$http({
+            //    method: 'GET',
+            //    url: bingUrl,
+            //    Authorization: "Basic: "+apiKeyEnc
+            //    //Accept: "application/json"
+            //}).then(function successCallback(response) {
+            //    console.log(response);
+            //    // this callback will be called asynchronously
+            //    // when the response is available
+            //}, function errorCallback(response) {
+            //    console.log(response);
+            //    // called asynchronously if an error occurs
+            //    // or server returns response with an error status.
             //});
         }
     }
