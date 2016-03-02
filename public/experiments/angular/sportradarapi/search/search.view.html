@@ -1,7 +1,36 @@
 <div class="container" ng-controller="SearchController">
-    <h2> Sports App Search </h2>
 
     <input ng-model="team" class="form-control"/>
     <button ng-click="search(team)" class="btn btn-primary">Search</button>
+
+<!--</div>-->
+
+<!--<div class="container-fluid" ng-controller="SearchController">-->
+    <div class="row">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 col-md-offset-2 thumbContainer">
+            <img src={{mainImage}} alt="Image of " class="thumbnail">
+        </div>
+
+        <div class="col-lg-9 col-md-8 col-sm-6 col-md-offset-2">
+            <table border="0" class="pull-left table table-condensed playerInfo">
+                <!--<tr ng-repeat="form in currentFormsArr">-->
+                    <!--<td> {{form.title}} </td>-->
+                    <!--<td> <a ng-click="deleteForm($index)"> <span class="glyphicon glyphicon-remove"></span> </a> <a ng-click="selectForm($index)"> <span class="glyphicon glyphicon-pencil"></span> </a> </td>-->
+                <!--</tr>-->
+                <tr ng-repeat="propertyObj in propertiesArr">
+                    <td> {{propertyObj.propertyName}} </td>
+                    <td> {{propertyObj.propertyValue}} </td>
+                </tr>
+
+                <h6>Players:</h6>
+                <tr ng-repeat="playerObj in playersArr">
+                    <td> {{playerObj.playerFullName}} </td>
+                    <td> {{playerObj.playerPosition}} </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
 
 </div>

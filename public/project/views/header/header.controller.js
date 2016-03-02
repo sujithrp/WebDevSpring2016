@@ -18,8 +18,11 @@
 
         $scope.search = function(searchedItem,leagueItem) {
             if (searchedItem != null && leagueItem != null) {
-                $location.url("/search/"+searchedItem);
+                var combinedTerm = searchedItem+"|"+leagueItem;
+                $rootScope.combinedTerm = combinedTerm;
+                $location.url("/search/"+combinedTerm);
                 $scope.searchedItem = '';
+                //$scope.combinedTerm = '';
             }
 
         }
