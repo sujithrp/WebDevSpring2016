@@ -85,11 +85,11 @@
             name = encodeURIComponent(matchingText);
 
             var bingUrl = "/bing/Image?Query='" + name.toString() + "'&$format=json";
-            $http({
-                method: 'GET',
-                url: bingUrl,
-                Authorization: "Basic OkduUWVZV2xXcmtHNjNCZEd1OXFCbzgyTmJBcmlVVUREQWo0LzZhL05lQXM9"
-            }).then(function successCallback(response) {
+            var config = {headers:  {
+                'Authorization': 'Basic OkduUWVZV2xXcmtHNjNCZEd1OXFCbzgyTmJBcmlVVUREQWo0LzZhL05lQXM9'
+            }
+            };
+            $http.get(bingUrl,config).then(function successCallback(response) {
                 $scope.teamImage = response.data.d.results[0].MediaUrl;
                 // this callback will be called asynchronously
                 // when the response is available

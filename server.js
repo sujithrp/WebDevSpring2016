@@ -1,6 +1,6 @@
 var express = require('express');
 var request = require('request');
-var bingApi = require('node-bing-api')({accKey: "ZT6UwwHmcPqetCdc6nO9+16rjz5iNa/9izs7sxGO1io"});
+//var bingApi = require('node-bing-api')({accKey: "ZT6UwwHmcPqetCdc6nO9+16rjz5iNa/9izs7sxGO1io"});
 var app = express();
 app.use(express.static(__dirname + '/public'));
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
