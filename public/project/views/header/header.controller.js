@@ -9,8 +9,6 @@
 
     function HeaderController($scope, $rootScope, $location, UserService) {
 
-        $scope.$location = $location;
-
         $scope.logout = function() {
             UserService.setCurrentUser(null);
             $location.url('/home');
@@ -20,9 +18,8 @@
             if (searchedItem != null && leagueItem != null) {
                 var combinedTerm = searchedItem+"|"+leagueItem;
                 $rootScope.combinedTerm = combinedTerm;
-                $location.url("/search/"+combinedTerm);
+                $location.url("/team/"+combinedTerm);
                 $scope.searchedItem = '';
-                //$scope.combinedTerm = '';
             }
 
         }

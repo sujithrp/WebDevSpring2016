@@ -14,6 +14,10 @@
             {
                 "name":"San Antonio Spurs",
                 "id":"583ecd4f-fb46-11e1-82cb-f4ce4684ea4c"
+            },
+            {
+                "name": "Rasual Butler",
+                "id": "007a5e3c-978e-49e3-af38-7a4d9354cf21"
             }
         ];
 
@@ -26,7 +30,7 @@
                 var givenName = name.toLowerCase();
 
                 if (nameInDB.replace(" ","") === givenName.replace(" ","")) {
-                    nameToIdCallback(map[arrIndex].id);
+                    nameToIdCallback(map[arrIndex].id, map[arrIndex].name);
                     return;
                 }
 

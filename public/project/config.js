@@ -30,6 +30,14 @@
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController"
             })
+            .when("/team/:teamAndLeague", {
+                templateUrl: "views/details/team.view.html",
+                controller: "TeamController"
+            })
+            .when("/player/:playerAndLeague", {
+                templateUrl: "views/details/player.view.html",
+                controller: "PlayerController"
+            })
             .otherwise({
                 redirectTo: "/home"
             });
