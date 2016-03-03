@@ -63,18 +63,16 @@
                     $scope.propertiesArr = propertiesArr;
                 });
             // BING API REQUEST CODE
-            var apiKey = ":GnQeYWlWrkG63BdGu9qBo82NbAriUUDDAj4/6a/NeAs=";
-            apiKeyEnc = btoa("ignored:" + apiKey);
             var name = encodeURIComponent(matchingText);
 
             var bingUrl = "/bing/Image?Query='" + name.toString() + "'&$format=json";
-            $http({
-                method: 'GET',
-                url: bingUrl,
-                Authorization: "Basic " + apiKeyEnc
-            }).then(function successCallback(response) {
+
+            var config = {headers:  {
+                'Authorization': 'Basic OlpUNlV3d0htY1BxZXRDZGM2bk85KzE2cmp6NWlOYS85aXpzN3N4R08xaW8='
+            }
+            };
+            $http.get(bingUrl,config).then(function successCallback(response) {
                 $scope.playerImage = response.data.d.results[0].MediaUrl;
-                console.log(response);
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
@@ -82,6 +80,6 @@
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
-        };
+        }
     }
 })();

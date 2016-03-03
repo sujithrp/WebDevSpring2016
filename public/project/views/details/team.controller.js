@@ -78,9 +78,6 @@
                     $scope.playersArr = playersArr;
                 });
             // BING API REQUEST CODE
-            var apiKey = ":GnQeYWlWrkG63BdGu9qBo82NbAriUUDDAj4/6a/NeAs=";
-            apiKeyEnc = btoa("ignored:" + apiKey);
-            // = "OkduUWVZV2xXcmtHNjNCZEd1OXFCbzgyTmJBcmlVVUREQWo0LzZhL05lQXM9";
             matchingText = matchingText + " " + "logo";
             name = encodeURIComponent(matchingText);
 
