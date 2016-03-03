@@ -80,6 +80,7 @@
             // BING API REQUEST CODE
             var apiKey = ":GnQeYWlWrkG63BdGu9qBo82NbAriUUDDAj4/6a/NeAs=";
             apiKeyEnc = btoa("ignored:" + apiKey);
+            // = "OkduUWVZV2xXcmtHNjNCZEd1OXFCbzgyTmJBcmlVVUREQWo0LzZhL05lQXM9";
             matchingText = matchingText + " " + "logo";
             name = encodeURIComponent(matchingText);
 
@@ -87,7 +88,7 @@
             $http({
                 method: 'GET',
                 url: bingUrl,
-                Authorization: "Basic " + apiKeyEnc
+                Authorization: "Basic OkduUWVZV2xXcmtHNjNCZEd1OXFCbzgyTmJBcmlVVUREQWo0LzZhL05lQXM9"
             }).then(function successCallback(response) {
                 $scope.teamImage = response.data.d.results[0].MediaUrl;
                 // this callback will be called asynchronously
