@@ -86,7 +86,7 @@
 
             var bingUrl = "/bing/Image?Query='" + name.toString() + "'&$format=json";
             var config = {headers:  {
-                'Authorization': 'Basic OkduUWVZV2xXcmtHNjNCZEd1OXFCbzgyTmJBcmlVVUREQWo0LzZhL05lQXM9'
+                'Authorization': 'Basic OlpUNlV3d0htY1BxZXRDZGM2bk85KzE2cmp6NWlOYS85aXpzN3N4R08xaW8='
             }
             };
             $http.get(bingUrl,config).then(function successCallback(response) {
