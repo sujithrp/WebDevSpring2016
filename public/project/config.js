@@ -38,6 +38,9 @@
                 templateUrl: "views/details/player.view.html",
                 controller: "PlayerController"
             })
+            .when("/blogs", {
+                templateUrl: "views/blogs/blog.view.html"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

@@ -37,7 +37,7 @@
 
         function teamDetailsFetch() {
 
-            // league name is also available here
+            // league name is also available here, so that can be used in the future
             var url = "/api/nba-t3/teams/"+id+"/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
             $http.get(url)
                 .then(function (response) {
@@ -75,7 +75,7 @@
                         }
                     }
                     $scope.propertiesArr = propertiesArr;
-                    $scope.playersArr = playersArr;
+                    $scope.playersArr = playersArr.slice(0,1);
                 });
             // BING API REQUEST CODE
             matchingText = matchingText + " " + "logo";

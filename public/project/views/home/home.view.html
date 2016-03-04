@@ -1,17 +1,38 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <!--<div class="page-header">-->
-                <!--<h1> Welcome! </h1>-->
-            <!--</div>-->
+            <div class="page-header">
+                <h1> Welcome! </h1>
+            </div>
 
-            <!--<p>-->
-                <!--My passion is sport. I love sport because of the excitement of winning and the great team work skills-->
-                <!--you develop. It’s not always about winning, it’s about learning to give your best and encouraging-->
-                <!--teammates to do the same. What I love about playing sport is meeting new people, and developing strong-->
-                <!--friendships that could last a lifetime. Sport just isn’t about the fitness, it’s about the fun and the-->
-                <!--teamwork.-->
-            <!--</p>-->
+            <p>
+                My passion is sport. I love sport because of the excitement of winning and the great team work skills
+                you develop. It’s not always about winning, it’s about learning to give your best and encouraging
+                teammates to do the same. What I love about playing sport is meeting new people, and developing strong
+                friendships that could last a lifetime. Sport just isn’t about the fitness, it’s about the fun and the
+                teamwork.
+            </p>
+
+            <p>
+                How to use the site:
+                <br>
+                <br>
+                1) The site is still in development phase.<br><br>
+                2) Search feature works only for NBA and for teams listed in the NBA dropdown. Reason: I don't want to exhaust
+                my API call limit during testing. So I have cached the results by implementing a Caching Service. The cache currently has
+                only the listed teams.<br><br>
+                3) To Search, please select NBA and type any one of the teams listed. You can type patial team names but they have to be
+                complete words.<br><br>
+                4) The Search logic works as follows:<br>
+                a) Take the entered string and convert it to an ID by looking up the cache<br>
+                b) Query the SportRadar API using the id<br>
+                c) Note: My API i.e. SportRadar doesn't have the feature of getting details from name. So I should have a local
+                cache that converts name to ID.
+                For example, you can search for "Celtics" and expect to see the Boston Celtics page<br><br>
+                4) I'm yet to implement live scores, results, videos, fixtures and blogs<br><br>
+                5) I have two sample blogs in my blogs link on the sidebar.<br><br>
+
+            </p>
 
         </div>
     </div>

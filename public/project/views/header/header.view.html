@@ -14,7 +14,7 @@
 
             <form class="navbar-form navbar-left" role="search">
                 <div class="input-group">
-                <input ng-model="searchedItem" type="text" class="form-control" placeholder="Search..."/>
+                <input ng-model="searchedItem" type="text" class="form-control" placeholder="Search Teams..."/>
                 <span class="input-group-addon">
                     <a class="glyphicon glyphicon-search" ng-click="search(searchedItem,leagueItem)"></a>
                 </span>
@@ -31,43 +31,63 @@
             </form>
             <ul class="nav navbar-nav navbar-center">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NFL <b class="caret"></b></a>
+                    <a href class="dropdown-toggle" data-toggle="dropdown">NFL <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">New England Patriots</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Green Bay Packers</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Dallas Cowboys</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Seattle Seahawks</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Pittsburgh Steelers</a></li>
+                        <li><a href="#" class="hidden-xs">New England Patriots</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">New England Patriots</a></li>
+                        <li><a href="#" class="hidden-xs">Green Bay Packers</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Green Bay Packers</a></li>
+                        <li><a href="#" class="hidden-xs">Dallas Cowboys</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Dallas Cowboys</a></li>
+                        <li><a href="#" class="hidden-xs">Seattle Seahawks</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Seattle Seahawks</a></li>
+                        <li><a href="#" class="hidden-xs">Pittsburgh Steelers</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Pittsburgh Steelers</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">NBA <b class="caret"></b></a>
+                    <a href class="dropdown-toggle" data-toggle="dropdown">NBA <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Boston Celtics</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Detroit Pistons</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Miami Heat</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Golden State Warriors</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Indiana Pacers</a></li>
+                        <li><a href="#/team/BostonCeltics|NBA" class="hidden-xs">Boston Celtics</a></li>
+                        <li><a href="#/team/BostonCeltics|NBA" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Boston Celtics</a></li>
+                        <li><a href="#/team/MiamiHeat|NBA" class="hidden-xs">Miami Heat</a></li>
+                        <li><a href="#/team/MiamiHeat|NBA" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Miami Heat</a></li>
+                        <li><a href="#/team/ClevelandCavaliers|NBA" class="hidden-xs">Cleveland Cavaliers</a></li>
+                        <li><a href="#/team/ClevelandCavaliers|NBA" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Cleveland Cavaliers</a></li>
+                        <li><a href="#/team/Spurs|NBA" class="hidden-xs">San Antonio Spurs</a></li>
+                        <li><a href="#/team/Spurs|NBA" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">San Antonio Spurs</a></li>
+                        <li><a href="#/team/UtahJazz|NBA" class="hidden-xs">Utah Jazz</a></li>
+                        <li><a href="#/team/UtahJazz|NBA" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Utah Jazz</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>
+                    <a href class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">AC Milan</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Manchester United</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Paris St Germain</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">FC Barcelona</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Borussia Dortmund</a></li>
+                        <li><a href="#" class="hidden-xs">AC Milan</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">AC Milan</a></li>
+                        <li><a href="#" class="hidden-xs">Manchester United</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Manchester United</a></li>
+                        <li><a href="#" class="hidden-xs">Juventus</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Juventus</a></li>
+                        <li><a href="#" class="hidden-xs">FC Barcelona</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">FC Barcelona</a></li>
+                        <li><a href="#" class="hidden-xs">Bayern Munich</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Bayern Munich</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> MLB <b class="caret"></b></a>
+                    <a href class="dropdown-toggle" data-toggle="dropdown"> MLB <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Boston Red Sox</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">New York Yankees</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">LA Dodgers</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">Chicago White Sox</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse">San Francisco Giants</a></li>
+                        <li><a href="#" class="hidden-xs">Boston Red Sox</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Boston Red Sox</a></li>
+                        <li><a href="#" class="hidden-xs">LA Dodgers</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">LA Dodgers</a></li>
+                        <li><a href="#" class="hidden-xs">New York Yankees</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">New York Yankees</a></li>
+                        <li><a href="#" class="hidden-xs">Chicago Cubs</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Chicago Cubs</a></li>
+                        <li><a href="#" class="hidden-xs">San Francisco Giants</a></li>
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">San Francisco Giants</a></li>
                     </ul>
                 </li>
             </ul>
