@@ -39,7 +39,8 @@
                 controller: "PlayerController"
             })
             .when("/blogs", {
-                templateUrl: "views/blogs/blog.view.html"
+                templateUrl: "views/blogs/blog.view.html",
+                controller: "BlogController"
             })
             .otherwise({
                 redirectTo: "/home"

@@ -50,6 +50,46 @@
             {
                 "name": "James Young",
                 "id": "0bf197ae-6f88-4ce6-ace0-50a20b98f847"
+            },
+            {
+                "name": "New England Patriots",
+                "id": "e43310b1-cb82-4df9-8be5-e9b39637031b"
+            },
+            {
+                "name": "Green Bay Packers",
+                "id": "5a60dd3a-302c-41c6-ab0f-dd335c1103c2"
+            },
+            {
+                "name": "Dallas Cowboys",
+                "id": "1e84213a-ff1f-4c9d-a003-8ee782b25a40"
+            },
+            {
+                "name": "Seattle Seahawks",
+                "id": "c6b9e5df-c9e4-434c-b3e6-83928f11cbda"
+            },
+            {
+                "name": "Pittsburgh Steelers",
+                "id": "7349a2e6-0ac9-410b-8bd2-ca58c9f7aa34"
+            },
+            {
+                "name": "James Young",
+                "id": "0bf197ae-6f88-4ce6-ace0-50a20b98f847"
+            },
+            {
+                "name": "James Young",
+                "id": "0bf197ae-6f88-4ce6-ace0-50a20b98f847"
+            },
+            {
+                "name": "James Young",
+                "id": "0bf197ae-6f88-4ce6-ace0-50a20b98f847"
+            },
+            {
+                "name": "James Young",
+                "id": "0bf197ae-6f88-4ce6-ace0-50a20b98f847"
+            },
+            {
+                "name": "James Young",
+                "id": "0bf197ae-6f88-4ce6-ace0-50a20b98f847"
             }
 
         ];
@@ -81,9 +121,29 @@
             }
         };
 
+        var blogsArr = [
+            {
+                "blogName": "Sassuolo-Milan Preview: The Hunt",
+                "blogContent": "On Sunday, Milan will have a double task of taking three points to keep their objectives on the table, and also breaking a curse of playing away to Sassuolo. The first objective is hard enough with injuries and fitness issues. But there is always some kind of dark magic about breaking a curse, a psychological feat that is not exactly tangible. Add to that the fact that Sassuolo are only six points behind us on the table and could cut that distance in half with a win, and this is going to be a difficult game. With both teams seeking European spots, and both coming into the match in good form, this match will be like a hunt",
+                "blogUserId": 123
+            },
+            {
+                "blogName": "NUMBERS NOTES: THUNDER GET STAGNANT WITH THE GAME ON THE LINE",
+                "blogContent": "The Jazz are that team that throws 2-3 passes at the beginning of most possessions that do nothing. So ball movement is definitely going to go down when they’re more purposefully looking to get the ball into the hands of Gordon Hayward or Rodney Hood to run a pick-and-roll.",
+                "blogUserId": 234
+            }
+        ];
+
+
+        CacheService.getAllBlogs = function(getAllBlogsCallback) {
+            getAllBlogsCallback(blogsArr);
+        };
+
         return {
             map: map,
-            nameToId: CacheService.nameToId
+            blogsArr: blogsArr,
+            nameToId: CacheService.nameToId,
+            getAllBlogs: CacheService.getAllBlogs
         };
     }
 })();
