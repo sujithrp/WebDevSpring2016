@@ -125,25 +125,54 @@
             {
                 "blogName": "Sassuolo-Milan Preview: The Hunt",
                 "blogContent": "On Sunday, Milan will have a double task of taking three points to keep their objectives on the table, and also breaking a curse of playing away to Sassuolo. The first objective is hard enough with injuries and fitness issues. But there is always some kind of dark magic about breaking a curse, a psychological feat that is not exactly tangible. Add to that the fact that Sassuolo are only six points behind us on the table and could cut that distance in half with a win, and this is going to be a difficult game. With both teams seeking European spots, and both coming into the match in good form, this match will be like a hunt",
-                "blogUserId": 123
+                "blogUsername": "alice"
             },
             {
                 "blogName": "NUMBERS NOTES: THUNDER GET STAGNANT WITH THE GAME ON THE LINE",
                 "blogContent": "The Jazz are that team that throws 2-3 passes at the beginning of most possessions that do nothing. So ball movement is definitely going to go down when they’re more purposefully looking to get the ball into the hands of Gordon Hayward or Rodney Hood to run a pick-and-roll.",
-                "blogUserId": 234
+                "blogUsername": "bob"
             }
         ];
 
 
-        CacheService.getAllBlogs = function(getAllBlogsCallback) {
-            getAllBlogsCallback(blogsArr);
+        CacheService.getAllBlogs = function(callback) {
+            callback(blogsArr);
+        };
+
+        CacheService.createBlogForUser = function(blog, username, callback) {
+            var blogObj = {
+                "blogName": blog.title,
+                "blogContent": blog.content,
+                "blogUsername": username
+            };
+            blogsArr.push(blogObj);
+            callback(blogsArr);
+        };
+
+        CacheService.fetchBlogsForUser = function(username, callback) {
+            var blogsByUser = [];
+            var blogIndex;
+
+            for (blogIndex in blogsArr) {
+                var currentBlog = blogsArr[blogIndex];
+                if (currentBlog.blogUsername === username) {
+                    if (blogsByUser.length === 0) {
+                        blogsByUser = [currentBlog];
+                    } else {
+                        blogsByUser.push(currentBlog);
+                    }
+                }
+            }
+            callback(blogsByUser);
         };
 
         return {
             map: map,
             blogsArr: blogsArr,
             nameToId: CacheService.nameToId,
-            getAllBlogs: CacheService.getAllBlogs
+            getAllBlogs: CacheService.getAllBlogs,
+            createBlogForUser: CacheService.createBlogForUser,
+            fetchBlogsForUser: CacheService.fetchBlogsForUser
         };
     }
 })();

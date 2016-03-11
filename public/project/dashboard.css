@@ -77,8 +77,8 @@ body {
 }
 @media (min-width: 768px) {
     .main {
-        padding-right: 40px;
-        padding-left: 40px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
 }
 .main .page-header {
@@ -120,9 +120,12 @@ CHANGES I HAVE ADDED
     font-size: large;
 }
 
-/*ul.nav li.dropdown:hover > ul.dropdown-menu {*/
-    /*display: block;*/
+/*@media (min-width: 768px) {*/
+    /*ul.nav li.dropdown:hover > ul.dropdown-menu {*/
+        /*display: none;*/
+    /*}*/
 /*}*/
+
 
 img.thumbnail {
     display: inline;

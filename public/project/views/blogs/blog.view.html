@@ -1,14 +1,26 @@
 <div class="container-fluid">
 
-    <div class="col-lg-9 col-sm-6 col-md-offset-2">
+    <div class="col-lg-9 col-sm-6 col-md-4 col-md-offset-2">
         <br>
         <br>
-        <h6>Blogs: </h6>
+        <div ng-show="message" class="alert alert-info">{{message}}</div>
+        <a href ng-show="currentUser" ng-click="fetchBlogsForUser()" class="btn btn-warning">View My Blogs</a>
+        <a href ng-show="currentUser" ng-click="viewAllBlogs()" class="btn btn-default">View All Blogs</a>
+        <a href ng-show="currentUser" ng-click="blogWrite = true" class="btn btn-success">Write a Blog</a>
+
+        <div ng-show="blogWrite">
+            <input ng-model="blog.title" class="form-control" placeholder="Title">
+            <textarea ng-model="blog.content" class="form-control" rows="5" placeholder="Write your blog here..."></textarea>
+            <a href ng-click="submitBlog(blog)" class="btn btn-success"> Submit Blog </a>
+        </div>
+
+        <h5>All Blogs: </h5>
         <table border="0" class="pull-left table table-condensed">
 
             <tr ng-repeat="blogObj in blogsArr">
                 <td>
                     <u><h6>{{blogObj.blogName}}</h6></u>
+                    <small> By {{blogObj.blogUsername}}</small>
                     <p>{{blogObj.blogContent}}</p>
                     <br>
                 </td>
