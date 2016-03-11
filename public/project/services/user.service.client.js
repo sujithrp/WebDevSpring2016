@@ -19,6 +19,9 @@
                 "password":"alice",
                 "roles":[
                     "student"
+                ],
+                "teams": [
+                    "San Antonio Spurs"
                 ]
             },
             {
@@ -29,7 +32,8 @@
                 "password":"bob",
                 "roles":[
                     "admin"
-                ]
+                ],
+                "teams": []
             },
             {
                 "_id":345,
@@ -39,6 +43,9 @@
                 "password":"charlie",
                 "roles":[
                     "faculty"
+                ],
+                "teams": [
+                    "Utah Jazz"
                 ]
             },
             {
@@ -50,7 +57,8 @@
                 "roles":[
                     "faculty",
                     "admin"
-                ]
+                ],
+                "teams": []
             },
             {
                 "_id":567,
@@ -60,6 +68,9 @@
                 "password":"ed",
                 "roles":[
                     "student"
+                ],
+                "teams": [
+                    "Boston Celtics"
                 ]
             }
         ];
@@ -132,6 +143,28 @@
             callback(null);
         };
 
+        UserService.addTeamForUser = function(userId, team, callback) {
+            var index;
+            for (index in usersArr) {
+                if (usersArr[index]._id === userId) {
+                    usersArr[index].teams.push(team);
+                    callback(usersArr[index].teams);
+                    break;
+                }
+            }
+        };
+
+        UserService.deleteTeamForUser = function(userId, indexToBeDeleted, callback) {
+            var index;
+            for (index in usersArr) {
+                if (usersArr[index]._id === userId) {
+                    var teamsArr = usersArr[index].teams;
+                    usersArr[index].teams.splice(indexToBeDeleted,1);
+                    callback(usersArr[index].teams);
+                }
+            }
+        };
+
         return {
             usersArr: usersArr,
             findUserByCredentials: UserService.findUserByCredentials,
@@ -139,7 +172,9 @@
             createUser: UserService.createUser,
             deleteUserById: UserService.deleteUserById,
             updateUser: UserService.updateUser,
-            setCurrentUser: UserService.setCurrentUser
+            setCurrentUser: UserService.setCurrentUser,
+            addTeamForUser: UserService.addTeamForUser,
+            deleteTeamForUser: UserService.deleteTeamForUser
         };
     }
 })();

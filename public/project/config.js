@@ -42,6 +42,10 @@
                 templateUrl: "views/blogs/blog.view.html",
                 controller: "BlogController"
             })
+            .when("/team_crud", {
+                templateUrl: "views/details/team_crud.view.html",
+                controller: "TeamCrudController"
+            })
             .otherwise({
                 redirectTo: "/home"
             });
