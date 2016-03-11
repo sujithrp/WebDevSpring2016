@@ -20,6 +20,10 @@
                 </thead>
 
                 <tbody>
+                <tr ng-repeat="team in currentTeamsArr">
+                    <td> <a href ng-click="displayTeamDetails($index)"> {{team}} </a></td>
+                    <td> <a href ng-click="deleteTeam($index)" class="btn btn-danger"> Delete Team </span> </a> </td>
+                </tr>
                 <tr>
                     <td>
 
@@ -32,11 +36,7 @@
                         </select>
 
                         <input ng-model="team" type="text" class="form-control" id="inputTeamName" placeholder="name"> </td>
-                    <td> <a href ng-click="addTeam(team)" class="btn btn-success"> Add Team </a> </td>
-                </tr>
-                <tr ng-repeat="team in currentTeamsArr">
-                    <td> <a href ng-click="displayTeamDetails($index)"> {{team}} </a></td>
-                    <td> <a href ng-click="deleteTeam($index)" class="btn btn-danger"> Delete Team </span> </a> </td>
+                    <td> <a href ng-click="addTeam(team)" class="btn btn-success"> Add Favorite Team </a> </td>
                 </tr>
                 </tbody>
             </table>
