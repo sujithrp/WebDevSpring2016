@@ -124,7 +124,7 @@
         var blogsArr = [
             {
                 "blogId": 1,
-                "blogName": "Sassuolo-Milan Preview: The Hunt",
+                "blogName": "Sassuolo-Milan Preview - The Hunt",
                 "blogContent": "On Sunday, Milan will have a double task of taking three points to keep their objectives on the table, and also breaking a curse of playing away to Sassuolo. The first objective is hard enough with injuries and fitness issues. But there is always some kind of dark magic about breaking a curse, a psychological feat that is not exactly tangible. Add to that the fact that Sassuolo are only six points behind us on the table and could cut that distance in half with a win, and this is going to be a difficult game. With both teams seeking European spots, and both coming into the match in good form, this match will be like a hunt",
                 "blogUsername": "alice"
             },
