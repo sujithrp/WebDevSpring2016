@@ -5,7 +5,7 @@
             <br>
             <h4 class="page-header"> My Teams </h4>
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
-            <a href="#/login" ng-show="message" class="btn btn-success">Login</a>
+            <a href="#/login" ng-show="message" class="btn btn-default">Login</a>
 
             <!--<ul class="nav nav-tabs">-->
                 <!--<li class="active"><a href="#">Forms</a></li>-->
@@ -22,7 +22,7 @@
                 <tbody>
                 <tr ng-repeat="team in currentTeamsArr">
                     <td> <a href ng-click="displayTeamDetails($index)"> {{team}} </a></td>
-                    <td> <a href ng-click="deleteTeam($index)" class="btn btn-danger"> Delete Team </span> </a> </td>
+                    <td> <a href ng-click="deleteTeam($index)" class="btn btn-default"> Delete Team </span> </a> </td>
                 </tr>
                 <tr>
                     <td>
@@ -36,7 +36,7 @@
                         </select>
 
                         <input ng-model="team" type="text" class="form-control" id="inputTeamName" placeholder="name"> </td>
-                    <td> <a href ng-click="addTeam(team)" class="btn btn-success"> Add Favorite Team </a> </td>
+                    <td> <a href ng-click="addTeam(team)" class="btn btn-default"> Add Favorite Team </a> </td>
                 </tr>
                 </tbody>
             </table>

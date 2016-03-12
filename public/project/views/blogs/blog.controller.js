@@ -26,13 +26,24 @@
         CacheService.getAllBlogs(getAllBlogsCallback);
 
 
+        $scope.cancelBlog = function() {
+            $scope.blog = '';
+            $scope.blogWrite = false;
+        };
+
+
         var submitBlogCallback = function(newBlogsArr) {
             $scope.blogsArr = newBlogsArr;
+            $scope.blog = '';
             $scope.blogWrite = false;
         };
 
         $scope.submitBlog = function(blog) {
-            CacheService.createBlogForUser(blog,currentUser.username,submitBlogCallback);
+            if (!blog.blogId) {
+                CacheService.createBlogForUser(blog,currentUser.username,submitBlogCallback);
+            } else {
+                CacheService.updateBlogForUser(blog,submitBlogCallback);
+            }
         };
 
         var fetchBlogsForUserCallback = function(returnedBlogsArr) {
@@ -49,6 +60,30 @@
 
         $scope.viewAllBlogs = function() {
             CacheService.getAllBlogs(getAllBlogsCallback);
+        };
+
+        $scope.isBlogByCurrentUser = function(blogIndex) {
+            if (!currentUser) return false;
+            return CacheService.isBlogByCurrentUser(blogIndex, currentUser.username);
+        };
+
+        var editBlogCallback = function(blogObj) {
+            $scope.blog = blogObj;
+            $scope.blog.title = blogObj.blogName;
+            $scope.blog.content = blogObj.blogContent;
+        };
+
+        $scope.editBlog = function(blogIndex) {
+            $scope.blogWrite = true;
+            CacheService.editBlog(blogIndex,editBlogCallback);
+        };
+
+        var deleteBlogCallback = function(newBlogsArr) {
+            $scope.blogsArr = newBlogsArr;
+        };
+
+        $scope.deleteBlog = function(blogIndex) {
+            CacheService.deleteBlog(blogIndex,deleteBlogCallback);
         };
     }
 })();

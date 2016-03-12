@@ -147,7 +147,11 @@
             var index;
             for (index in usersArr) {
                 if (usersArr[index]._id === userId) {
-                    usersArr[index].teams.push(team);
+                    if (!usersArr[index].teams) {
+                        usersArr[index].teams = [team];
+                    } else {
+                        usersArr[index].teams.push(team);
+                    }
                     callback(usersArr[index].teams);
                     break;
                 }
