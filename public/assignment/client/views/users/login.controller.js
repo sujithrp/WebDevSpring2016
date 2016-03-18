@@ -30,7 +30,15 @@
                 $scope.message = "Please provide a password";
                 return;
             }
-            UserService.findUserByCredentials(user.username,user.password,callback);
+            UserService.findUserByCredentials(user.username,user.password).then(function(res) {
+                if(res.data == null) {
+                    $scope.message = "User does not exist";
+                }
+                else {
+                    $rootScope.currentUser = res.data;
+                    $location.path('/profile');
+                }
+            });
         };
 
     }

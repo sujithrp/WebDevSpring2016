@@ -15,19 +15,17 @@ module.exports = function() {
 
     function findUserById(userId) {
         for(var u in mock) {
-            console.log(userId);
-            console.log(mock[u]._id);
             if( mock[u]._id == userId ) {
-                console.log("found");
                 return mock[u];
             }
         }
-        console.log("retruning");
     }
 
     function createUser(user) {
-        user._id = "ID_" + (new Date()).getTime();
+        user._id = (new Date()).getTime();
         mock.push(user);
+        console.log("register model");
+        console.log(user);
         return user;
     }
 
@@ -53,7 +51,7 @@ module.exports = function() {
                 userObj.password = user.password;
                 userObj.firstName = user.firstName;
                 userObj.lastName = user.lastName;
-                return mock;
+                return userObj;
             }
         }
         return null;

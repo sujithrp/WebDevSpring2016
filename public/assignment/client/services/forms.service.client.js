@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService() {
+    function FormService($http) {
 
         FormService.createFormForUser = function (userId, form) {
             var query = "/api/assignment/user/"+userId+"/form";

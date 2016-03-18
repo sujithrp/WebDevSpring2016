@@ -31,12 +31,12 @@ module.exports = function() {
     function createFormForUser(userId, form) {
         var newForm = {
             _id: (new Date).getTime(),
-            title: form.title,
+            title: form.formname,
             userId: userId,
             fields: form.fields
         };
         mock.push(newForm);
-        return mock;
+        return newForm;
     }
 
     function findAllFormsForUser(userId) {
@@ -66,27 +66,29 @@ module.exports = function() {
     }
 
     function deleteFormById(formId) {
+        var indexToBeDeleted;
         for (var u in mock) {
             var form = mock[u];
             if (formId == form._id) {
-                mock.splice(formIndex, 1);
-                return mock;
+                console.log("found form to be deleted");
+                console.log(u);
+                indexToBeDeleted = u;
+                break;
             }
         }
-        return null;
+        mock.splice(indexToBeDeleted, 1);
     }
 
     function updateFormById(formId, newForm) {
         for (var u in mock) {
             var formObj = mock[u];
             if (formId == formObj._id) {
-                formObj.title = newForm.title;
+                formObj.title = newForm.formname;
                 formObj.userId = newForm.userId;
                 formObj.fields = newForm.fields;
-                return mock;
+                return formObj;
             }
         }
-        return null;
     }
 
     function findFieldsByFormId(formId) {

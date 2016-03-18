@@ -22,19 +22,21 @@ module.exports = function(app, model) {
 
     function deleteFormById(req, res) {
         var formId = req.params.formId;
-        model.deleteFormById(formId);
+        res.json(model.deleteFormById(formId));
     }
 
     function createFormForUser(req, res) {
         var userId = req.params.userId;
         var newForm = req.body;
-        var currentFormsArr = model.createFormForUser(userId, newForm);
-        res.json(currentFormsArr);
+        console.log("this is the new form");
+        console.log(newForm);
+        var addedForm = model.createFormForUser(userId, newForm);
+        res.json(addedForm);
     }
 
     function updateFormById(req, res) {
         var formId = req.params.formId;
         var form = req.body;
-        model.updateFormById(formId, form);
+        res.json(model.updateFormById(formId, form));
     }
 };

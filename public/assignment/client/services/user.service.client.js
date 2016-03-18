@@ -15,7 +15,7 @@
         };
 
         UserService.findUserByCredentials = function(username, password) {
-            var query = "/api/assignment/user"+"?username="+username+"?password="+password;
+            var query = "/api/assignment/user"+"?username="+username+"&password="+password;
             return $http.get(query);
         };
 
@@ -24,6 +24,8 @@
         };
 
         UserService.createUser = function(user) {
+            console.log("creating user");
+            console.log(user);
             var query = "/api/assignment/user";
             return $http.post(query, user);
         };

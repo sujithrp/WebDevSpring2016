@@ -23,11 +23,13 @@
     "npm": ">= 1.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^3.4.8",
     "http-proxy": "^1.13.2",
     "json-stringify-safe": "^5.0.1",
-    "request": "latest",
-    "node-bing-api": "latest"
+    "multer": "^1.1.0",
+    "node-bing-api": "latest",
+    "request": "latest"
   },
   "devDependencies": {},
   "bundleDependencies": [],

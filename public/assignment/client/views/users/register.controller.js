@@ -9,11 +9,6 @@
 
     function RegisterController($rootScope, $scope, $location, UserService) {
 
-        var callback = function(userObjResponse) {
-            UserService.setCurrentUser(userObjResponse);
-            $location.url("/profile");
-        };
-
         $scope.register = function(user) {
             $scope.message = null;
             if (!user.username) {
@@ -28,7 +23,12 @@
                 $scope.message = "Passwords must match";
                 return;
             }
-            UserService.createUser(user,callback);
+            UserService.createUser(user).then(function(response) {
+                $rootScope.currentUser = response.data;
+                console.log("user returned");
+                console.log($rootScope.currentUser);
+                $location.url('/profile');
+            })
         };
 
     }
