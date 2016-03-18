@@ -40,7 +40,7 @@
                 "id": "09d25155-c3be-4246-a986-55921a1b5e61"
             },
             {
-                "name": "Justice Winslow",
+                "name": "Justise Winslow",
                 "id": "0e6ddc9f-4a7b-4d48-8033-998103edfb32"
             },
             {
