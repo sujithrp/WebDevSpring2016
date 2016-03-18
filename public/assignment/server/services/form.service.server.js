@@ -4,7 +4,7 @@
 module.exports = function(app, model) {
     app.get("/api/assignment/user/:userId/form", findAllFormsForUser);
     app.get("/api/assignment/form/:formId", findFormById);
-    app.get("/api/assignment/form/:formId", deleteFormById);
+    app.delete("/api/assignment/form/:formId", deleteFormById);
     app.post("/api/assignment/user/:userId/form", createFormForUser);
     app.put("/api/assignment/form/:formId", updateFormById);
 
