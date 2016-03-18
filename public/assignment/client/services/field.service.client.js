@@ -32,10 +32,11 @@
         };
 
         return {
-            createFormForUser: FieldService.createFormForUser,
-            findAllFormsForUser: FormService.findAllFormsForUser,
-            deleteFormById: FormService.deleteFormById,
-            updateFormById: FormService.updateFormById,
+            createFieldForForm: FormService.createFieldForForm,
+            getFieldsForForm: FormService.getFieldsForForm,
+            getFieldForForm: FormService.getFieldForForm,
+            deleteFieldFromForm: FormService.deleteFieldFromForm,
+            updateField: FormService.updateField
         };
     }
 })();

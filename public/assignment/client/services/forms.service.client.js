@@ -32,7 +32,7 @@
             createFormForUser: FormService.createFormForUser,
             findAllFormsForUser: FormService.findAllFormsForUser,
             deleteFormById: FormService.deleteFormById,
-            updateFormById: FormService.updateFormById,
+            updateFormById: FormService.updateFormById
         };
     }
 })();

@@ -40,8 +40,8 @@
         function playerDetailsFetch() {
 
             // league name is also available here
-            //var url = "/api/nba-t3/teams/" + id + "/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
-            var url = "/api/nba-t3/players/"+id+"/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
+            //var url = "/sports/nba-t3/teams/" + id + "/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
+            var url = "/sports/nba-t3/players/"+id+"/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
             $http.get(url)
                 .then(function (response) {
                     var propertiesArr = [];

@@ -38,7 +38,7 @@
         };
 
         return {
-            findUserByUsername: findUserByUsername,
+            findUserByUsername: UserService.findUserByUsername,
             findUserByCredentials: UserService.findUserByCredentials,
             findAllUsers: UserService.findAllUsers,
             createUser: UserService.createUser,
