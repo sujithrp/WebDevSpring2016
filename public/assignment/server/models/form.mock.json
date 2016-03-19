@@ -42,12 +42,6 @@
         "label":"ZIP",
         "type":"TEXT",
         "placeholder":"ZIP"
-      },
-      {
-        "_id":"666",
-        "label":"Email",
-        "type":"EMAIL",
-        "placeholder":"Email"
       }
     ]
   },

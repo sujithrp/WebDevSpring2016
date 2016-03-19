@@ -24,13 +24,13 @@ module.exports = function(app, model) {
     function deleteFieldByFieldIdFormId(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        model.deleteFieldByFieldIdFormId(formId, fieldId);
+        res.json(model.deleteFieldByFieldIdFormId(formId, fieldId));
     }
 
     function createFieldForForm(req, res) {
         var formId = req.params.formId;
         var field = req.body;
-        model.createFieldForForm(formId, field);
+        res.json(model.createFieldForForm(formId, field));
     }
 
     function updateFieldByFieldIdFormId(req, res) {

@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("FieldService", FieldService);
 
-    function FieldService() {
+    function FieldService($http) {
 
         FieldService.createFieldForForm = function(formId, field) {
             var query = "/api/assignment/form/"+formId+"/field";
@@ -32,11 +32,11 @@
         };
 
         return {
-            createFieldForForm: FormService.createFieldForForm,
-            getFieldsForForm: FormService.getFieldsForForm,
-            getFieldForForm: FormService.getFieldForForm,
-            deleteFieldFromForm: FormService.deleteFieldFromForm,
-            updateField: FormService.updateField
+            createFieldForForm: FieldService.createFieldForForm,
+            getFieldsForForm: FieldService.getFieldsForForm,
+            getFieldForForm: FieldService.getFieldForForm,
+            deleteFieldFromForm: FieldService.deleteFieldFromForm,
+            updateField: FieldService.updateField
         };
     }
 })();

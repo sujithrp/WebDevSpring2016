@@ -70,8 +70,6 @@ module.exports = function() {
         for (var u in mock) {
             var form = mock[u];
             if (formId == form._id) {
-                console.log("found form to be deleted");
-                console.log(u);
                 indexToBeDeleted = u;
                 break;
             }
@@ -139,7 +137,7 @@ module.exports = function() {
                     }
                 }
                 formObj.fields.splice(fieldIndexToBeDeleted,1);
-                return;
+                return formObj.fields;
             }
         }
     }
@@ -148,18 +146,19 @@ module.exports = function() {
         for (var u in mock) {
             var formObj = mock[u];
             if (formObj._id == formId) {
-                var newField = {
-                    "_id": (new Date).getTime(),
-                    "label": field.label,
-                    "type": field.type,
-                    "placeholder": field.placeholder
-                };
+                //var newField = {
+                //    "_id": (new Date).getTime(),
+                //    "label": field.label,
+                //    "type": field.type,
+                //    "placeholder": field.placeholder
+                //};
+                field._id = (new Date).getTime();
                 if (formObj.fields.length == 0) {
-                    formObj.fields = [newField];
+                    formObj.fields = [field];
                 } else {
-                    formObj.fields.push(newField);
+                    formObj.fields.push(field);
                 }
-                return;
+                return formObj.fields;
             }
         }
     }

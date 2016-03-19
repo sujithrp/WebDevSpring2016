@@ -9,29 +9,9 @@
 
     function FormController($rootScope, $location, $scope, FormService) {
 
-
-        //// FIND FORM FOR A PARTICULAR USER
-        //var findFormCallback = function(foundFormsArr) {
-        //    FormService.setCurrentFormsArr(foundFormsArr);
-        //};
-
         FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
             $scope.currentFormsArr = response.data;
         });
-
-
-        // ADD FORM FOR A PARTICULAR USER
-        //var addFormCallback = function(newForm) {
-        //    var existingForms = $scope.currentFormsArr;
-        //    if (existingForms != null) {
-        //        existingForms.push(newForm);
-        //    }
-        //    else {
-        //        existingForms = [newForm];
-        //    }
-        //    FormService.setCurrentFormsArr(existingForms);
-        //    $scope.form = null;
-        //};
 
         $scope.addForm = function(form) {
             FormService.createFormForUser($rootScope.currentUser._id,form).then(function(response) {
@@ -53,18 +33,11 @@
             var existingFormsArr = $scope.currentFormsArr;
             var indexToBeUpdated = formIndex;
             FormService.updateFormById(existingFormsArr[indexToBeUpdated]._id,form).then(function(response) {
-                console.log("response");
-                console.log(response.data);
                 $scope.currentFormsArr[indexToBeUpdated] = response.data;
             });
             $scope.form = null;
             formIndex = null;
         };
-
-        //// DELETE A PARTICULAR FORM
-        //var deleteFormCallback = function(remainingFormsArr) {
-        //    FormService.setCurrentFormsArr(remainingFormsArr);
-        //};
 
         $scope.deleteForm = function(deleteFormIndex) {
             FormService.deleteFormById($scope.currentFormsArr[deleteFormIndex]._id).then(function(response) {

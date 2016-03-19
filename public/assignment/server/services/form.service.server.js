@@ -28,8 +28,6 @@ module.exports = function(app, model) {
     function createFormForUser(req, res) {
         var userId = req.params.userId;
         var newForm = req.body;
-        console.log("this is the new form");
-        console.log(newForm);
         var addedForm = model.createFormForUser(userId, newForm);
         res.json(addedForm);
     }
