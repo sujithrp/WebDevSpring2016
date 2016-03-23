@@ -24,7 +24,7 @@
                         <option value="" disabled="disabled" selected="selected">Please select the league . . .</option>
                         <option value="NBA">NBA</option>
                         <option value="NFL">NFL</option>
-                        <option value="Soccer">Soccer</option>
+                        <!--<option value="Soccer">Soccer</option>-->
                         <option value="MLB">MLB</option>
                     </select>
                 </div>
@@ -60,21 +60,21 @@
                         <li><a href="#/team/UtahJazz|NBA" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Utah Jazz</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" class="hidden-xs">AC Milan</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">AC Milan</a></li>
-                        <li><a href="#" class="hidden-xs">Manchester United</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Manchester United</a></li>
-                        <li><a href="#" class="hidden-xs">Juventus</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Juventus</a></li>
-                        <li><a href="#" class="hidden-xs">FC Barcelona</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">FC Barcelona</a></li>
-                        <li><a href="#" class="hidden-xs">Bayern Munich</a></li>
-                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Bayern Munich</a></li>
-                    </ul>
-                </li>
+                <!--<li class="dropdown">-->
+                    <!--<a href class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#" class="hidden-xs">AC Milan</a></li>-->
+                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">AC Milan</a></li>-->
+                        <!--<li><a href="#" class="hidden-xs">Manchester United</a></li>-->
+                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Manchester United</a></li>-->
+                        <!--<li><a href="#" class="hidden-xs">Juventus</a></li>-->
+                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Juventus</a></li>-->
+                        <!--<li><a href="#" class="hidden-xs">FC Barcelona</a></li>-->
+                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">FC Barcelona</a></li>-->
+                        <!--<li><a href="#" class="hidden-xs">Bayern Munich</a></li>-->
+                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Bayern Munich</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
                 <li class="dropdown">
                     <a href class="dropdown-toggle" data-toggle="dropdown"> MLB <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -92,6 +92,10 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{'active': location.url() == '/blogs'}">
+                    <a href="#/blogs" class="hidden-xs">Blogs</a>
+                    <a href="#/blogs" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Blogs</a>
+                </li>
                 <li ng-show="!currentUser" ng-class="{'active': location.url() == '/register'}">
                     <a href="#/register" class="hidden-xs">Register</a>
                     <a href="#/register" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Register</a>
