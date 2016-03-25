@@ -28,7 +28,7 @@
                 return;
             }
             UserService.addTeamForUser(currentUser._id, team).then(function(response) {
-                if ($scope.currentTeamsArr.length == 0) {
+                if (!$scope.currentTeamsArr) {
                     $scope.currentTeamsArr = [team];
                 }
                 else {
