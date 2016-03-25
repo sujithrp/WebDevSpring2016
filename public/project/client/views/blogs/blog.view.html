@@ -5,7 +5,7 @@
         <br>
         <div ng-show="message" class="alert alert-info">{{message}}</div>
         <a href ng-show="currentUser" ng-click="fetchBlogsForUser()" class="btn btn-default">View My Blogs</a>
-        <a href ng-show="currentUser" ng-click="viewAllBlogs()" class="btn btn-default">View All Blogs</a>
+        <a href ng-click="viewAllBlogs()" class="btn btn-default">View All Blogs</a>
         <a href ng-show="currentUser" ng-click="blogWrite = true" class="btn btn-default">Write a Blog</a>
 
         <div ng-show="blogWrite">
@@ -15,7 +15,6 @@
             <a href ng-click="cancelBlog()" class="btn btn-default"> Cancel </a>
         </div>
 
-        <h5>All Blogs: </h5>
         <table border="0" class="pull-left table table-condensed">
 
             <tr ng-repeat="blogObj in blogsArr">
@@ -26,7 +25,7 @@
                     <br>
                 </td>
                 <td>
-                    <div ng-show="isBlogByCurrentUser($index)">
+                    <div>
                         <a href ng-click="editBlog($index)"> <span class="glyphicon glyphicon-pencil"></span> </a>
                         <a href ng-click="deleteBlog($index)"> <span class="glyphicon glyphicon-trash"></span> </a>
                     </div>

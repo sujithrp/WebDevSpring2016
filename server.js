@@ -29,5 +29,6 @@ app.get('/bing/*', function(req, res) {
 
 // pass express reference to server side application module
 require("./public/assignment/server/app.js")(app);
+require("./public/project/server/app.js")(app);
 
 app.listen(port, ipaddress);

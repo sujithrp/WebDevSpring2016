@@ -16,14 +16,18 @@
 
         $scope.user = $rootScope.currentUser;
 
-        var callback = function(userObjResponse) {
-            if (userObjResponse != null) {
-                $scope.message = "User updated successfully!";
-            }
-        };
+        //var callback = function(userObjResponse) {
+        //    if (userObjResponse != null) {
+        //        $scope.message = "User updated successfully!";
+        //    }
+        //};
 
         $scope.update = function(user) {
-            UserService.updateUser($scope.user._id,user,callback);
+            UserService.updateUser($scope.user._id,user).then(function(response) {
+                if (response.data != null) {
+                    $scope.message = "User updated successfully!";
+                }
+            })
         };
 
     }

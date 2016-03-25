@@ -1,9 +1,6 @@
 /**
  * Created by SujithNarayan on 2/28/2016.
  */
-/**
- * Created by SujithNarayan on 2/25/2016.
- */
 (function() {
     "use strict";
     angular
@@ -11,17 +8,6 @@
         .controller("LoginController", LoginController);
 
     function LoginController($rootScope, $scope, $location, UserService) {
-
-        var callback = function(userResponseObj) {
-            if (userResponseObj != null) {
-                UserService.setCurrentUser(userResponseObj);
-                $location.url("/profile");
-            }
-            else {
-                $scope.message = "Username or password does not match. If new user, click on Register";
-            }
-
-        };
 
         $scope.login = function(user) {
             $scope.message = null;
@@ -33,7 +19,15 @@
                 $scope.message = "Please provide a password";
                 return;
             }
-            UserService.findUserByCredentials(user.username,user.password,callback);
+            UserService.findUserByCredentials(user.username,user.password).then(function(response) {
+                if (response.data != null) {
+                    $rootScope.currentUser = response.data;
+                    $location.url("/profile");
+                }
+                else {
+                    $scope.message = "Username or password does not match. If new user, click on Register";
+                }
+            })
         };
 
     }

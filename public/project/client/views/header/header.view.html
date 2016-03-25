@@ -96,6 +96,10 @@
                     <a href="#/blogs" class="hidden-xs">Blogs</a>
                     <a href="#/blogs" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Blogs</a>
                 </li>
+                <li ng-class="{'active': location.url() == '/team_crud'}">
+                    <a href="#/team_crud" class="hidden-xs">My Teams</a>
+                    <a href="#/team_crud" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">My Teams</a>
+                </li>
                 <li ng-show="!currentUser" ng-class="{'active': location.url() == '/register'}">
                     <a href="#/register" class="hidden-xs">Register</a>
                     <a href="#/register" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Register</a>

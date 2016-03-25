@@ -10,7 +10,7 @@
     function HeaderController($scope, $rootScope, $location, UserService) {
 
         $scope.logout = function() {
-            UserService.setCurrentUser(null);
+            $rootScope.currentUser = null;
             $location.url('/home');
         };
 
