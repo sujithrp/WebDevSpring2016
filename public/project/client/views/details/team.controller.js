@@ -13,32 +13,29 @@
         var matchingText;
         var leagueName;
 
-        var nameToIdCallback = function(returnedId, matchedTeam) {
-            if (returnedId != null) {
-                id = returnedId;
-                matchingText = matchedTeam;
-            }
-            else {
-                alert("ID not returned");
-            }
-        };
-
         if ($routeParams.teamAndLeague) {
             var teamAndLeague = $routeParams.teamAndLeague;
             var teamAndLeagueSplit = teamAndLeague.split("|");
             var team = teamAndLeagueSplit[0];
             leagueName = teamAndLeagueSplit[1];
-            CacheService.nameToId(team,nameToIdCallback);
-            teamDetailsFetch();
+            CacheService.nameToId(team).then(function(response) {
+                teamDetailsFetch(response.data.id, response.data.name, leagueName);
+            });
+
         }
         else {
             $location.url("/home");
         }
 
-        function teamDetailsFetch() {
+        function teamDetailsFetch(id, matchingText, leagueName) {
 
             // league name is also available here, so that can be used in the future
-            var url = "/sports/nba-t3/teams/"+id+"/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
+            var url;
+
+            if (leagueName == 'NBA') url = "/sports/nba-t3/teams/"+id+"/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
+            else if (leagueName == 'NFL') url = "/sports/nfl-t1/teams/"+id+"/roster.json?api_key=c9gmk2hsnccg8hcwhmfyj9uj";
+            else url = "/sports/mlb-t5/teams/"+id+"/profile.json?api_key=ckmjne8548eb9dw9arjrdxk2";
+
             $http.get(url)
                 .then(function (response) {
                     var propertiesArr = [];
@@ -91,7 +88,6 @@
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-                console.log(response);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });

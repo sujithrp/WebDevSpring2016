@@ -14,34 +14,26 @@
         var playerName;
         var matchingText;
 
-
-        var nameToIdCallback = function(returnedId, matchedTeam) {
-            if (returnedId != null) {
-                id = returnedId;
-                matchingText = matchedTeam;
-            }
-            else {
-                alert("ID not returned");
-            }
-        };
-
         if ($routeParams.playerAndLeague ) {
             var playerAndLeague = $routeParams.playerAndLeague;
             var playerAndLeagueSplit = playerAndLeague.split("|");
             playerName = playerAndLeagueSplit[0];
             leagueName = playerAndLeagueSplit[1];
-            CacheService.nameToId(playerName,nameToIdCallback);
-            playerDetailsFetch();
+            CacheService.nameToId(playerName).then(function(response) {
+                playerDetailsFetch(response.data.id, response.data.name, leagueName);
+            });
         }
         else {
             $location.url("/home");
         }
 
-        function playerDetailsFetch() {
+        function playerDetailsFetch(id, matchingText, leagueName) {
+            var url;
 
-            // league name is also available here
-            //var url = "/sports/nba-t3/teams/" + id + "/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
-            var url = "/sports/nba-t3/players/"+id+"/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
+            if (leagueName == 'NBA') url = "/sports/nba-t3/players/"+id+"/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
+            else if (leagueName == 'MLB') url = "/sports/mlb-t5/players/"+id+"/profile.json?api_key=ckmjne8548eb9dw9arjrdxk2";
+            else return;
+
             $http.get(url)
                 .then(function (response) {
                     var propertiesArr = [];
@@ -76,7 +68,6 @@
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-                console.log(response);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });

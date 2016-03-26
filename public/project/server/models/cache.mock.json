@@ -20,6 +20,46 @@
     "id":"583ece50-fb46-11e1-82cb-f4ce4684ea4c"
   },
   {
+    "name": "New England Patriots",
+    "id": "NE"
+  },
+  {
+    "name": "Green Bay Packers",
+    "id": "GB"
+  },
+  {
+    "name": "Dallas Cowboys",
+    "id": "DAL"
+  },
+  {
+    "name": "Seattle Seahawks",
+    "id": "SEA"
+  },
+  {
+    "name": "Pittsburgh Steelers",
+    "id": "PIT"
+  },
+  {
+    "name": "Boston Red Sox",
+    "id": "93941372-eb4c-4c40-aced-fe3267174393"
+  },
+  {
+    "name": "Los Angeles Dodgers",
+    "id": "ef64da7f-cfaf-4300-87b0-9313386b977c"
+  },
+  {
+    "name": "New York Yankees",
+    "id": "a09ec676-f887-43dc-bbb3-cf4bbaee9a18"
+  },
+  {
+    "name": "Minnesota Twins",
+    "id": "aa34e0ed-f342-4ec6-b774-c79b47b60e2d"
+  },
+  {
+    "name": "San Francisco Giants",
+    "id": "a7723160-10b7-4277-a309-d8dd95a8ae65"
+  },
+  {
     "name": "Rasual Butler",
     "id": "007a5e3c-978e-49e3-af38-7a4d9354cf21"
   },
@@ -40,24 +80,23 @@
     "id": "0bf197ae-6f88-4ce6-ace0-50a20b98f847"
   },
   {
-    "name": "New England Patriots",
-    "id": "e43310b1-cb82-4df9-8be5-e9b39637031b"
+    "name": "John Hicks",
+    "id": "93c27119-d245-4d33-800b-9683945f4abe"
   },
   {
-    "name": "Green Bay Packers",
-    "id": "5a60dd3a-302c-41c6-ab0f-dd335c1103c2"
+    "name": "Ryan Hanigan",
+    "id": "4fe0a67f-873b-49eb-999a-2f1a27633241"
   },
   {
-    "name": "Dallas Cowboys",
-    "id": "1e84213a-ff1f-4c9d-a003-8ee782b25a40"
+    "name": "Austin Barnes",
+    "id": "253f7c54-5990-4955-9825-df5bb368ca97"
   },
   {
-    "name": "Seattle Seahawks",
-    "id": "c6b9e5df-c9e4-434c-b3e6-83928f11cbda"
+    "name": "Brian McCann",
+    "id": "eb4fe55f-14ba-4da5-ba4c-5e8df005fa0a"
   },
   {
-    "name": "Pittsburgh Steelers",
-    "id": "7349a2e6-0ac9-410b-8bd2-ca58c9f7aa34"
+    "name": "Trevor Brown",
+    "id": "ef1b62d3-3915-48cf-93b5-2b98fbb7bb48"
   }
-
 ]

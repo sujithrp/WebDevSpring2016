@@ -15,7 +15,6 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 // PROJECT GET REQUESTS BEGIN
 app.get('/sports/*', function(req, res) {
     var path = req.url.replace("/sports","");
-    console.log(path);
     var url = "http://api.sportradar.us" + path;
     req.pipe(request(url)).pipe(res);
 });
