@@ -7,7 +7,7 @@ var multer = require('multer');
 var mongoose = require('mongoose');
 
 var dbName = 'insidethegame';
-var connectString = 'mongodb://localhost/' + dbName;
+var connectString = 'mongodb://127.0.0.1:27017/' + dbName;
 
 if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
