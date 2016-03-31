@@ -1,8 +1,13 @@
 /**
  * Created by SujithNarayan on 3/15/2016.
  */
-var mock = require("./user.mock.json");
-module.exports = function() {
+//var mock = require("./user.mock.json");
+var q = require("q");
+module.exports = function(db, mongoose) {
+
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+    var UserModel = mongoose.model('User',UserSchema);
+
     var api = {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
@@ -14,17 +19,32 @@ module.exports = function() {
     return api;
 
     function findUserById(userId) {
-        for(var u in mock) {
-            if( mock[u]._id == userId ) {
-                return mock[u];
+        var deferred = q.defer();
+        UserModel.findById(userId, function(err, doc) {
+            console.log(doc);
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(err);
             }
-        }
+        });
+        return deferred.promise;
     }
 
     function createUser(user) {
-        user._id = (new Date()).getTime();
-        mock.push(user);
-        return user;
+
+        var deferred = q.defer();
+
+        UserModel.create(user, function(err, doc) {
+            console.log(doc);
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function findAllUsers() {
@@ -32,13 +52,33 @@ module.exports = function() {
     }
 
     function findUserByCredentials(credentials) {
-        for(var u in mock) {
-            if( mock[u].username == credentials.username &&
-                mock[u].password == credentials.password) {
-                return mock[u];
+        //for(var u in mock) {
+        //    if( mock[u].username == credentials.username &&
+        //        mock[u].password == credentials.password) {
+        //        return mock[u];
+        //    }
+        //}
+        //return null;
+
+        var deferred = q.defer();
+
+        UserModel.findOne(
+
+            {
+                username: credentials.username,
+                password: credentials.password
+            },
+
+            function(err, doc) {
+                if (doc) {
+                    deferred.resolve(doc);
+                } else {
+                    deferred.reject(err);
+                }
             }
-        }
-        return null;
+        );
+
+        return deferred.promise;
     }
 
     function updateUser(userId, user) {

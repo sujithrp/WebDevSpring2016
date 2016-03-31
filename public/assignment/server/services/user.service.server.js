@@ -11,9 +11,18 @@ module.exports = function(app, model) {
 
 
     function register(req, res) {
+
         var user = req.body;
-        user = model.createUser(user);
-        res.json(user);
+
+        user = model.createUser(user)
+            .then(
+                function(doc) {
+                    res.json(user);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function getUsers(req, res) {
@@ -37,8 +46,15 @@ module.exports = function(app, model) {
 
     function findUserById(req, res) {
         var userId = req.params.id;
-        var user = model.findUserById(userId);
-        res.json(user);
+        var user = model.findUserById(userId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
     }
 
     function updateProfile(req, res) {

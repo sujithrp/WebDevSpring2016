@@ -28,8 +28,10 @@
     "express": "^3.4.8",
     "http-proxy": "^1.13.2",
     "json-stringify-safe": "^5.0.1",
+    "mongoose": "^4.4.10",
     "multer": "^1.1.0",
     "node-bing-api": "latest",
+    "q": "^1.4.1",
     "request": "latest"
   },
   "devDependencies": {},
