@@ -1,7 +1,7 @@
 /**
  * Created by SujithNarayan on 3/15/2016.
  */
-//var mock = require("./user.mock.json");
+var mock = require("./user.mock.json");
 var q = require("q");
 module.exports = function(db, mongoose) {
 
@@ -13,15 +13,13 @@ module.exports = function(db, mongoose) {
         createUser: createUser,
         findUserById: findUserById,
         findAllUsers: findAllUsers,
-        updateUser: updateUser,
-        findUserByUsername: findUserByUsername
+        updateUser: updateUser
     };
     return api;
 
     function findUserById(userId) {
         var deferred = q.defer();
         UserModel.findById(userId, function(err, doc) {
-            console.log(doc);
             if (err) {
                 deferred.reject(err);
             } else {
@@ -35,14 +33,14 @@ module.exports = function(db, mongoose) {
 
         var deferred = q.defer();
 
-        UserModel.create(user, function(err, doc) {
-            console.log(doc);
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve(doc);
-            }
-        });
+        UserModel.create(user,
+            function(doc, err) {
+                if (doc) {
+                    deferred.resolve(doc);
+                } else {
+                    deferred.reject(err);
+                }
+            });
 
         return deferred.promise;
     }
@@ -52,24 +50,60 @@ module.exports = function(db, mongoose) {
     }
 
     function findUserByCredentials(credentials) {
-        //for(var u in mock) {
-        //    if( mock[u].username == credentials.username &&
-        //        mock[u].password == credentials.password) {
-        //        return mock[u];
-        //    }
-        //}
-        //return null;
 
         var deferred = q.defer();
 
         UserModel.findOne(
 
-            {
-                username: credentials.username,
-                password: credentials.password
-            },
+            { username: credentials.username, password: credentials.password },
 
             function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            }
+        );
+
+        return deferred.promise;
+    }
+
+    function updateUser(userId, user) {
+
+        var deferred = q.defer();
+
+        UserModel.findById(
+            {"_id": userId},
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    doc.username = user.username;
+                    doc.password = user.password;
+                    doc.firstName = user.firstName;
+                    doc.lastName = user.lastName;
+                    doc.emails = user.emails;
+                    doc.phones = user.phones;
+                    doc.save(function(err, savedDoc) {
+                       if (err) {
+                           deferred.reject(err);
+                       } else {
+                           deferred.resolve(savedDoc);
+                       }
+                    });
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function deleteUser(userId) {
+        var deferred = q.defer();
+
+        UserModel.remove(
+            {_id: userId},
+            function(doc, err) {
                 if (doc) {
                     deferred.resolve(doc);
                 } else {
@@ -79,44 +113,7 @@ module.exports = function(db, mongoose) {
         );
 
         return deferred.promise;
-    }
 
-    function updateUser(userId, user) {
-        for (var u in mock) {
-            var userObj = mock[u];
-            if (userId == userObj._id) {
-                userObj.username = user.username;
-                userObj.password = user.password;
-                userObj.firstName = user.firstName;
-                userObj.lastName = user.lastName;
-                return userObj;
-            }
-        }
-        return null;
-    }
-
-    function deleteUser(userId) {
-        var indexToBeDeleted;
-        for (var u in mock) {
-            var userObj = mock[u];
-            if (userId == userObj._id) {
-                indexToBeDeleted = u;
-                break;
-            }
-        }
-        if (indexToBeDeleted) {
-            mock.splice(indexToBeDeleted,1);
-        }
-        return mock;
-    }
-
-    function findUserByUsername(username) {
-        for(var u in mock) {
-            if( mock[u].username == username ) {
-                return mock[u];
-            }
-        }
-        return null;
     }
 
 };

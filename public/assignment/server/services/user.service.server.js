@@ -29,18 +29,17 @@ module.exports = function(app, model) {
         var username = req.query.username;
         var password = req.query.password;
 
-        if (!username && !password) {
-            var users = model.findAllUsers();
-            res.json(users);
-        }
-        else if (username && !password) {
-            var user = model.findUserByUsername(username);
-            res.json(user);
-        }
-        else {
+        if(username && password) {
             var credentials = req.query;
-            var user = model.findUserByCredentials(credentials);
-            res.json(user);
+            var user = model.findUserByCredentials(credentials)
+                .then(
+                    function(user) {
+                        res.json(user);
+                    },
+                    function(err) {
+                        res.status(400).send(err);
+                    }
+                )
         }
     }
 
@@ -60,12 +59,28 @@ module.exports = function(app, model) {
     function updateProfile(req, res) {
         var userId = req.params.id;
         var user = req.body;
-        res.json(model.updateUser(userId, user));
+        model.updateUser(userId, user)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
     }
 
     function deleteUser(req, res) {
         var userId = req.params.id;
-        model.deleteUser(userId);
+        model.deleteUser(userId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
     }
 
 };
