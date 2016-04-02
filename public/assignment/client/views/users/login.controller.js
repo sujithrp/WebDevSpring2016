@@ -12,11 +12,11 @@
         $scope.login = function(user) {
             $scope.message = null;
             if (!user.username) {
-                $scope.message = "Please provide a username";
+                $scope.message = "Please provide a username!";
                 return;
             }
             if (!user.password) {
-                $scope.message = "Please provide a password";
+                $scope.message = "Please provide a password!";
                 return;
             }
             UserService.findUserByCredentials(user.username,user.password).then(function(res) {
