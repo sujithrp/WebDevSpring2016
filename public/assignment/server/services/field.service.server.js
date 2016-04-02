@@ -63,6 +63,13 @@ module.exports = function(app, model) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var field = req.body;
-        model.updateFieldByFieldIdFormId(formId, fieldId, field);
+        model.updateFieldByFieldIdFormId(formId, fieldId, field).then(
+            function(fields) {
+                res.json(fields);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        )
     }
 };

@@ -6,8 +6,9 @@ module.exports = function(db, mongoose) {
 
     var FormSchema = require("./form.schema.server.js")(mongoose);
     var FormModel = mongoose.model('Form',FormSchema);
-    var FieldSchema = require("./field.schema.server.js")(mongoose);
-    var FieldModel = mongoose.model('Field',FieldSchema);
+    var fieldModel = require("./field.model.server.js") (db,mongoose);
+    //var FieldSchema = require("./field.schema.server.js")(mongoose);
+    //var FieldModel = mongoose.model('Field',FieldSchema);
 
     var api = {
         findFormByTitle: findFormByTitle,
@@ -141,6 +142,12 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
+
+    /*
+    * FIELDS *********************************************************
+     */
+
+
     function findFieldsByFormId(formId) {
         var deferred = q.defer();
         FormModel.findById(formId, function(err, doc) {
@@ -154,6 +161,41 @@ module.exports = function(db, mongoose) {
 
     }
 
+    function createFieldForForm(formId, field) {
+
+        var deferred = q.defer();
+
+        FormModel.findById(
+            {"_id": formId},
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    fieldModel.createField(field).then(
+                        function(createdField) {
+                            if (doc.fields.length == 0) {
+                                doc.fields = [createdField];
+                            } else {
+                                doc.fields.push(createdField);
+                            }
+                            doc.save(function(err, savedDoc) {
+                                if (err) {
+                                    deferred.reject(err);
+                                } else {
+                                    deferred.resolve(savedDoc.fields);
+                                }
+                            });
+                        },
+                        function(err) {
+                            deferred.resolve(err);
+                        }
+                    )
+                }
+            });
+
+        return deferred.promise;
+    }
+
     function findFieldByFieldIdFormId(formId, fieldId) {
 
         var deferred = q.defer();
@@ -164,14 +206,12 @@ module.exports = function(db, mongoose) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    FieldModel.findById(
-                        {"_id": fieldId},
-                        function(err, doc) {
-                            if (err) {
-                                deferred.reject(err);
-                            } else {
-                                deferred.resolve(doc);
-                            }
+                    fieldModel.findFieldById(fieldId).then(
+                        function(field) {
+                            deferred.resolve(field);
+                        },
+                        function(err) {
+                            deferred.reject(err);
                         }
                     )
                 }
@@ -190,37 +230,29 @@ module.exports = function(db, mongoose) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    FieldModel.remove(
-                        {"_id": fieldId},
-                        function(err, doc) {
-                            if (err) {
-                                deferred.reject(err);
-                            } else {
-                                deferred.resolve(doc);
+                    fieldModel.deleteField(fieldId).then(
+                        function(deletedField) {
+                            //doc.fields.id(fieldId).remove();
+                            var indexToBeDeleted;
+                            for (var index in doc.fields) {
+                                if (doc.fields[index]._id == fieldId) {
+                                    indexToBeDeleted = index;
+                                    break;
+                                }
                             }
+                            doc.fields.splice(indexToBeDeleted,1);
+                            doc.save(function(err, savedDoc) {
+                                if (err) {
+                                    deferred.reject(err);
+                                } else {
+                                    deferred.resolve(savedDoc.fields);
+                                }
+                            });
+                        },
+                        function(err) {
+                            deferred.reject(err);
                         }
                     )
-                }
-            });
-
-        return deferred.promise;
-    }
-
-    function createFieldForForm(formId, field) {
-
-        var deferred = q.defer();
-
-        FormModel.findById(
-            {"_id": formId},
-            function(err, doc) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    if (doc.fields.length == 0) {
-                        deferred.resolve([field]);
-                    } else {
-                        deferred.resolve(doc.fields.push(field))
-                    }
                 }
             });
 
@@ -228,6 +260,7 @@ module.exports = function(db, mongoose) {
     }
 
     function updateFieldByFieldIdFormId(formId, fieldId, field) {
+
         var deferred = q.defer();
 
         FormModel.findById(
@@ -236,23 +269,46 @@ module.exports = function(db, mongoose) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    FieldModel.findById(
-                        {"_id": fieldId},
-                        function(err, doc) {
-                            if (err) {
-                                deferred.reject(err);
-                            } else {
-                                doc.label = field.label;
-                                doc.type = field.type;
-                                doc.placeholder = field.placeholder;
-                                doc.options = field.options;
+                    fieldModel.updateField(fieldId, field).then(
+                        function(updatedField) {
+                            var index;
+                            var indexOfField;
+                            for (index in doc.fields) {
+                                if (doc.fields[index]._id == fieldId) {
+                                    indexOfField = index;
+                                    break;
+                                }
                             }
+                            doc.fields[indexOfField] = updatedField;
+
+                            FormModel.update(
+                                {_id: formId},
+                                {$set : doc},
+                                function(err, updatedForm) {
+                                    if (err) {
+                                        deferred.reject(err);
+                                    } else {
+                                        FormModel.findById(formId,function(err, doc){
+                                            if (err) {
+                                                deferred.reject(err);
+                                            } else {
+                                                deferred.resolve(doc.fields);
+                                            }
+                                        })
+                                    }
+                                }
+                            )
+                        },
+                        function(err) {
+
                         }
                     )
                 }
             });
 
+
         return deferred.promise;
+
     }
 
 };
