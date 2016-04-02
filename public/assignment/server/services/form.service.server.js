@@ -10,31 +10,63 @@ module.exports = function(app, model) {
 
     function findAllFormsForUser(req, res) {
         var userId = req.params.userId;
-        var forms = model.findAllFormsForUser(userId);
-        res.json(forms);
+        model.findAllFormsForUser(userId).then(
+            function(forms) {
+                res.json(forms);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function findFormById(req, res) {
         var formId = req.params.formId;
-        var form = model.findFormById(formId);
-        res.json(form);
+        model.findFormById(formId).then(
+            function(form) {
+                res.json(form);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function deleteFormById(req, res) {
         var formId = req.params.formId;
-        res.json(model.deleteFormById(formId));
+        model.deleteFormById(formId).then(
+            function(forms) {
+                res.json(forms);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function createFormForUser(req, res) {
         var userId = req.params.userId;
         var newForm = req.body;
-        var addedForm = model.createFormForUser(userId, newForm);
-        res.json(addedForm);
+        model.createFormForUser(userId, newForm).then(
+            function(doc) {
+                res.json(doc);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function updateFormById(req, res) {
         var formId = req.params.formId;
         var form = req.body;
-        res.json(model.updateFormById(formId, form));
+        model.updateFormById(formId, form).then(
+            function(updatedForm) {
+                res.json(updatedForm);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        )
     }
 };

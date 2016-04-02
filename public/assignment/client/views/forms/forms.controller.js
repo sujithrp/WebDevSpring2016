@@ -13,7 +13,14 @@
             $scope.currentFormsArr = response.data;
         });
 
-        $scope.addForm = function(form) {
+        $scope.addForm = function(passedForm) {
+            var form = {};
+            if (passedForm) {
+                form.title = passedForm.formname;
+            } else {
+                form.title = "New Form";
+            }
+
             FormService.createFormForUser($rootScope.currentUser._id,form).then(function(response) {
                 $scope.currentFormsArr.push(response.data);
             });
