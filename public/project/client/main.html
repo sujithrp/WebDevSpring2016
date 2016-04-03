@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SportsApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> Inside the Game </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cyborg/bootstrap.css" rel="stylesheet">
+
+
+    <!-- Other CSS -->
+    <link href="../dashboard.css" rel="stylesheet">
+    <link href="carousel.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cyborg/bootstrap.css" rel="stylesheet">-->
+    <link href="grayscale/css/grayscale.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+
+    <!-- Other CSS -->
+    <!--<link href="../dashboard.css" rel="stylesheet">-->
+    <!--<link href="carousel.css" rel="stylesheet">-->
+
+    <!-- Essential JS files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+
+
+
+    <!-- Other JS files -->
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/users/register.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+    <script src="views/users/profile.controller.js"></script>
+    <script src="views/users/profile.controller.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="services/cache.service.client.js"></script>
+    <script src="services/blog.service.client.js"></script>
+    <script src="views/search/search.controller.js"></script>
+    <script src="views/details/team.controller.js"></script>
+    <script src="views/details/player.controller.js"></script>
+    <script src="views/blogs/blog.controller.js"></script>
+    <script src="views/details/team_crud.controller.js"></script>
+
+</head>
+<body>
+
+<div ng-include="'views/header/header.view.html'"></div>
+<div ng-include="'views/sidebar/sidebar.view.html'"></div>
+
+<div ng-view>
+</div>
+
+</body>
+</html>

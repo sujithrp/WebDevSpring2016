@@ -12,12 +12,17 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cyborg/bootstrap.css" rel="stylesheet">
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/cyborg/bootstrap.css" rel="stylesheet">-->
+    <link href="grayscale/css/grayscale.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
 
-    <!-- Other CSS -->
-    <link href="../dashboard.css" rel="stylesheet">
-    <link href="carousel.css" rel="stylesheet">
+     <!--Other CSS -->
+    <!--<link href="../dashboard.css" rel="stylesheet">-->
+    <!--<link href="carousel.css" rel="stylesheet">-->
 
     <!-- Essential JS files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -47,13 +52,144 @@
     <script src="views/details/team_crud.controller.js"></script>
 
 </head>
-<body>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-<div ng-include="'views/header/header.view.html'"></div>
-<div ng-include="'views/sidebar/sidebar.view.html'"></div>
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">
+                <i class="fa fa-play-circle"></i>  <span class="light">Move to Top</span>
+            </a>
+        </div>
 
-<div ng-view>
-</div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#login">Login</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#register">Register</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
 
+<!-- Intro Header -->
+<header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading">Inside The Game</h1>
+                    <p class="intro-text">Scores, Stats, Insight<br>NFL, MLB and NBA</p>
+                    <a href="#login" class="btn btn-circle page-scroll">
+                        <i class="fa fa-angle-double-down animated"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="content-section text-center">
+    <div class="about-section">
+        <div class="container">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About</h2>
+                <p> My swing at Web Development </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="login" class="content-section text-center">
+    <div class="login-section">
+        <div class="container">
+            <div class="col-lg-8 col-lg-offset-2">
+                <!--<h2>Login</h2>-->
+                <p> Login to get your daily dose of sports </p>
+                <a href="main.html#/login" class="btn btn-default btn-lg">Login</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- register Section -->
+<section id="register" class="content-section text-center">
+    <div class="register-section">
+        <div class="container">
+            <div class="col-lg-8 col-lg-offset-2">
+                <!--<h2>Register</h2>-->
+                <p> Let's get you started now, shall we? </p>
+                <a href="main.html#/register" class="btn btn-default btn-lg">Register</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container content-section text-center">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <h2>Contact Me</h2>
+            <p>Feel free to email me to provide some feedback on my website, give me suggestions for new templates and themes, or to just say hello!</p>
+            <p><a href="mailto:sujithnarayan89@gmail.com">sujithnarayan89@gmail.com</a>
+            </p>
+            <ul class="list-inline banner-social-buttons">
+                <li>
+                    <a href="https://twitter.com/LaGrintaDiRino" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                </li>
+                <li>
+                    <a href="https://facebook.com/sujithnarayan" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<div id="map"></div>
+
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <p>Copyright &copy; InsideTheGame</p>
+        <p>Data provided by: SportRadar</p>
+        <p>Images provided by: Bing</p>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="grayscale/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="grayscale/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="grayscale/js/jquery.easing.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="grayscale/js/grayscale.js"></script>
 </body>
 </html>
