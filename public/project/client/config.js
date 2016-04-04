@@ -48,6 +48,10 @@
                 templateUrl: "views/details/team_crud.view.html",
                 controller: "TeamCrudController"
             })
+            .when("/fixtures", {
+                templateUrl: "views/fixtures/fixture.view.html",
+                controller: "FixtureController"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

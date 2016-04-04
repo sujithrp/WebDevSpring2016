@@ -1,0 +1,23 @@
+<div class="container-fluid" ng-controller="FixtureController">
+
+    <div class="col-lg-9 col-sm-6 col-md-4 col-md-offset-2">
+        <br>
+        <br>
+
+        <h3>NBA</h3>
+
+        <table border="0" class="pull-left table table-condensed playerInfo">
+
+            <tr ng-repeat="nbaGameObj in nbaGamesArr">
+                <td> {{nbaGameObj.date}} </td>
+                <td> {{nbaGameObj.home}} </td>
+                <td> versus </td>
+                <td> {{nbaGameObj.away}} </td>
+                <td> at </td>
+                <td> {{nbaGameObj.venue}} </td>
+            </tr>
+        </table>
+
+        <h3>NFL</h3>
+    </div>
+</div>

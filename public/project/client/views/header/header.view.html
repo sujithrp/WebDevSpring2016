@@ -92,6 +92,10 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{'active': location.url() == '/fixtures'}">
+                    <a href="#/fixtures" class="hidden-xs">Fixtures</a>
+                    <a href="#/fixtures" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Fixtures</a>
+                </li>
                 <li ng-class="{'active': location.url() == '/blogs'}">
                     <a href="#/blogs" class="hidden-xs">Blogs</a>
                     <a href="#/blogs" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Blogs</a>
