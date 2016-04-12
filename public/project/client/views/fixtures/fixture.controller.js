@@ -2,7 +2,6 @@
  * Created by SujithNarayan on 4/4/2016.
  */
 
-
 (function() {
     angular
         .module("SportsApp")
@@ -12,6 +11,7 @@
         var rightNow = new Date();
         //var res = rightNow.toISOString().slice(0,10).replace(/-/g,"/");
         var nbaFixtureUrl = "/sports/nba-t3/games/2016/04/05/schedule.json?api_key=9hx9mmdj93q7hz26yegm47tu";
+        //var nbaFixtureUrl = "/sports/nba-t3/teams/583ecd4f-fb46-11e1-82cb-f4ce4684ea4c/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
 
         $http.get(nbaFixtureUrl)
             .then(function (response) {
