@@ -16,6 +16,7 @@
         $http.get(nbaFixtureUrl)
             .then(function (response) {
                 var gamesArr = [];
+                console.log(response);
                 var games = response.games;
                 console.log(games);
                 if (games.length != 0) {
