@@ -10,8 +10,6 @@
     function BlogService($http) {
 
         BlogService.getAllBlogs = function() {
-            console.log("get all blogs service");
-            //var query = "/api/project/blog";
             return $http.get("/api/project/blog");
         };
 
@@ -30,8 +28,8 @@
             return $http.put(query, blog);
         };
 
-        BlogService.deleteBlog = function(blogIndex) {
-            var query = "/api/project/deleteBlog/"+blogIndex;
+        BlogService.deleteBlog = function(id) {
+            var query = "/api/project/deleteBlog/"+id;
             return $http.delete(query);
         };
 
@@ -51,7 +49,6 @@
             createBlogForUser: BlogService.createBlogForUser,
             updateBlogForUser: BlogService.updateBlogForUser,
             deleteBlog: BlogService.deleteBlog,
-            isBlogByCurrentUser: BlogService.isBlogByCurrentUser,
             editBlog: BlogService.editBlog
         };
     }

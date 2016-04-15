@@ -1,79 +1,117 @@
 /**
  * Created by SujithNarayan on 3/23/2016.
  */
-var mock = require("./blog.mock.json");
-module.exports = function() {
+//var mock = require("./blog.mock.json");
+var q = require("q");
+module.exports = function(db,mongoose) {
+    var BlogSchema = require("./blog.schema.server.js")(mongoose);
+    var BlogModel = mongoose.model('ProjectBlog',BlogSchema);
+
     var api = {
         getAllBlogs: getAllBlogs,
         getBlogsForUser: getBlogsForUser,
         createBlogForUser: createBlogForUser,
         updateBlogForUser: updateBlogForUser,
-        deleteBlog: deleteBlog,
-        isBlogByCurrentUser: isBlogByCurrentUser,
-        editBlog: editBlog
+        deleteBlog: deleteBlog
     };
     return api;
 
     function getAllBlogs() {
-        return mock;
+        var deferred = q.defer();
+
+        BlogModel.find(
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            }
+        );
+
+        return deferred.promise;
     }
 
     function getBlogsForUser(username) {
-        var blogsByUser = [];
-        var blogIndex;
 
-        for (blogIndex in mock) {
-            var currentBlog = mock[blogIndex];
-            if (currentBlog.blogUsername === username) {
-                if (blogsByUser.length === 0) {
-                    blogsByUser = [currentBlog];
+        var deferred = q.defer();
+
+        BlogModel.find(
+
+            { username: username },
+
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
                 } else {
-                    blogsByUser.push(currentBlog);
+                    deferred.resolve(doc);
                 }
             }
-        }
+        );
 
-        return blogsByUser;
+        return deferred.promise;
     }
 
     function createBlogForUser(username, blog) {
         var blogObj = {
-            "blogId": (new Date).getTime(),
-            "blogName": blog.title,
-            "blogContent": blog.content,
-            "blogUsername": username
+            "username": username,
+            "title": blog.title,
+            "content": blog.content
         };
-        mock.push(blogObj);
-        return mock;
+        var deferred = q.defer();
+
+        BlogModel.create(blogObj,
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
     }
 
     function updateBlogForUser(blog) {
-        var blogIndex;
-        for (blogIndex in mock) {
-            if (blog.blogId === mock[blogIndex].blogId) {
-                mock[blogIndex].blogName = blog.title;
-                mock[blogIndex].blogContent = blog.content;
-                break;
+
+        var deferred = q.defer();
+
+        BlogModel.findById(
+            {"_id": blog._id},
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    doc.title = blog.title;
+                    doc.content = blog.content;
+                    doc.updated = new Date();
+                    doc.save(function(err, savedDoc) {
+                        if (err) {
+                            deferred.reject(err);
+                        } else {
+                            deferred.resolve(savedDoc);
+                        }
+                    });
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function deleteBlog(id) {
+        var deferred = q.defer();
+
+        BlogModel.remove(
+            {_id: id},
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
             }
-        }
-        return mock;
-    }
+        );
 
-    function deleteBlog(index) {
-        mock.splice(index,1);
-        return mock;
+        return deferred.promise;
     }
-
-    function isBlogByCurrentUser(blogIndex, username) {
-        if (mock[blogIndex].blogUsername == username) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function editBlog(blogIndex) {
-        return mock[blogIndex];
-    }
-
 };

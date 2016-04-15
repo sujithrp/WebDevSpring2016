@@ -22,16 +22,6 @@ module.exports = function(db, mongoose) {
         return mock;
     }
 
-    //function findUserByCredentials(credentials) {
-    //    for(var u in mock) {
-    //        if( mock[u].username == credentials.username &&
-    //            mock[u].password == credentials.password) {
-    //            return mock[u];
-    //        }
-    //    }
-    //    return null;
-    //}
-
     function findUserByCredentials(credentials) {
 
         var deferred = q.defer();
@@ -52,35 +42,6 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
-    //function findUserByUsername(username) {
-    //    for(var u in mock) {
-    //        if( mock[u].username == username ) {
-    //            return mock[u];
-    //        }
-    //    }
-    //    return null;
-    //}
-
-    //function updateUser(userId, user) {
-    //    for (var u in mock) {
-    //        var userObj = mock[u];
-    //        if (userId == userObj._id) {
-    //            userObj.username = user.username;
-    //            userObj.password = user.password;
-    //            userObj.firstName = user.firstName;
-    //            userObj.lastName = user.lastName;
-    //            return userObj;
-    //        }
-    //    }
-    //    return null;
-    //}
-
-    //function createUser(user) {
-    //    user._id = (new Date()).getTime();
-    //    mock.push(user);
-    //    return user;
-    //}
-
     function updateUser(userId, user) {
 
         var deferred = q.defer();
@@ -95,8 +56,8 @@ module.exports = function(db, mongoose) {
                     doc.password = user.password;
                     doc.firstName = user.firstName;
                     doc.lastName = user.lastName;
-                    doc.emails = user.emails;
-                    doc.phones = user.phones;
+                    doc.email = user.email;
+                    doc.teams = user.teams;
                     doc.save(function(err, savedDoc) {
                         if (err) {
                             deferred.reject(err);
@@ -115,30 +76,16 @@ module.exports = function(db, mongoose) {
         var deferred = q.defer();
 
         UserModel.create(user,
-            function(doc, err) {
-                if (doc) {
-                    deferred.resolve(doc);
-                } else {
+            function(err, doc) {
+                if (err) {
                     deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
                 }
             });
 
         return deferred.promise;
     }
-
-    //function addTeamForUser(userId, team) {
-    //    var index;
-    //    for (index in mock) {
-    //        if (mock[index]._id === userId) {
-    //            if (!mock[index].teams) {
-    //                mock[index].teams = [team];
-    //            } else {
-    //                mock[index].teams.push(team);
-    //            }
-    //            break;
-    //        }
-    //    }
-    //}
 
     function addTeamForUser(userId, team) {
 
@@ -163,16 +110,6 @@ module.exports = function(db, mongoose) {
 
         return deferred.promise;
     }
-
-    //function deleteTeamForUser(userId, indexToBeDeleted) {
-    //    var index;
-    //    for (index in mock) {
-    //        if (mock[index]._id == userId) {
-    //            mock[index].teams.splice(indexToBeDeleted,1);
-    //            break;
-    //        }
-    //    }
-    //}
 
     function deleteTeamForUser(userId, indexToBeDeleted) {
         var deferred = q.defer();

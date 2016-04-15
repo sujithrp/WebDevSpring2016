@@ -3,16 +3,11 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <br>
             <br>
-            <h4 class="page-header"> My Teams </h4>
+            <h4> My Teams </h4>
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
             <a href="#/login" ng-show="message" class="btn btn-default">Login</a>
 
-            <table ng-show="currentUser" class="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th> <span class="glyphicon glyphicon-triangle-bottom"></span> Team Name </th>
-                </tr>
-                </thead>
+            <table ng-show="currentUser" class="table">
 
                 <tbody>
                 <tr ng-repeat="team in currentTeamsArr">

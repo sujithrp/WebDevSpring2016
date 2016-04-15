@@ -9,43 +9,70 @@ module.exports = function(app, model) {
         var username = req.query.username;
         var password = req.query.password;
 
-        if (!username && !password) {
-            var users = model.findAllUsers();
-            res.json(users);
-        }
-        else if (username && !password) {
-            var user = model.findUserByUsername(username);
-            res.json(user);
-        }
-        else {
+        if(username && password) {
             var credentials = req.query;
-            var user = model.findUserByCredentials(credentials);
-            res.json(user);
+            var user = model.findUserByCredentials(credentials)
+                .then(
+                    function(user) {
+                        res.json(user);
+                    },
+                    function(err) {
+                        res.status(400).send(err);
+                    }
+                )
         }
     }
 
     function updateProfile(req, res) {
         var userId = req.params.id;
-        var user = req.body;
-        res.json(model.updateUser(userId, user));
+        var newUserObj = req.body;
+        var user = model.updateUser(userId,newUserObj)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
     }
 
     function addTeamForUser(req, res) {
         var userId =req.params.id;
         var teamName = req.params.name;
-        res.json(model.addTeamForUser(userId, teamName));
+        var user = model.addTeamForUser(userId,teamName).then(
+            function(user) {
+                res.json(user);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        )
     }
 
     function deleteTeamForUser(req, res) {
         var userId = req.params.id;
         var index = req.params.index;
-        res.json(model.deleteTeamForUser(userId, index));
+        var user = model.deleteTeamForUser(userId,index).then(
+            function(user) {
+                res.json(user);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        )
     }
 
     function register(req, res) {
-        var user = req.body;
-        user = model.createUser(user);
-        res.json(user);
+        var newUser = req.body;
+        var user = model.createUser(newUser).then(
+            function(user) {
+                res.json(user);
+            },
+            function(err) {
+                res.status(400).send(err);
+            }
+        )
     }
 
 };

@@ -109,6 +109,7 @@ body {
 /*
 CHANGES I HAVE ADDED
 */
+
 .form-horizontal .control-label {
     padding-top: 7px;
     margin-bottom: 0;
@@ -141,6 +142,10 @@ img.thumbnail {
     text-align: left;
 }
 
+
 .btn-secondary          { color: whitesmoke; background-color: black; border-color: #555; }
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open .dropdown-toggle.btn-secondary
 { color: #ffffff; background-color: #888; border-color: #444; }
+
+
+.nowrap{white-space: nowrap;}

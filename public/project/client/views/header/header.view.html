@@ -7,26 +7,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="../../../../project/client/index.html" class="pull-left"><img src="app_logo.JPG"></a>
+            <a href="#/home" class="pull-left"><img src="app_logo.JPG"></a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
 
             <form class="navbar-form navbar-left" role="search">
-                <div class="input-group">
-                <input ng-model="searchedItem" type="text" class="form-control" placeholder="Search Teams..."/>
-                <span class="input-group-addon">
-                    <a class="glyphicon glyphicon-search" ng-click="search(searchedItem,leagueItem)"></a>
-                </span>
-                </div>
                 <div class="dropdown">
                     <select ng-model="leagueItem" class="form-control">
-                        <option value="" disabled="disabled" selected="selected">Please select the league . . .</option>
+                        <option value="" disabled="disabled" selected="selected">Please select the league . .</option>
                         <option value="NBA">NBA</option>
                         <option value="NFL">NFL</option>
                         <!--<option value="Soccer">Soccer</option>-->
                         <option value="MLB">MLB</option>
                     </select>
+                </div>
+                <div class="input-group">
+                <input ng-model="searchedItem" type="text" class="form-control" placeholder="Search Teams..."/>
+                <span class="input-group-addon">
+                    <a class="glyphicon glyphicon-search" ng-click="search(searchedItem,leagueItem)"></a>
+                </span>
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-center">

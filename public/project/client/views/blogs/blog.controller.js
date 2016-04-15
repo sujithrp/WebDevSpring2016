@@ -23,14 +23,23 @@
             $scope.blogWrite = false;
         };
 
-        $scope.submitBlog = function(blog) {
-            if (!blog.blogId) {
+        $scope.submitBlog = function(passedBlog) {
+            if (!passedBlog._id) {
+                var blog = {
+                    "title": passedBlog.blogName,
+                    "content": passedBlog.blogContent
+                };
                 BlogService.createBlogForUser(blog,currentUser.username).then(function(response) {
-                    $scope.blogsArr = response.data;
+                    $scope.blogsArr.push(response.data);
                 })
             } else {
+                var blog = passedBlog;
+                blog.title = passedBlog.blogName;
+                blog.content = passedBlog.blogContent;
                 BlogService.updateBlogForUser(blog).then(function(response) {
-                    $scope.blogsArr = response.data;
+                    BlogService.getBlogsForUser(currentUser.username).then(function(response) {
+                        $scope.blogsArr = response.data;
+                    })
                 })
             }
             $scope.blog = '';
@@ -40,7 +49,7 @@
         $scope.fetchBlogsForUser = function() {
             BlogService.getBlogsForUser(currentUser.username).then(function(response) {
                 if (response.data.length == 0) {
-                    $scope.message = "You currently have no blogs";
+                    $scope.message = "You currently have no blogs. Showing all blogs!";
                 }
                 else {
                     $scope.blogsArr = response.data;
@@ -54,35 +63,53 @@
             })
         };
 
-        $scope.editBlog = function(blogIndex) {
-            BlogService.isBlogByCurrentUser(blogIndex, currentUser.username).then(function(response) {
-                var bool = response.data;
-                if (!bool) {
-                    return false;
-                }
-                else {
-                    $scope.blogWrite = true;
-                    BlogService.editBlog(blogIndex).then(function(response) {
-                        $scope.blog = response.data;
-                        $scope.blog.title = response.data.blogName;
-                        $scope.blog.content = response.data.blogContent;
-                    })
-                }
-            });
+        $scope.editBlog = function(blogObj) {
+            if (blogObj.username != currentUser.username) {
+                return false;
+            }
+            else {
+                $scope.blogWrite = true;
+                $scope.blog = blogObj;
+                $scope.blog.blogName = blogObj.title;
+                $scope.blog.blogContent = blogObj.content;
+            }
+
+            //BlogService.isBlogByCurrentUser(blogIndex, currentUser.username).then(function(response) {
+            //    var bool = response.data;
+            //    if (!bool) {
+            //        return false;
+            //    }
+            //    else {
+            //        $scope.blogWrite = true;
+            //        BlogService.editBlog(blogIndex).then(function(response) {
+            //            $scope.blog = response.data;
+            //            $scope.blog.title = response.data.blogName;
+            //            $scope.blog.content = response.data.blogContent;
+            //        })
+            //    }
+            //});
         };
 
-        $scope.deleteBlog = function(blogIndex) {
-            BlogService.isBlogByCurrentUser(blogIndex, currentUser.username).then(function(response) {
-                var bool = response.data;
-                if (!bool) {
-                    return false;
-                }
-                else {
-                    BlogService.deleteBlog(blogIndex).then(function(response) {
-                        $scope.blogsArr.splice(blogIndex,1);
-                    });
-                }
-            });
+        $scope.deleteBlog = function(blogObj, index) {
+            if (blogObj.username != currentUser.username) {
+                return false;
+            }
+            else {
+                BlogService.deleteBlog(blogObj._id).then(function(response) {
+                    $scope.blogsArr.splice(index,1);
+                })
+            }
+            //BlogService.isBlogByCurrentUser(blogObj, currentUser.username).then(function(response) {
+            //    var bool = response.data;
+            //    if (!bool) {
+            //        return false;
+            //    }
+            //    else {
+            //        BlogService.deleteBlog(blogIndex).then(function(response) {
+            //            $scope.blogsArr.splice(blogIndex,1);
+            //        });
+            //    }
+            //});
         };
     }
 })();

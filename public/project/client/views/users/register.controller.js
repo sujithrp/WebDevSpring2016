@@ -9,11 +9,6 @@
 
     function RegisterController($rootScope, $scope, $location, UserService) {
 
-        //var callback = function(userObjResponse) {
-        //    UserService.setCurrentUser(userObjResponse);
-        //    $location.url("/profile");
-        //};
-
         $scope.register = function(user) {
             $scope.message = null;
             if (!user.username) {
