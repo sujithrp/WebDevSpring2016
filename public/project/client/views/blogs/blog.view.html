@@ -26,8 +26,8 @@
                 </td>
                 <td>
                     <div>
-                        <a href ng-click="editBlog(blogObj)"> <span class="glyphicon glyphicon-pencil"></span> </a>
-                        <a href ng-click="deleteBlog(blogObj, $index)"> <span class="glyphicon glyphicon-trash"></span> </a>
+                        <a href ng-click="editBlog(blogObj)" data-toggle="tooltip" title="Edit Blog" id="editBlog"> <span class="glyphicon glyphicon-pencil"></span> </a>
+                        <a href ng-click="deleteBlog(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> </a>
                     </div>
                 </td>
             </tr>

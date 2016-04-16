@@ -11,6 +11,10 @@
 
         $scope.register = function(user) {
             $scope.message = null;
+            if (!user) {
+                $scope.message = "Please provide the required details";
+                return;
+            }
             if (!user.username) {
                 $scope.message = "Please provide a username";
                 return;
@@ -25,7 +29,7 @@
             }
             UserService.createUser(user).then(function(response) {
                 $rootScope.currentUser = response.data;
-                $location.url("/profile");
+                $location.url("/blogs");
             })
         };
 

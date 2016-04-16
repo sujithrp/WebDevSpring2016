@@ -64,7 +64,12 @@
         };
 
         $scope.editBlog = function(blogObj) {
+            if (!currentUser) {
+                $("#editBlog").attr("title", "Not your blog");
+                return false;
+            }
             if (blogObj.username != currentUser.username) {
+                $("#editBlog").attr("title", "Not your blog");
                 return false;
             }
             else {
@@ -73,24 +78,17 @@
                 $scope.blog.blogName = blogObj.title;
                 $scope.blog.blogContent = blogObj.content;
             }
-
-            //BlogService.isBlogByCurrentUser(blogIndex, currentUser.username).then(function(response) {
-            //    var bool = response.data;
-            //    if (!bool) {
-            //        return false;
-            //    }
-            //    else {
-            //        $scope.blogWrite = true;
-            //        BlogService.editBlog(blogIndex).then(function(response) {
-            //            $scope.blog = response.data;
-            //            $scope.blog.title = response.data.blogName;
-            //            $scope.blog.content = response.data.blogContent;
-            //        })
-            //    }
-            //});
         };
 
         $scope.deleteBlog = function(blogObj, index) {
+            if (!currentUser) {
+                $("#deleteBlog").attr("title", "Not your blog");
+                return false;
+            }
+            if (blogObj.username != currentUser.username) {
+                $("#deleteBlog").attr("title", "Not your blog");
+                return false;
+            }
             if (blogObj.username != currentUser.username) {
                 return false;
             }
@@ -99,17 +97,6 @@
                     $scope.blogsArr.splice(index,1);
                 })
             }
-            //BlogService.isBlogByCurrentUser(blogObj, currentUser.username).then(function(response) {
-            //    var bool = response.data;
-            //    if (!bool) {
-            //        return false;
-            //    }
-            //    else {
-            //        BlogService.deleteBlog(blogIndex).then(function(response) {
-            //            $scope.blogsArr.splice(blogIndex,1);
-            //        });
-            //    }
-            //});
         };
     }
 })();

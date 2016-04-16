@@ -22,7 +22,7 @@
             UserService.findUserByCredentials(user.username,user.password).then(function(response) {
                 if (response.data != null) {
                     $rootScope.currentUser = response.data;
-                    $location.url("/profile");
+                    $location.url("/blogs");
                 }
                 else {
                     $scope.message = "Username or password does not match. If new user, click on Register";
