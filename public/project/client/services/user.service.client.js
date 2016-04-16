@@ -14,6 +14,12 @@
             return $http.get(query);
         };
 
+        UserService.findUserByUsername = function(username) {
+            console.log("client side service");
+            var query = "/api/project/user"+"?username="+username;
+            return $http.get(query);
+        };
+
         UserService.updateUser = function(userId, user) {
             var query = "/api/project/user/"+userId;
             return $http.put(query, user);
@@ -36,6 +42,7 @@
 
         return {
             findUserByCredentials: UserService.findUserByCredentials,
+            findUserByUsername: UserService.findUserByUsername,
             updateUser: UserService.updateUser,
             createUser: UserService.createUser,
             addTeamForUser: UserService.addTeamForUser,

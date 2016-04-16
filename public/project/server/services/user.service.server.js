@@ -6,12 +6,22 @@ module.exports = function(app, model) {
     app.post("/api/project/user", register);
 
     function getUsers(req, res) {
-        var username = req.query.username;
-        var password = req.query.password;
-
-        if(username && password) {
-            var credentials = req.query;
+        var query = req.query;
+        if (query.hasOwnProperty('password')) {
+            console.log("has password")
+            var credentials = query;
             var user = model.findUserByCredentials(credentials)
+                .then(
+                    function(user) {
+                        res.json(user);
+                    },
+                    function(err) {
+                        res.status(400).send(err);
+                    }
+                )
+        } else {
+            var username = query.username;
+            var user = model.findUserByUsername(username)
                 .then(
                     function(user) {
                         res.json(user);

@@ -24,6 +24,10 @@
                 templateUrl: "views/users/profile.view.html",
                 controller: "ProfileController"
             })
+            .when("/other_user", {
+                templateUrl: "views/blogs/other_user.view.html",
+                controller: "BlogController"
+            })
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
                 controller: "RegisterController"

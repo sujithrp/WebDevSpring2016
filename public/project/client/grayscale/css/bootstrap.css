@@ -2593,7 +2593,7 @@ output {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  background-color: #eee;
+  background-color: #F4F2F2;
   opacity: 1;
 }
 .form-control[disabled],
@@ -3470,6 +3470,10 @@ input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
+}
+input[readonly]
+{
+  background-color:blue;
 }
 .fade {
   opacity: 0;

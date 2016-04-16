@@ -1,0 +1,60 @@
+<div class="col-sm-8 col-sm-offset-2 col-md-7 col-md-offset-2 main" ng-controller="ProfileController">
+    <div class="row">
+        <div class="main">
+
+            <form class="form-horizontal">
+                <br>
+                <br>
+                <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a class="btn btn-success" ng-click="subscribe()">Subscribe to this user's Blogs</a>
+                        <a href ng-click="fetchBlogsForOtherUser()" class="btn btn-default">View this user's Blogs</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profileUsername" class="col-sm-2 control-label">Username:</label>
+                    <div class="col-sm-10 ">
+                        <input ng-model="other_user.username" type="text" class="form-control" id="profileUsername" placeholder="Username" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profilePassword" class="col-sm-2 control-label">Password:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="other_user.password" type="password" class="form-control" id="profilePassword" placeholder="Password" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profileFirstName" class="col-sm-2 control-label">First Name:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="other_user.firstName" type="text" class="form-control" id="profileFirstName" placeholder="First Name" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profileLastName" class="col-sm-2 control-label">Last Name:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="other_user.lastName" type="text" class="form-control" id="profileLastName" placeholder="Last Name" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profileEmail" class="col-sm-2 control-label">Email:</label>
+                    <div class="col-sm-10">
+                        <input ng-model="other_user.email" type="email" class="form-control" id="profileEmail" placeholder="Email" readonly="readonly">
+                    </div>
+                </div>
+
+            </form>
+
+            <table border="0" class="pull-left table table-condensed">
+
+                <tr ng-repeat="blogObj in blogsArr">
+                    <td>
+                        <u><h6>{{blogObj.title}}</h6></u>
+                        <p>{{blogObj.content}}</p>
+                        <br>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

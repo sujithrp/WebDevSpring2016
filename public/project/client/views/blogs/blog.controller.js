@@ -7,7 +7,7 @@
         .module("SportsApp")
         .controller("BlogController", BlogController);
 
-    function BlogController($scope, $rootScope, BlogService) {
+    function BlogController($scope, $rootScope, $location, BlogService, UserService) {
 
         $scope.message = false;
         var currentUser = $rootScope.currentUser;
@@ -46,10 +46,30 @@
             $scope.blogWrite = false;
         };
 
+        $scope.otherProfileRender = function(username) {
+            console.log("get the other profile");
+            UserService.findUserByUsername(username).then(function(response) {
+                console.log("this is the other profile");
+                $rootScope.other_user = response.data;
+                $location.path("/other_user");
+            })
+        };
+
         $scope.fetchBlogsForUser = function() {
             BlogService.getBlogsForUser(currentUser.username).then(function(response) {
                 if (response.data.length == 0) {
                     $scope.message = "You currently have no blogs. Showing all blogs!";
+                }
+                else {
+                    $scope.blogsArr = response.data;
+                }
+            })
+        };
+
+        $scope.fetchBlogsForOtherUser = function() {
+            BlogService.getBlogsForUser($rootScope.other_user.username).then(function(response) {
+                if (response.data.length == 0) {
+                    $scope.message = "This user does not have any blogs";
                 }
                 else {
                     $scope.blogsArr = response.data;

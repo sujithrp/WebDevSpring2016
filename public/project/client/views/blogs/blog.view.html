@@ -4,7 +4,7 @@
         <br>
         <br>
         <div ng-show="message" class="alert alert-info">{{message}}</div>
-        <a href ng-show="currentUser" ng-click="fetchBlogsForUser()" class="btn btn-default">View My Blogs</a>
+        <a href ng-show="currentUser" ng-click="fetchBlogsForUser(1)" class="btn btn-default">View My Blogs</a>
         <a href ng-click="viewAllBlogs()" class="btn btn-default">View All Blogs</a>
         <a href ng-show="currentUser" ng-click="blogWrite = true" class="btn btn-default">Write a Blog</a>
 
@@ -20,7 +20,7 @@
             <tr ng-repeat="blogObj in blogsArr">
                 <td>
                     <u><h6>{{blogObj.title}}</h6></u>
-                    <small> By {{blogObj.username}}</small>
+                    <small> By <a href ng-click="otherProfileRender(blogObj.username)"> {{blogObj.username}} </a></small>
                     <p>{{blogObj.content}}</p>
                     <br>
                 </td>
