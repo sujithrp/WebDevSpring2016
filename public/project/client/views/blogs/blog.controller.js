@@ -75,12 +75,34 @@
         $scope.fetchBlogsForOtherUser = function() {
             BlogService.getBlogsForUser($rootScope.other_user.username).then(function(response) {
                 if (response.data.length == 0) {
-                    $scope.message = "This user does not have any blogs";
+                    $rootScope.other_user_message = "This user does not have any blogs";
                 }
                 else {
                     $scope.blogsArr = response.data;
                 }
             })
+        };
+
+        $scope.fetchSubscibedBlogs = function() {
+            UserService.findUserByUsername(currentUser.username).then(function(response) {
+                var usernamesArr = response.data.subscribesTo;
+                var index;
+                for (index in usernamesArr) {
+                    BlogService.getBlogsForUser(usernamesArr[index]).then(function(response) {
+                        var blogIndex;
+                        for (blogIndex in response.data) {
+                            if (!$scope.blogsArr) {
+                                $scope.blogsArr = [response.data[blogIndex]];
+                            } else {
+                                $scope.blogsArr.push(response.data[blogIndex]);
+                            }
+                        }
+
+                    })
+                }
+
+            });
+
         };
 
         $scope.viewAllBlogs = function() {
@@ -127,7 +149,7 @@
 
         $scope.subscribe = function() {
             if (!currentUser) {
-                $scope.message = "You should be logged in to subscribe to blogs";
+                $rootScope.other_user_message = "You should be logged in to subscribe to blogs";
             }
             var userCopy = currentUser;
             userCopy.subscribesTo.push($rootScope.other_user.username);
