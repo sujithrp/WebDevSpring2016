@@ -120,7 +120,7 @@
                     <a href="#" class="hidden-xs" ng-click="logout()">Logout</a>
                     <a href="#" ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Logout</a>
                 </li>
-                <li ng-show="currentUser && currentUser.roles.indexOf('admin') >= 0" ng-class="{'active': location.url() == '/admin'}">
+                <li ng-show="currentUser && currentUser.username == 'sujith'" ng-class="{'active': location.url() == '/admin'}">
                     <a href="#/admin" class="hidden-xs">Admin</a>
                     <a href="#/admin" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Admin</a>
                 </li>

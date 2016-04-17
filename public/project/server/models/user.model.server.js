@@ -1,7 +1,6 @@
 /**
  * Created by SujithNarayan on 3/22/2016.
  */
-var mock = require("./user.mock.json");
 var q = require("q");
 module.exports = function(db, mongoose) {
 
@@ -20,7 +19,15 @@ module.exports = function(db, mongoose) {
     return api;
 
     function findAllUsers() {
-        return mock;
+        var deferred = q.defer();
+        UserModel.find(function (err, users) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(users);
+            }
+        });
+        return deferred.promise;
     }
 
     function findUserByCredentials(credentials) {

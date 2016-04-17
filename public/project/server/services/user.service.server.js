@@ -6,29 +6,41 @@ module.exports = function(app, model) {
     app.post("/api/project/user", register);
 
     function getUsers(req, res) {
-        var query = req.query;
-        if (query.hasOwnProperty('password')) {
-            var credentials = query;
-            var user = model.findUserByCredentials(credentials)
+        if (Object.keys(req.query).length == 0) {
+            model.findAllUsers()
                 .then(
-                    function(user) {
-                        res.json(user);
+                    function (users) {
+                        res.json(users);
                     },
-                    function(err) {
+                    function ( err ) {
                         res.status(400).send(err);
-                    }
-                )
-        } else {
-            var username = query.username;
-            var user = model.findUserByUsername(username)
-                .then(
-                    function(user) {
-                        res.json(user);
-                    },
-                    function(err) {
-                        res.status(400).send(err);
-                    }
-                )
+                    });
+        }
+        else {
+            var query = req.query;
+            if (query.hasOwnProperty('password')) {
+                var credentials = query;
+                var user = model.findUserByCredentials(credentials)
+                    .then(
+                        function (user) {
+                            res.json(user);
+                        },
+                        function (err) {
+                            res.status(400).send(err);
+                        }
+                    )
+            } else {
+                var username = query.username;
+                var user = model.findUserByUsername(username)
+                    .then(
+                        function (user) {
+                            res.json(user);
+                        },
+                        function (err) {
+                            res.status(400).send(err);
+                        }
+                    )
+            }
         }
     }
 

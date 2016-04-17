@@ -9,6 +9,11 @@
 
     function UserService($http) {
 
+        UserService.getAllUsers = function() {
+            var query = "/api/project/user";
+            return $http.get(query);
+        };
+
         UserService.findUserByCredentials = function(username, password) {
             var query = "/api/project/user"+"?username="+username+"&password="+password;
             return $http.get(query);
@@ -41,6 +46,7 @@
         };
 
         return {
+            getAllUsers: UserService.getAllUsers,
             findUserByCredentials: UserService.findUserByCredentials,
             findUserByUsername: UserService.findUserByUsername,
             updateUser: UserService.updateUser,
