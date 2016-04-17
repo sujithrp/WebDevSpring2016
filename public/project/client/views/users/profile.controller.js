@@ -12,7 +12,6 @@
 
     function ProfileController($rootScope, $scope, UserService) {
 
-        alert("profile controller called");
         $scope.message = null;
 
         $scope.user = $rootScope.currentUser;

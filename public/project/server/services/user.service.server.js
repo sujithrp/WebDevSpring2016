@@ -8,7 +8,6 @@ module.exports = function(app, model) {
     function getUsers(req, res) {
         var query = req.query;
         if (query.hasOwnProperty('password')) {
-            console.log("has password")
             var credentials = query;
             var user = model.findUserByCredentials(credentials)
                 .then(

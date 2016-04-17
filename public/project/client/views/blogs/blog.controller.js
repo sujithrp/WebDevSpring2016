@@ -47,9 +47,12 @@
         };
 
         $scope.otherProfileRender = function(username) {
-            console.log("get the other profile");
+            if (currentUser) {
+                if (username == currentUser.username) {
+                    $location.path("/profile");
+                }
+            }
             UserService.findUserByUsername(username).then(function(response) {
-                console.log("this is the other profile");
                 $rootScope.other_user = response.data;
                 $location.path("/other_user");
             })
@@ -59,6 +62,9 @@
             BlogService.getBlogsForUser(currentUser.username).then(function(response) {
                 if (response.data.length == 0) {
                     $scope.message = "You currently have no blogs. Showing all blogs!";
+                    BlogService.getAllBlogs().then(function(response) {
+                        $scope.blogsArr = response.data;
+                    })
                 }
                 else {
                     $scope.blogsArr = response.data;
@@ -118,5 +124,18 @@
                 })
             }
         };
+
+        $scope.subscribe = function() {
+            if (!currentUser) {
+                $scope.message = "You should be logged in to subscribe to blogs";
+            }
+            var userCopy = currentUser;
+            userCopy.subscribesTo.push($rootScope.other_user.username);
+            UserService.updateUser(currentUser._id,userCopy).then(function(response) {
+                if (response != null) {
+                    $rootScope.other_user_message = "Subscribed to "+$rootScope.other_user.username+"'s blogs";
+                }
+            })
+        }
     }
 })();

@@ -78,6 +78,7 @@ module.exports = function(db, mongoose) {
                     doc.lastName = user.lastName;
                     doc.email = user.email;
                     doc.teams = user.teams;
+                    doc.subscribesTo = user.subscribesTo;
                     doc.save(function(err, savedDoc) {
                         if (err) {
                             deferred.reject(err);
