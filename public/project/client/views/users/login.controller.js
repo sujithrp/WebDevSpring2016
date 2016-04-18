@@ -9,10 +9,6 @@
 
     function LoginController($rootScope, $scope, $location, UserService) {
 
-        function init() {
-        }
-        init();
-
         $scope.login = function(user) {
             $scope.message = null;
             if (!user.username) {
@@ -30,7 +26,6 @@
                 })
                 .then(function(response){
                     if(response.data) {
-                        console.log("login controller: setting the current user");
                         UserService.setCurrentUser(response.data);
                         $location.url("/blogs");
                     }

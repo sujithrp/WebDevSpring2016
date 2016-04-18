@@ -168,10 +168,12 @@ a:focus {
 
 .intro .intro-body .brand-heading {
     font-size: 40px;
+    color: white;
 }
 
 .intro .intro-body .intro-text {
     font-size: 18px;
+    color: white;
 }
 
 @media(min-width:768px) {
@@ -182,10 +184,12 @@ a:focus {
 
     .intro .intro-body .brand-heading {
         font-size: 100px;
+        color: white;
     }
 
     .intro .intro-body .intro-text {
         font-size: 26px;
+        color: white;
     }
 }
 

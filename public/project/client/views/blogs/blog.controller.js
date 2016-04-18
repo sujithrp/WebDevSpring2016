@@ -12,9 +12,7 @@
         UserService
             .getCurrentUser()
             .then(function (res) {
-                console.log(res.data);
                 $rootScope.currentUser = res.data;
-                console.log("this is the user");
                 $scope.message = null;
 
                 $scope.user = $rootScope.currentUser;
@@ -30,7 +28,7 @@
 
         BlogService.getAllBlogs().then(function(response) {
             $scope.blogsArr = response.data;
-        })
+        });
 
         if (!$scope.user) {
             $scope.blogWrite = false;
