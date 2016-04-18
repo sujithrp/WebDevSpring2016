@@ -10,8 +10,12 @@
     function HeaderController($scope, $rootScope, $location, UserService) {
 
         $scope.logout = function() {
-            $rootScope.currentUser = null;
-            $location.url('/home');
+            UserService
+                .logout()
+                .then(function(){
+                    UserService.setCurrentUser(null);
+                    $location.url("/home");
+                });
         };
 
         $scope.search = function(searchedItem,leagueItem) {

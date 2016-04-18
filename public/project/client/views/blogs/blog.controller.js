@@ -9,11 +9,30 @@
 
     function BlogController($scope, $rootScope, $location, BlogService, UserService) {
 
-        $scope.message = false;
-        var currentUser = $rootScope.currentUser;
-        $scope.deleteButtonToBeDisplayed = false;
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                console.log(res.data);
+                $rootScope.currentUser = res.data;
+                console.log("this is the user");
+                $scope.message = null;
 
-        if (!currentUser) {
+                $scope.user = $rootScope.currentUser;
+                $scope.message = false;
+                $scope.deleteButtonToBeDisplayed = false;
+                //var currentUser = $rootScope.currentUser;
+            });
+
+
+
+
+
+
+        BlogService.getAllBlogs().then(function(response) {
+            $scope.blogsArr = response.data;
+        })
+
+        if (!$scope.user) {
             $scope.blogWrite = false;
             $scope.message = "You can view your blogs or write a blog by just logging in";
         }
@@ -27,9 +46,12 @@
             if (!passedBlog._id) {
                 var blog = {
                     "title": passedBlog.blogName,
-                    "content": passedBlog.blogContent
+                    "content": passedBlog.blogContent.replace(/<(?:.|\n)*?>/gm, '')
                 };
-                BlogService.createBlogForUser(blog,currentUser.username).then(function(response) {
+                BlogService.createBlogForUser(blog,$scope.user.username).then(function(response) {
+                    if (!$scope.blogsArr) {
+                        $scope.blogsArr = [response.data];
+                    }
                     $scope.blogsArr.push(response.data);
                 });
                 BlogService.getAllBlogs().then(function(response) {
@@ -39,9 +61,9 @@
             } else {
                 var blog = passedBlog;
                 blog.title = passedBlog.blogName;
-                blog.content = passedBlog.blogContent;
+                blog.content = passedBlog.blogContent.replace(/<(?:.|\n)*?>/gm, '');
                 BlogService.updateBlogForUser(blog).then(function(response) {
-                    BlogService.getBlogsForUser(currentUser.username).then(function(response) {
+                    BlogService.getBlogsForUser($scope.user.username).then(function(response) {
                         $scope.blogsArr = response.data;
                     })
                 });
@@ -54,8 +76,8 @@
         };
 
         $scope.otherProfileRender = function(username) {
-            if (currentUser) {
-                if (username == currentUser.username) {
+            if ($scope.user) {
+                if (username == $scope.user.username) {
                     $location.path("/profile");
                 }
             }
@@ -66,7 +88,8 @@
         };
 
         $scope.fetchBlogsForUser = function() {
-            BlogService.getBlogsForUser(currentUser.username).then(function(response) {
+            $scope.message = '';
+            BlogService.getBlogsForUser($scope.user.username).then(function(response) {
                 if (response.data.length == 0) {
                     $scope.message = "You currently have no blogs. Showing all blogs!";
                     BlogService.getAllBlogs().then(function(response) {
@@ -91,22 +114,30 @@
         };
 
         $scope.fetchSubscibedBlogs = function() {
-            UserService.findUserByUsername(currentUser.username).then(function(response) {
+            UserService.findUserByUsername($scope.user.username).then(function(response) {
                 var usernamesArr = response.data.subscribesTo;
                 var index;
                 for (index in usernamesArr) {
                     BlogService.getBlogsForUser(usernamesArr[index]).then(function(response) {
                         var blogIndex;
+                        var flag = 0;
                         for (blogIndex in response.data) {
+                            flag = 1;
                             if (!$scope.blogsArr) {
                                 $scope.blogsArr = [response.data[blogIndex]];
                             } else {
                                 $scope.blogsArr.push(response.data[blogIndex]);
                             }
                         }
-
+                        if (flag == 0) {
+                            $scope.message = "No subscribed blogs! Showing all blogs";
+                            BlogService.getAllBlogs().then(function(response) {
+                                $scope.blogsArr = response.data;
+                            })
+                        }
                     })
                 }
+
 
             });
 
@@ -119,11 +150,11 @@
         };
 
         $scope.editBlog = function(blogObj) {
-            if (!currentUser) {
+            if (!$scope.user) {
                 $("#editBlog").attr("title", "Not your blog");
                 return false;
             }
-            if (blogObj.username != currentUser.username) {
+            if (blogObj.username != $scope.user.username) {
                 $("#editBlog").attr("title", "Not your blog");
                 return false;
             }
@@ -136,15 +167,15 @@
         };
 
         $scope.deleteBlog = function(blogObj, index) {
-            if (!currentUser) {
+            if (!$scope.user) {
                 $("#deleteBlog").attr("title", "Not your blog");
                 return false;
             }
-            if (blogObj.username != currentUser.username) {
+            if (blogObj.username != $scope.user.username) {
                 $("#deleteBlog").attr("title", "Not your blog");
                 return false;
             }
-            if (blogObj.username != currentUser.username) {
+            if (blogObj.username != $scope.user.username) {
                 return false;
             }
             else {
@@ -155,12 +186,12 @@
         };
 
         $scope.subscribe = function() {
-            if (!currentUser) {
+            if (!$scope.user) {
                 $rootScope.other_user_message = "You should be logged in to subscribe to blogs";
             }
-            var userCopy = currentUser;
+            var userCopy = $scope.user;
             userCopy.subscribesTo.push($rootScope.other_user.username);
-            UserService.updateUser(currentUser._id,userCopy).then(function(response) {
+            UserService.updateUser($scope.user._id,userCopy).then(function(response) {
                 if (response != null) {
                     $rootScope.other_user_message = "Subscribed to "+$rootScope.other_user.username+"'s blogs";
                 }

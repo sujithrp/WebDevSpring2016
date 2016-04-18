@@ -3,5 +3,5 @@
  */
 (function() {
     angular
-        .module("SportsApp", ["ngRoute"]);
+        .module("SportsApp", ["ngRoute", "textAngular"]);
 })();

@@ -7,6 +7,7 @@ module.exports = function(app, model) {
     app.put("/api/project/user/:id/deleteTeam/:index", deleteTeamForUser);
     app.post("/api/project/user", register);
     app.delete("/api/project/user/:id", deleteUser);
+    app.post("/api/project/logout", logout);
 
     function getUsers(req, res) {
         if (Object.keys(req.query).length == 0) {
@@ -135,4 +136,9 @@ module.exports = function(app, model) {
             )
     }
 
+
+    function logout(req, res) {
+        req.session.destroy();
+        res.send(200);
+    }
 };

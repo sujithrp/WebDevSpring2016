@@ -3,40 +3,16 @@
     <div class="responsive">
         <br>
         <br>
-        <h4>Users</h4>
-        <table border="0" class="pull-left table table-condensed">
-
-            <tr ng-repeat="userObj in usersArrAdmin">
-                <td>
-                    <p> <a href ng-click="otherProfileRender(userObj.username)"> {{userObj.username}} </a></p>
-                    <br>
-                </td>
-                <td>
-                    <div>
-                        <a href ng-click="removeUserAdmin(userObj, $index)" data-toggle="tooltip" title="Remove User" id="deleteUser"> <span class="glyphicon glyphicon-remove-sign"></span> </a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <br>
-    <hr>
-    <br>
-    <div class="responsive">
-        <h4>Blogs</h4>
-        <table border="0" class="pull-left table table-condensed">
+        <h3>ADMIN - Manage Blogs</h3>
+        <table id="albums" border="0" class="pull-left table table-condensed">
 
             <tr ng-repeat="blogObj in blogsArrAdmin">
-                <td>
+                <td bgcolor="#F5EEF8">
                     <u><h6>{{blogObj.title}}</h6></u>
                     <small> By <a href ng-click="otherProfileRender(blogObj.username)"> {{blogObj.username}} </a></small>
+                    <a href ng-click="deleteBlogAdmin(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> Delete Blog </a>
                     <p>{{blogObj.content}}</p>
                     <br>
-                </td>
-                <td>
-                    <div>
-                        <a href ng-click="deleteBlogAdmin(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> </a>
-                    </div>
                 </td>
             </tr>
         </table>

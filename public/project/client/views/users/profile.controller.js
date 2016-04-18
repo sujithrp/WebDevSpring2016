@@ -12,9 +12,19 @@
 
     function ProfileController($rootScope, $scope, UserService) {
 
-        $scope.message = null;
 
-        $scope.user = $rootScope.currentUser;
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                console.log(res.data);
+                $rootScope.currentUser = res.data;
+                console.log("this is the user");
+                $scope.message = null;
+
+                $scope.user = $rootScope.currentUser;
+            });
+
+
 
         $scope.update = function(user) {
             UserService.updateUser($scope.user._id,user).then(function(response) {

@@ -58,6 +58,10 @@
             $rootScope.currentUser = user;
         };
 
+        UserService.logout = function() {
+            return $http.post("/api/project/logout");
+        };
+
         UserService.login = function(credentials) {
             return $http.post("/api/project/user/login", credentials);
         };
@@ -73,7 +77,8 @@
             deleteTeamForUser: UserService.deleteTeamForUser,
             deleteUserById: UserService.deleteUserById,
             getCurrentUser: UserService.getCurrentUser,
-            setCurrentUser: UserService.setCurrentUser
+            setCurrentUser: UserService.setCurrentUser,
+            logout: UserService.logout
         };
     }
 })();

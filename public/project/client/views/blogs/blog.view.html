@@ -11,7 +11,8 @@
 
         <div ng-show="blogWrite">
             <input ng-model="blog.blogName" class="form-control" placeholder="Title">
-            <textarea ng-model="blog.blogContent" class="form-control" rows="5" placeholder="Write your blog here..."></textarea>
+            <div text-angular ng-model="blog.blogContent"></div>
+            <!--<textarea ng-model="blog.blogContent" class="form-control" rows="5" placeholder="Write your blog here..."></textarea>-->
             <a href ng-click="submitBlog(blog)" class="btn btn-default"> Submit Blog </a>
             <a href ng-click="cancelBlog()" class="btn btn-default"> Cancel </a>
         </div>
@@ -21,11 +22,12 @@
             <tr ng-repeat="blogObj in blogsArr">
                 <td bgcolor="#F5EEF8">
                     <u><h6 id="blogHeading">{{blogObj.title}}</h6></u>
-                    <small>By <a href ng-click="otherProfileRender(blogObj.username)"> {{blogObj.username}} </a></small>
-                    <p>{{blogObj.content}}</p>
-                    <br>
+                    <p>By <a href ng-click="otherProfileRender(blogObj.username)"> {{blogObj.username}} </a></p>
+                    &nbsp;
                     <a href ng-click="editBlog(blogObj)" data-toggle="tooltip" title="Edit Blog" id="editBlog"> <span class="glyphicon glyphicon-pencil"></span> Edit </a>
                     <a href ng-click="deleteBlog(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> Delete </a>
+                    <p>{{blogObj.content}}</p>
+                    <br>
                 </td>
                 <!--<td>-->
                     <!--<div>-->
