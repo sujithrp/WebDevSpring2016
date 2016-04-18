@@ -20,12 +20,12 @@
 
             <tr ng-repeat="blogObj in blogsArr">
                 <td bgcolor="#F5EEF8">
-                    <u><h6>{{blogObj.title}}</h6></u>
+                    <u><h6 id="blogHeading">{{blogObj.title}}</h6></u>
                     <small>By <a href ng-click="otherProfileRender(blogObj.username)"> {{blogObj.username}} </a></small>
                     <p>{{blogObj.content}}</p>
                     <br>
-                    <a href ng-click="editBlog(blogObj)" data-toggle="tooltip" title="Edit Blog" id="editBlog"> <span class="glyphicon glyphicon-pencil"></span> </a>
-                    <a href ng-click="deleteBlog(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> </a>
+                    <a href ng-click="editBlog(blogObj)" data-toggle="tooltip" title="Edit Blog" id="editBlog"> <span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                    <a href ng-click="deleteBlog(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> Delete </a>
                 </td>
                 <!--<td>-->
                     <!--<div>-->
