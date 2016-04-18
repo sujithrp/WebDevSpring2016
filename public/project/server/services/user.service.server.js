@@ -1,9 +1,12 @@
 module.exports = function(app, model) {
+    app.post("/api/project/user/login", login);
+    app.get("/api/project/user/loggedin", loggedin);
     app.get("/api/project/user", getUsers);
     app.put("/api/project/user/:id", updateProfile);
     app.put("/api/project/user/:id/addTeam/:name", addTeamForUser);
     app.put("/api/project/user/:id/deleteTeam/:index", deleteTeamForUser);
     app.post("/api/project/user", register);
+    app.delete("/api/project/user/:id", deleteUser);
 
     function getUsers(req, res) {
         if (Object.keys(req.query).length == 0) {
@@ -20,9 +23,10 @@ module.exports = function(app, model) {
             var query = req.query;
             if (query.hasOwnProperty('password')) {
                 var credentials = query;
-                var user = model.findUserByCredentials(credentials)
+                model.findUserByCredentials(credentials)
                     .then(
                         function (user) {
+                            req.session.currentUser = user;
                             res.json(user);
                         },
                         function (err) {
@@ -47,9 +51,10 @@ module.exports = function(app, model) {
     function updateProfile(req, res) {
         var userId = req.params.id;
         var newUserObj = req.body;
-        var user = model.updateUser(userId,newUserObj)
+        model.updateUser(userId,newUserObj)
             .then(
                 function(user) {
+                    req.session.currentUser = user;
                     res.json(user);
                 },
                 function(err) {
@@ -86,14 +91,48 @@ module.exports = function(app, model) {
 
     function register(req, res) {
         var newUser = req.body;
-        var user = model.createUser(newUser).then(
+        model.createUser(newUser).then(
             function(user) {
+                req.session.currentUser = user;
                 res.json(user);
             },
             function(err) {
                 res.status(400).send(err);
             }
         )
+    }
+
+    function deleteUser(req, res) {
+        var userId = req.params.id;
+        model.deleteUser(userId)
+            .then(
+                function(doc) {
+                    res.json(doc);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
+    }
+
+    function loggedin(req, res) {
+        res.json(req.session.currentUser);
+    }
+
+    function login(req, res) {
+        var credentials = req.body;
+        model.findUserByCredentials(credentials)
+            .then(
+                function (doc) {
+                    console.log("server side find user by creds");
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            )
     }
 
 };

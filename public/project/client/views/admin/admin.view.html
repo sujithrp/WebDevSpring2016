@@ -3,7 +3,7 @@
     <div class="responsive">
         <br>
         <br>
-        <h6>Users</h6>
+        <h4>Users</h4>
         <table border="0" class="pull-left table table-condensed">
 
             <tr ng-repeat="userObj in usersArrAdmin">
@@ -19,25 +19,28 @@
             </tr>
         </table>
     </div>
+    <br>
+    <hr>
+    <br>
+    <div class="responsive">
+        <h4>Blogs</h4>
+        <table border="0" class="pull-left table table-condensed">
 
-
-
-    <table border="0" class="pull-left table table-condensed">
-
-        <tr ng-repeat="blogObj in blogsArrAdmin">
-            <td>
-                <u><h6>{{blogObj.title}}</h6></u>
-                <small> By <a href ng-click="otherProfileRender(blogObj.username)"> {{blogObj.username}} </a></small>
-                <p>{{blogObj.content}}</p>
-                <br>
-            </td>
-            <td>
-                <div>
-                    <a href ng-click="deleteBlogAdmin(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> </a>
-                </div>
-            </td>
-        </tr>
-    </table>
+            <tr ng-repeat="blogObj in blogsArrAdmin">
+                <td>
+                    <u><h6>{{blogObj.title}}</h6></u>
+                    <small> By <a href ng-click="otherProfileRender(blogObj.username)"> {{blogObj.username}} </a></small>
+                    <p>{{blogObj.content}}</p>
+                    <br>
+                </td>
+                <td>
+                    <div>
+                        <a href ng-click="deleteBlogAdmin(blogObj, $index)" data-toggle="tooltip" title="Delete Blog" id="deleteBlog"> <span class="glyphicon glyphicon-trash"></span> </a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 
 </div>

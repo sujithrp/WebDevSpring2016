@@ -31,7 +31,11 @@
                 };
                 BlogService.createBlogForUser(blog,currentUser.username).then(function(response) {
                     $scope.blogsArr.push(response.data);
+                });
+                BlogService.getAllBlogs().then(function(response) {
+                    $scope.blogsArr = response.data;
                 })
+
             } else {
                 var blog = passedBlog;
                 blog.title = passedBlog.blogName;
@@ -40,6 +44,9 @@
                     BlogService.getBlogsForUser(currentUser.username).then(function(response) {
                         $scope.blogsArr = response.data;
                     })
+                });
+                BlogService.getAllBlogs().then(function(response) {
+                    $scope.blogsArr = response.data;
                 })
             }
             $scope.blog = '';

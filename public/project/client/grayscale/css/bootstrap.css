@@ -5,6 +5,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
+
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
@@ -238,6 +239,8 @@ th {
   h3 {
     page-break-after: avoid;
   }
+
+
   .navbar {
     display: none;
   }
@@ -2276,10 +2279,10 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 20px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd;*/
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -2593,7 +2596,7 @@ output {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  background-color: #F4F2F2;
+  background-color: #eee;
   opacity: 1;
 }
 .form-control[disabled],
@@ -3471,10 +3474,6 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
-input[readonly]
-{
-  background-color:blue;
-}
 .fade {
   opacity: 0;
   -webkit-transition: opacity .15s linear;
@@ -3566,7 +3565,6 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #333;
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,
@@ -4190,6 +4188,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
 }
+
+
+
+
 .navbar-collapse {
   padding-right: 15px;
   padding-left: 15px;
@@ -4600,16 +4602,17 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
+  background-color: transparent;
   border-color: #080808;
 }
+
+
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #fff;
-  background-color: transparent;
 }
 .navbar-inverse .navbar-text {
   color: #9d9d9d;
@@ -4619,8 +4622,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
-  background-color: transparent;
+  color: green;
+  /*background-color: transparent;*/
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -4648,6 +4651,16 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse .navbar-form {
   border-color: #101010;
 }
+
+/*background-color: #fff;*/
+@media (max-width: 767px) {
+    .navbar-inverse .navbar-collapse,
+    .navbar-inverse .navbar-form {
+        border-color: #101010;
+        background-color: #000;
+    }
+}
+
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {

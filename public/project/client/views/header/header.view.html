@@ -10,20 +10,19 @@
             <a href="#/home" class="pull-left"><img src="app_logo.JPG"></a>
         </div>
 
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="collapse navbar-collapse">
 
             <form class="navbar-form navbar-left" role="search">
                 <div class="dropdown">
-                    <select ng-model="leagueItem" class="form-control">
-                        <option value="" disabled="disabled" selected="selected">Please select the league . .</option>
-                        <option value="NBA">NBA</option>
-                        <option value="NFL">NFL</option>
-                        <!--<option value="Soccer">Soccer</option>-->
-                        <option value="MLB">MLB</option>
+                    <select id="special-dropdown" ng-model="leagueItem" class="form-control">
+                        <option id="special-dropdown1" value="" disabled="disabled" selected="selected">Please select the league . .</option>
+                        <option id="special-dropdown2" value="NBA">NBA</option>
+                        <option id="special-dropdown3" value="NFL">NFL</option>
+                        <option id="special-dropdown4" value="MLB">MLB</option>
                     </select>
                 </div>
                 <div class="input-group">
-                <input ng-model="searchedItem" type="text" class="form-control" placeholder="Search Teams..."/>
+                    <input ng-model="searchedItem" type="text" class="form-control" placeholder="Search Teams..."/>
                 <span class="input-group-addon">
                     <a class="glyphicon glyphicon-search" ng-click="search(searchedItem,leagueItem)"></a>
                 </span>
@@ -61,19 +60,19 @@
                     </ul>
                 </li>
                 <!--<li class="dropdown">-->
-                    <!--<a href class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>-->
-                    <!--<ul class="dropdown-menu">-->
-                        <!--<li><a href="#" class="hidden-xs">AC Milan</a></li>-->
-                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">AC Milan</a></li>-->
-                        <!--<li><a href="#" class="hidden-xs">Manchester United</a></li>-->
-                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Manchester United</a></li>-->
-                        <!--<li><a href="#" class="hidden-xs">Juventus</a></li>-->
-                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Juventus</a></li>-->
-                        <!--<li><a href="#" class="hidden-xs">FC Barcelona</a></li>-->
-                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">FC Barcelona</a></li>-->
-                        <!--<li><a href="#" class="hidden-xs">Bayern Munich</a></li>-->
-                        <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Bayern Munich</a></li>-->
-                    <!--</ul>-->
+                <!--<a href class="dropdown-toggle" data-toggle="dropdown"> SOCCER <b class="caret"></b></a>-->
+                <!--<ul class="dropdown-menu">-->
+                <!--<li><a href="#" class="hidden-xs">AC Milan</a></li>-->
+                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">AC Milan</a></li>-->
+                <!--<li><a href="#" class="hidden-xs">Manchester United</a></li>-->
+                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Manchester United</a></li>-->
+                <!--<li><a href="#" class="hidden-xs">Juventus</a></li>-->
+                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Juventus</a></li>-->
+                <!--<li><a href="#" class="hidden-xs">FC Barcelona</a></li>-->
+                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">FC Barcelona</a></li>-->
+                <!--<li><a href="#" class="hidden-xs">Bayern Munich</a></li>-->
+                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Bayern Munich</a></li>-->
+                <!--</ul>-->
                 <!--</li>-->
                 <li class="dropdown">
                     <a href class="dropdown-toggle" data-toggle="dropdown"> MLB <b class="caret"></b></a>
@@ -93,8 +92,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!--<li ng-class="{'active': location.url() == '/fixtures'}">-->
-                    <!--<a href="#/fixtures" class="hidden-xs">Fixtures</a>-->
-                    <!--<a href="#/fixtures" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Fixtures</a>-->
+                <!--<a href="#/fixtures" class="hidden-xs">Fixtures</a>-->
+                <!--<a href="#/fixtures" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Fixtures</a>-->
                 <!--</li>-->
                 <li ng-class="{'active': location.url() == '/blogs'}">
                     <a href="#/blogs" class="hidden-xs">Blogs</a>

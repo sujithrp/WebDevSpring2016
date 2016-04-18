@@ -63,8 +63,8 @@ body {
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-    color: #fff;
-    background-color: #428bca;
+    color: black;
+    background-color: green;
 }
 
 
@@ -83,6 +83,7 @@ body {
 }
 .main .page-header {
     margin-top: 0;
+    color: white;
 }
 
 
@@ -118,11 +119,17 @@ CHANGES I HAVE ADDED
     padding-top: 7px;
     margin-bottom: 0;
     text-align: left;
+    color: white;
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    color: #888888;
+    color: white;
     font-size: large;
+    /*margin-bottom: 0;*/
+    /*border-bottom: 1px solid rgba(255,255,255,.3);*/
+    /*text-transform: uppercase;*/
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*background-color: transparent;*/
 }
 
 /*@media (min-width: 800px) {*/
@@ -145,8 +152,11 @@ img.thumbnail {
 .thumbContainer {
     text-align: left;
 }
-
-
+table#albums
+{
+    border-collapse:separate;
+    border-spacing:0 10px;
+}
 .btn-secondary          { color: whitesmoke; background-color: black; border-color: #555; }
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open .dropdown-toggle.btn-secondary
 { color: #ffffff; background-color: #888; border-color: #444; }

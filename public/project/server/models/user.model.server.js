@@ -14,7 +14,8 @@ module.exports = function(db, mongoose) {
         updateUser: updateUser,
         createUser: createUser,
         addTeamForUser: addTeamForUser,
-        deleteTeamForUser: deleteTeamForUser
+        deleteTeamForUser: deleteTeamForUser,
+        deleteUser: deleteUser
     };
     return api;
 
@@ -160,6 +161,24 @@ module.exports = function(db, mongoose) {
             });
 
         return deferred.promise;
+    }
+
+    function deleteUser(userId) {
+        var deferred = q.defer();
+
+        UserModel.remove(
+            {_id: userId},
+            function(err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            }
+        );
+
+        return deferred.promise;
+
     }
 
 };

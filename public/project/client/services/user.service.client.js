@@ -7,7 +7,7 @@
         .module("SportsApp")
         .factory("UserService", UserService);
 
-    function UserService($http) {
+    function UserService($rootScope, $http) {
 
         UserService.getAllUsers = function() {
             var query = "/api/project/user";
@@ -45,14 +45,35 @@
             return $http.put(query);
         };
 
+        UserService.deleteUserById = function(userId) {
+            return $http.delete("/api/project/user/"+userId);
+        };
+
+        UserService.getCurrentUser = function() {
+            return $http.get("/api/project/user/loggedin");
+        };
+
+        UserService.setCurrentUser = function(user) {
+            console.log("client service setting current user: ");
+            $rootScope.currentUser = user;
+        };
+
+        UserService.login = function(credentials) {
+            return $http.post("/api/project/user/login", credentials);
+        };
+
         return {
+            login: UserService.login,
             getAllUsers: UserService.getAllUsers,
             findUserByCredentials: UserService.findUserByCredentials,
             findUserByUsername: UserService.findUserByUsername,
             updateUser: UserService.updateUser,
             createUser: UserService.createUser,
             addTeamForUser: UserService.addTeamForUser,
-            deleteTeamForUser: UserService.deleteTeamForUser
+            deleteTeamForUser: UserService.deleteTeamForUser,
+            deleteUserById: UserService.deleteUserById,
+            getCurrentUser: UserService.getCurrentUser,
+            setCurrentUser: UserService.setCurrentUser
         };
     }
 })();

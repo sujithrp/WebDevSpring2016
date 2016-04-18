@@ -9,6 +9,10 @@
 
     function LoginController($rootScope, $scope, $location, UserService) {
 
+        function init() {
+        }
+        init();
+
         $scope.login = function(user) {
             $scope.message = null;
             if (!user.username) {
@@ -19,15 +23,18 @@
                 $scope.message = "Please provide a password";
                 return;
             }
-            UserService.findUserByCredentials(user.username,user.password).then(function(response) {
-                if (response.data != null) {
-                    $rootScope.currentUser = response.data;
-                    $location.url("/blogs");
-                }
-                else {
-                    $scope.message = "Username or password does not match. If new user, click on Register";
-                }
-            })
+            UserService
+                .login({
+                    username: user.username,
+                    password: user.password
+                })
+                .then(function(response){
+                    if(response.data) {
+                        console.log("login controller: setting the current user");
+                        UserService.setCurrentUser(response.data);
+                        $location.url("/blogs");
+                    }
+                });
         };
 
     }
