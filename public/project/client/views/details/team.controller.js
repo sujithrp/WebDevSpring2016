@@ -7,27 +7,56 @@
         .module("SportsApp")
         .controller("TeamController", TeamController);
 
-    function TeamController($scope, $location, $http, $routeParams, CacheService) {
+    function TeamController($scope, $location, $http, $rootScope, $routeParams, CacheService, UserService) {
 
-        var id;
-        var matchingText;
-        var leagueName;
 
-        if ($routeParams.teamAndLeague) {
-            var teamAndLeague = $routeParams.teamAndLeague;
-            var teamAndLeagueSplit = teamAndLeague.split("|");
-            var team = teamAndLeagueSplit[0];
-            leagueName = teamAndLeagueSplit[1];
-            CacheService.nameToId(team).then(function(response) {
-                teamDetailsFetch(response.data.id, response.data.name, leagueName);
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.currentUser = res.data;
+                $scope.message = null;
+
+                $scope.user = $rootScope.currentUser;
+                $scope.message = '';
+                $scope.button = "Like";
+
+
+                var id;
+                var matchingText;
+                var leagueName;
+
+                if ($routeParams.teamAndLeague) {
+                    var teamAndLeague = $routeParams.teamAndLeague;
+                    var teamAndLeagueSplit = teamAndLeague.split("|");
+                    var team = teamAndLeagueSplit[0];
+                    leagueName = teamAndLeagueSplit[1];
+                    if ($rootScope.currentUser) {
+                        var teamsUserLikes = $rootScope.currentUser.teams;
+                        var teamIndex;
+                        var teamFound = 0;
+                        for (teamIndex in teamsUserLikes) {
+                            if (teamsUserLikes[teamIndex].replace(" ","").toLowerCase() == team.replace(" ","").toLowerCase()) {
+                                teamFound = 1;
+                                break;
+                            }
+                        }
+                        if (teamFound == 1) {
+                            $scope.button = "Liked";
+                        }
+                    }
+                    CacheService.nameToId(team).then(function(response) {
+                        teamDetailsFetch(response.data.id, response.data.name, leagueName);
+                    });
+
+                }
+                else {
+                    $location.url("/home");
+                }
             });
 
-        }
-        else {
-            $location.url("/home");
-        }
-
         function teamDetailsFetch(id, matchingText, leagueName) {
+
+            $rootScope.currentTeam = matchingText;
 
             // league name is also available here, so that can be used in the future
             var url;
@@ -100,6 +129,18 @@
             playerName = playerName.replace(" ","");
             var playerAndLeague = playerName+"|"+leagueName;
             $location.url("/player/"+playerAndLeague);
-        }
+        };
+
+        $scope.likeTeam = function() {
+            if (!$rootScope.currentUser) {
+                $scope.message = "You should be a registered user to like a team";
+                return;
+            }
+            UserService.addTeamForUser($rootScope.currentUser._id, $rootScope.currentTeam).then(function(response) {
+                $rootScope.currentUser.teams.push($rootScope.currentTeam);
+                $scope.button = "Liked";
+                $scope.message = $rootScope.currentTeam + " added to your list of favorite teams!";
+            })
+        };
     }
 })();

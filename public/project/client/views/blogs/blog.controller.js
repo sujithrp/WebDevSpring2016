@@ -21,11 +21,6 @@
                 //var currentUser = $rootScope.currentUser;
             });
 
-
-
-
-
-
         BlogService.getAllBlogs().then(function(response) {
             $scope.blogsArr = response.data;
         });
@@ -112,6 +107,7 @@
         };
 
         $scope.fetchSubscibedBlogs = function() {
+            $scope.blogsArr = null;
             UserService.findUserByUsername($scope.user.username).then(function(response) {
                 var usernamesArr = response.data.subscribesTo;
                 var index;

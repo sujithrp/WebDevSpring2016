@@ -7,7 +7,6 @@
         .controller("HomeController", homeController);
 
     function homeController($http,$scope,$rootScope,$location, CacheService) {
-        console.log("home controller");
         //var nbaFixtureUrl = "/sports/nba-t3/games/2016/04/05/schedule.json?api_key=9hx9mmdj93q7hz26yegm47tu";
         //var nbaFixtureUrl = "/sports/nba-t3/games/2015/PST/schedule.json?api_key=9hx9mmdj93q7hz26yegm47tu";
         //var nbaFixtureUrl = "/sports/nba-t3/teams/583ecd4f-fb46-11e1-82cb-f4ce4684ea4c/profile.json?api_key=9hx9mmdj93q7hz26yegm47tu";
@@ -16,13 +15,13 @@
         var nflFixtureUrl = "/sports/nfl-t1/2015/REG/4/boxscore.json?api_key=c9gmk2hsnccg8hcwhmfyj9uj";
         //var nflFixtureUrl = "/sports/nfl-t1/teams/2015/REG/standings.json?api_key=c9gmk2hsnccg8hcwhmfyj9uj";
 
-        var resultObj = {
-            "home": "home team fsdgfdsgsolnglng",
-            "away": "away team ffefbeklfbeufbh",
-            "homePoints": "45",
-            "awayPoints": "55"
-        };
-        $scope.resultsArr = [resultObj];
+        //var resultObj = {
+        //    "home": "home team fsdgfdsgsolnglng",
+        //    "away": "away team ffefbeklfbeufbh",
+        //    "homePoints": "45",
+        //    "awayPoints": "55"
+        //};
+        //$scope.resultsArr = [resultObj];
 
         //console.log($scope.resultsArr);
         //$http.get(nflFixtureUrl)
@@ -60,7 +59,6 @@
 
         $http.get(nflFixtureUrl)
             .then(function(response) {
-                console.log(response);
                 $scope.resultsArr = [];
                 var gamesArr = response.data.games;
                 var gameIndex;

@@ -1,17 +1,17 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-responsive">
             <br>
             <br>
-            <h4> My Teams </h4>
+            <h6 class="page-header responsiveHeader"> My Teams </h6>
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
             <a href="#/login" ng-show="message" class="btn btn-default">Login</a>
 
-            <table ng-show="currentUser" class="table">
+            <table ng-show="currentUser" class="table table-condensed">
 
                 <tbody>
                 <tr ng-repeat="team in currentTeamsArr">
-                    <td> <a href ng-click="displayTeamDetails($index)"> {{team}} </a></td>
+                    <td> <h6 class="responsiveHeader"> <a href ng-click="displayTeamDetails($index)"> {{team}} </a> </h6> </td>
                     <td> <a href ng-click="deleteTeam($index)" class="btn btn-default"> Delete Team </span> </a> </td>
                 </tr>
                 <tr>
@@ -21,7 +21,6 @@
                             <option value="" disabled="disabled" selected="selected">Please select the league . . .</option>
                             <option value="NBA">NBA</option>
                             <option value="NFL">NFL</option>
-                            <!--<option value="Soccer">Soccer</option>-->
                             <option value="MLB">MLB</option>
                         </select>
 

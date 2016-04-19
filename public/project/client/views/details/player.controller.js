@@ -7,7 +7,16 @@
         .module("SportsApp")
         .controller("PlayerController", PlayerController);
 
-    function PlayerController($scope, $location, $http, $routeParams, CacheService) {
+    function PlayerController($scope, $location, $rootScope, $http, $routeParams, CacheService) {
+
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.currentUser = res.data;
+                $scope.message = null;
+
+                $scope.user = $rootScope.currentUser;
+            });
 
         var id;
         var leagueName;

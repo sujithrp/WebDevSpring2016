@@ -13,7 +13,8 @@
             return;
         }
         var currentUser = $rootScope.currentUser;
-        $scope.currentTeamsArr = currentUser.teams;
+        var teams = currentUser.teams.filter (function (v, i, a) { return a.indexOf (v) == i });
+        $scope.currentTeamsArr = teams;
 
         //var addTeamCallback = function(newTeamsArr) {
         //    $scope.currentTeamsArr = newTeamsArr;

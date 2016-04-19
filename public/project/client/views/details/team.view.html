@@ -1,4 +1,8 @@
 <div class="container-fluid">
+    <br>
+    <br>
+    <br>
+    <div ng-show="message" class="alert alert-info">{{message}}</div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-md-offset-2 thumbContainer">
         <br>
         <br>
@@ -6,7 +10,10 @@
     </div>
 
     <div class="col-lg-9 col-md-8 col-sm-6">
-        <h6>Team Information: </h6>
+        <button ng-disabled="button == 'Liked'" ng-click="likeTeam()" class="btn btn-success"> {{button}} </button>
+        <br>
+        <br>
+        <h6 style="color:white;">Team Information: </h6>
         <table border="0" class="pull-left table table-condensed playerInfo">
 
             <tr ng-repeat="propertyObj in propertiesArr">
@@ -15,7 +22,7 @@
             </tr>
         </table>
 
-        <h6>Key Player:</h6>
+        <h6 style="color:white;">Key Player:</h6>
         <table border="0" class="pull-left table table-condensed playerInfo">
             <tr ng-repeat="playerObj in playersArr">
                 <td bgcolor="#f0ffff"><a href ng-click="playerSearch($index)"> {{playerObj.playerFullName}} </a></td>
