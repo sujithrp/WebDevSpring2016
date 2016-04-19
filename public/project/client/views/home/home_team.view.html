@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-md-offset-2 thumbContainer">
+        <br>
+        <br>
+        <img src={{teamImage}} alt="Image of " class="thumbnail">
+    </div>
+
+    <div class="col-lg-9 col-md-8 col-sm-6">
+        <h6>Team Information: </h6>
+        <table border="0" class="pull-left table table-condensed playerInfo">
+
+            <tr ng-repeat="propertyObj in propertiesArr">
+                <td bgcolor="#f0ffff"> {{propertyObj.propertyName}} </td>
+                <td bgcolor="#f0ffff"> {{propertyObj.propertyValue}} </td>
+            </tr>
+        </table>
+    </div>
+</div>

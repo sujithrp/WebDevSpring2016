@@ -98,5 +98,112 @@
   {
     "name": "Trevor Brown",
     "id": "ef1b62d3-3915-48cf-93b5-2b98fbb7bb48"
+  },
+
+  {
+    "id":"BUF",
+    "name":"Buffalo Bills"
+  },
+  {
+    "id":"MIA",
+    "name":"Miami Dolphins"
+  },
+  {
+    "id":"NYJ",
+    "name":"New York Jets"
+  },
+  {
+    "id":"CIN",
+    "name":"Cincinatti Bengals"
+  },
+  {
+    "id":"CLE",
+    "name":"Cleveland Browns"
+  },
+  {
+    "id":"PIT",
+    "name":"Pittsburgh Steelers"
+  },
+  {
+    "id":"IND",
+    "name":"Indianapolis Colts"
+  },
+  {
+    "id":"HOU",
+    "name":"Houston Texans"
+  },
+  {
+    "id":"DEN",
+    "name":"Denver Broncos"
+  },
+  {
+    "id":"SD",
+    "name":"San Diego Chargers"
+  },
+  {
+    "id":"KC",
+    "name":"Kansas City Chiefs"
+  },
+  {
+    "id":"OAK",
+    "name":"Oakland Raiders"
+  },
+  {
+    "id":"DAL",
+    "name":"Dallas Cowboys"
+  },
+  {
+    "id":"PHI",
+    "name":"Philadelphia Eagles"
+  },
+  {
+    "id":"NYG",
+    "name":"New York Giants"
+  },
+  {
+    "id":"WAS",
+    "name":"Washington Redskins"
+  },
+  {
+    "id":"CHI",
+    "name":"Chicago Bears"
+  },
+  {
+    "id":"DET",
+    "name":"Detroit Lions"
+  },
+  {
+    "id":"MIN",
+    "name":"Minnesota Vikinds"
+  },
+  {
+    "id":"TB",
+    "name":"Tampa Bay Buccaneers"
+  },
+  {
+    "id":"ATL",
+    "name":"Atlanta Falcons"
+  },
+  {
+    "id":"CAR",
+    "name":"Carolina Panthers"
+  },
+  {
+    "id":"SF",
+    "name":"San Francisco 49ers"
+  },
+  {
+    "id":"ARI",
+    "name":"Arizona Cardinals"
+  },
+  {
+    "id":"LA",
+    "name":"Los Angeles Rams"
+  },
+  {
+    "id":"SEA",
+    "name":"Seattle Seahawks"
   }
+
+
 ]

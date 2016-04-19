@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="BlogController">
+<div class="container-fluid" ng-controller="HomeController">
 
     <div class="responsive">
         <br>
@@ -29,7 +29,7 @@
 
             <tr bgcolor="#f0ffff" ng-repeat="resultObj in resultsArr">
                 <td align="center">
-                    <h6 class="responsiveHeader">{{resultObj.home}}</h6>
+                    <h6 class="responsiveHeader"><a style="color:black;" href="" ng-click="teamClicked(resultObj.home)">{{resultObj.home}}</a></h6>
                     <!--<small>{{resultObj.home}}</small>-->
                     <!--<p style="color:black;">{{resultObj.home}} <u>{{resultObj.homePoints}}</u> VS <u>{{resultObj.awayPoints}}</u> {{resultObj.away}} </p>-->
                     <!---->
@@ -51,7 +51,7 @@
                     <h6 class="responsiveHeader">{{resultObj.awayPoints}}</h6>
                 </td>
                 <td align="center">
-                    <h6 class="responsiveHeader">{{resultObj.away}}</h6>
+                    <h6 class="responsiveHeader"><a href="" style="color:black;" ng-click="teamClicked(resultObj.away)">{{resultObj.away}}</a></h6>
                 </td>
             </tr>
             &nbsp;
