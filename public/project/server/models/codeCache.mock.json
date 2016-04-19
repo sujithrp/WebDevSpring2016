@@ -1,0 +1,107 @@
+[
+  {
+    "code":"BUF",
+    "name":"Buffalo Bills"
+  },
+  {
+    "code":"MIA",
+    "name":"Miami Dolphins"
+  },
+  {
+    "code":"NYJ",
+    "name":"New York Jets"
+  },
+  {
+    "code":"CIN",
+    "name":"Cincinatti Bengals"
+  },
+  {
+    "code":"CLE",
+    "name":"Cleveland Browns"
+  },
+  {
+    "code":"PIT",
+    "name":"Pittsburgh Steelers"
+  },
+  {
+    "code":"IND",
+    "name":"Indianapolis Colts"
+  },
+  {
+    "code":"HOU",
+    "name":"Houston Texans"
+  },
+  {
+    "code":"DEN",
+    "name":"Denver Broncos"
+  },
+  {
+    "code":"SD",
+    "name":"San Diego Chargers"
+  },
+  {
+    "code":"KC",
+    "name":"Kansas City Chiefs"
+  },
+  {
+    "code":"OAK",
+    "name":"Oakland Raiders"
+  },
+  {
+    "code":"DAL",
+    "name":"Dallas Cowboys"
+  },
+  {
+    "code":"PHI",
+    "name":"Philadelphia Eagles"
+  },
+  {
+    "code":"NYG",
+    "name":"New York Giants"
+  },
+  {
+    "code":"WAS",
+    "name":"Washington Redskins"
+  },
+  {
+    "code":"CHI",
+    "name":"Chicago Bears"
+  },
+  {
+    "code":"DET",
+    "name":"Detroit Lions"
+  },
+  {
+    "code":"MIN",
+    "name":"Minnesota Vikinds"
+  },
+  {
+    "code":"TB",
+    "name":"Tampa Bay Buccaneers"
+  },
+  {
+    "code":"ATL",
+    "name":"Atlanta Falcons"
+  },
+  {
+    "code":"CAR",
+    "name":"Carolina Panthers"
+  },
+  {
+    "code":"SF",
+    "name":"San Francisco 49ers"
+  },
+  {
+    "code":"ARI",
+    "name":"Arizona Cardinals"
+  },
+  {
+    "code":"LA",
+    "name":"Los Angeles Rams"
+  },
+  {
+    "code":"SEA",
+    "name":"Seattle Seahawks"
+  }
+
+]

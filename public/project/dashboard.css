@@ -155,7 +155,7 @@ img.thumbnail {
 table#albums
 {
     border-collapse:separate;
-    border-spacing:0 10px;
+    border-spacing:0 20px;
 }
 table#albums1
 {
@@ -172,4 +172,15 @@ table#albums1
 
 #blogHeading {
     color: black;
+}
+
+@media (min-width:320px) {
+    h6.responsiveHeader {
+        font-size: 10px;
+    }
+}
+@media (min-width:801px) {
+    h6.responsiveHeader {
+        font-size: 20px;
+    }
 }

@@ -14,8 +14,14 @@
             return $http.get(query);
         };
 
+        CacheService.codeToName = function(code) {
+            var query = "/api/project/codeToName/"+code;
+            return $http.get(query);
+        };
+
         return {
-            nameToId: CacheService.nameToId
+            nameToId: CacheService.nameToId,
+            codeToName: CacheService.codeToName
         };
     }
 })();

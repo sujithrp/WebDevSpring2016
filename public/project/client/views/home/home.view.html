@@ -1,34 +1,60 @@
-<!--<div class="container-fluid" ng-controller="HomeController">-->
-    <!--<div class="row">-->
-        <!--<div>-->
-            <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">-->
-                <!--&lt;!&ndash; Indicators &ndash;&gt;-->
-                <!--<div class="carousel-inner" role="listbox">-->
-                    <!--<div class="item active">-->
-                        <!--<img class="img-responsive" src="http://favim.com/610/201106/28/Favim.com-basketball-court-dark-dbl-arena-indonesia-lights-86736.jpg" alt="First slide">-->
-                    <!--</div>-->
-                    <!--<div class="item">-->
-                        <!--<img class="img-responsive" src="http://free4uwallpapers.eu/wp-content/uploads/Football/hd-wallpaper-night-football.jpeg" alt="Second slide">-->
-                    <!--</div>-->
-                    <!--<div class="item">-->
-                        <!--<img class="img-responsive" src="https://i.ytimg.com/vi/98EvwIGFB7s/maxresdefault.jpg" alt="Third slide">-->
-                    <!--</div>-->
-                    <!--<div class="container">-->
-                        <!--<div class="carousel-caption">-->
-                            <!--<h1>Inside The Game</h1>-->
-                            <!--<p>Scores, Stats, Insight</p>-->
-                            <!--<p>NBA, NFL and MLB</p>-->
-                            <!--<p><a class="btn btn-lg btn-secondary" href="#/register" role="button">Sign Up</a></p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<ol class="carousel-indicators">-->
-                        <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
-                        <!--<li data-target="#myCarousel" data-slide-to="1"></li>-->
-                        <!--<li data-target="#myCarousel" data-slide-to="2"></li>-->
-                    <!--</ol>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<div class="container-fluid" ng-controller="BlogController">
 
+    <div class="responsive">
+        <br>
+        <br>
+        <br>
+        <h3 style="color:white">NFL RESULTS</h3>
+        <!--<table class="table table-striped table-bordered">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th> <span class="glyphicon glyphicon-triangle-bottom"></span> Team </th>-->
+                <!--<th> <span class="glyphicon glyphicon-triangle-bottom"></span> Action </th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td> <input ng-model="form.formname" type="text" class="form-control" id="inputFormName" placeholder="name"> </td>-->
+                <!--<td> <a ng-click="addForm(form)"> <span class="glyphicon glyphicon-plus"></span> </a> <a ng-click="updateForm(form)"> <span class="glyphicon glyphicon-ok"></span> </a> </td>-->
+            <!--</tr>-->
+            <!--<tr ng-repeat="form in currentFormsArr">-->
+                <!--<td> <a href="#/form/{{form._id}}/fields"> {{form.title}} </a> </td>-->
+                <!--<td> <a ng-click="deleteForm($index)"> <span class="glyphicon glyphicon-remove"></span> </a> <a ng-click="selectForm($index)"> <span class="glyphicon glyphicon-pencil"></span> </a> </td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+
+        <table id="albums" border="0" class="pull-left table table-condensed" cellspacing="0px">
+
+            <tr bgcolor="#f0ffff" ng-repeat="resultObj in resultsArr">
+                <td align="center">
+                    <h6 class="responsiveHeader">{{resultObj.home}}</h6>
+                    <!--<small>{{resultObj.home}}</small>-->
+                    <!--<p style="color:black;">{{resultObj.home}} <u>{{resultObj.homePoints}}</u> VS <u>{{resultObj.awayPoints}}</u> {{resultObj.away}} </p>-->
+                    <!---->
+                    <!--<u><h6>{{resultObj.home}}</h6></u>-->
+                    <!--<p>{{resultObj.homePoints}}</p>-->
+                    <!--<p>versus</p><u>-->
+                    <!--<h6>{{resultObj.away}}</h6></u>-->
+                    <!--<p>{{resultObj.awayPoints}}</p>-->
+                    <!--&nbsp;-->
+                    <!--<br>-->
+                </td>
+                <td align="center">
+                    <h6 class="responsiveHeader">{{resultObj.homePoints}}</h6>
+                </td>
+                <td align="center">
+                    <h6 class="responsiveHeader">VS</h6>
+                </td>
+                <td align="center">
+                    <h6 class="responsiveHeader">{{resultObj.awayPoints}}</h6>
+                </td>
+                <td align="center">
+                    <h6 class="responsiveHeader">{{resultObj.away}}</h6>
+                </td>
+            </tr>
+            &nbsp;
+        </table>
+    </div>
+</div>

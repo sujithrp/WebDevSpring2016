@@ -27,7 +27,7 @@
                 .then(function(response){
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
-                        $location.url("/blogs");
+                        $location.url("/home");
                     }
                 });
         };

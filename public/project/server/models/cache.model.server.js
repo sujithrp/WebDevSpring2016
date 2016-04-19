@@ -2,9 +2,11 @@
  * Created by SujithNarayan on 3/25/2016.
  */
 var mock = require("./cache.mock.json");
+var codeMock = require("./codeCache.mock.json");
 module.exports = function() {
     var api = {
-        nameToId: nameToId
+        nameToId: nameToId,
+        codeToName: codeToName
     };
     return api;
 
@@ -39,5 +41,21 @@ module.exports = function() {
                 }
             }
         }
+    }
+
+    function codeToName(code) {
+        var index;
+
+        for (index in codeMock) {
+            var codeInDB = codeMock[index].code;
+            console.log("one set");
+            console.log(codeInDB);
+            console.log(code);
+            if (codeInDB.replace(/ /g,"").trim() == code.replace(/ /g,"").trim()) {
+                console.log("matches");
+                return codeMock[index].name;
+            }
+        }
+
     }
 };

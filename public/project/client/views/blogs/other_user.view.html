@@ -39,14 +39,15 @@
 
             </form>
 
-            <table border="0" class="pull-left table table-condensed">
+            <table id="albums" border="0" class="pull-left table table-condensed">
 
                 <tr ng-repeat="blogObj in blogsArr">
-                    <td>
+                    <td bgcolor="#F5EEF8">
                         <u><h6>{{blogObj.title}}</h6></u>
                         <p>{{blogObj.content}}</p>
                         <br>
                     </td>
+                    <br>
                 </tr>
             </table>
         </div>

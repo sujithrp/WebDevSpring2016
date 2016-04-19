@@ -10,16 +10,16 @@
         <table border="0" class="pull-left table table-condensed playerInfo">
 
             <tr ng-repeat="propertyObj in propertiesArr">
-                <td> {{propertyObj.propertyName}} </td>
-                <td> {{propertyObj.propertyValue}} </td>
+                <td bgcolor="#f0ffff"> {{propertyObj.propertyName}} </td>
+                <td bgcolor="#f0ffff"> {{propertyObj.propertyValue}} </td>
             </tr>
         </table>
 
         <h6>Key Player:</h6>
         <table border="0" class="pull-left table table-condensed playerInfo">
             <tr ng-repeat="playerObj in playersArr">
-                <td><a href ng-click="playerSearch($index)"> {{playerObj.playerFullName}} </a></td>
-                <td> {{playerObj.playerPosition}} </td>
+                <td bgcolor="#f0ffff"><a href ng-click="playerSearch($index)"> {{playerObj.playerFullName}} </a></td>
+                <td bgcolor="#f0ffff"> {{playerObj.playerPosition}} </td>
             </tr>
         </table>
     </div>
