@@ -29,7 +29,7 @@
             }
             UserService.createUser(user).then(function(response) {
                 $rootScope.currentUser = response.data;
-                $location.url("/blogs");
+                $location.url("/home");
             })
         };
 
