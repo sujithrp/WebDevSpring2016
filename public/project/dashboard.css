@@ -174,7 +174,12 @@ table#albums1
     color: black;
 }
 
-@media (min-width:320px) {
+@media (min-width:200px) {
+    h6.responsiveHeader {
+        font-size: 7px;
+    }
+}
+@media (min-width:400px) {
     h6.responsiveHeader {
         font-size: 10px;
     }
