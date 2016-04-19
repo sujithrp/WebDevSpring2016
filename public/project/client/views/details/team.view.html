@@ -3,30 +3,30 @@
     <br>
     <br>
     <div ng-show="message" class="alert alert-info">{{message}}</div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-md-offset-2 thumbContainer">
+    <div class="thumbContainer">
         <br>
         <br>
-        <img src={{teamImage}} alt="Image of " class="thumbnail">
+        <img src={{teamImage}} alt="Image of " class="thumbnail img-responsive">
     </div>
 
     <div class="col-lg-9 col-md-8 col-sm-6">
         <button ng-disabled="button == 'Liked'" ng-click="likeTeam()" class="btn btn-success"> {{button}} </button>
         <br>
         <br>
-        <h6 style="color:white;">Team Information: </h6>
+        <h6 style="color:white;" class="responsiveHeader">Team Information: </h6>
         <table border="0" class="pull-left table table-condensed playerInfo">
 
             <tr ng-repeat="propertyObj in propertiesArr">
-                <td bgcolor="#f0ffff"> {{propertyObj.propertyName}} </td>
-                <td bgcolor="#f0ffff"> {{propertyObj.propertyValue}} </td>
+                <td bgcolor="#f0ffff"> <h6 class="responsiveHeader"> {{propertyObj.propertyName}} </h6> </td>
+                <td bgcolor="#f0ffff"> <h6 class="responsiveHeader"> {{propertyObj.propertyValue}} </h6> </td>
             </tr>
         </table>
 
-        <h6 style="color:white;">Key Player:</h6>
+        <h6 style="color:white;" class="responsiveHeader">Key Player:</h6>
         <table border="0" class="pull-left table table-condensed playerInfo">
             <tr ng-repeat="playerObj in playersArr">
-                <td bgcolor="#f0ffff"><a href ng-click="playerSearch($index)"> {{playerObj.playerFullName}} </a></td>
-                <td bgcolor="#f0ffff"> {{playerObj.playerPosition}} </td>
+                <td bgcolor="#f0ffff"><a href ng-click="playerSearch($index)"> <h6 class="responsiveHeader"> {{playerObj.playerFullName}} </h6> </a></td>
+                <td bgcolor="#f0ffff"> <h6 class="responsiveHeader"> {{playerObj.playerPosition}} </h6></td>
             </tr>
         </table>
     </div>

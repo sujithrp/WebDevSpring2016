@@ -9,7 +9,7 @@
 
     function TeamController($scope, $location, $http, $rootScope, $routeParams, CacheService, UserService) {
 
-
+        var leagueName;
         UserService
             .getCurrentUser()
             .then(function (res) {
@@ -23,7 +23,6 @@
 
                 var id;
                 var matchingText;
-                var leagueName;
 
                 if ($routeParams.teamAndLeague) {
                     var teamAndLeague = $routeParams.teamAndLeague;

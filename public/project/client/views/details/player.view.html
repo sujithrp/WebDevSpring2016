@@ -2,15 +2,15 @@
     <div class="thumbContainer">
         <br>
         <br>
-        <img src={{playerImage}} alt="Image of " class="thumbnail">
+        <img src={{playerImage}} alt="Image of " class="thumbnail img-responsive">
     </div>
 
     <div>
-        <h6 style="color:white;">Player Information: </h6>
-        <table border="0" class="pull-left table table-condensed playerInfo">
+        <h6 style="color:white" class="responsiveHeader">Player Information: </h6>
+        <table border="0" class=" pull-left table table-condensed playerInfo">
             <tr ng-repeat="propertyObj in propertiesArr">
-                <td> {{propertyObj.propertyName}} </td>
-                <td> {{propertyObj.propertyValue}} </td>
+                <td bgcolor="#f0ffff"> <h6 class="responsiveHeader"> {{propertyObj.propertyName}} </h6> </td>
+                <td bgcolor="#f0ffff"> <h6 class="responsiveHeader"> {{propertyObj.propertyValue}} </h6> </td>
             </tr>
         </table>
     </div>

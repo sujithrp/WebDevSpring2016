@@ -7,7 +7,7 @@
         .module("SportsApp")
         .controller("PlayerController", PlayerController);
 
-    function PlayerController($scope, $location, $rootScope, $http, $routeParams, CacheService) {
+    function PlayerController($scope, $location, $rootScope, $http, $routeParams, CacheService, UserService) {
 
         UserService
             .getCurrentUser()
