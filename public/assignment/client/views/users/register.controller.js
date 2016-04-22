@@ -25,7 +25,7 @@
             }
             UserService.createUser(user).then(function(response) {
                 $rootScope.currentUser = response.data;
-                $location.url('/profile');
+                $location.url("/profile");
             })
         };
 

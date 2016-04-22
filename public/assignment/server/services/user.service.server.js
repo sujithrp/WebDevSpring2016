@@ -3,6 +3,9 @@
  */
 
 module.exports = function(app, model) {
+    app.post("/api/assignment/user/login", login);
+    app.get("/api/assignment/user/loggedin", loggedin);
+    app.post("/api/assignment/logout", logout);
     app.post("/api/assignment/user", register);
     app.get("/api/assignment/user", getUsers);
     app.get("/api/assignment/user/:id", findUserById);
@@ -17,6 +20,7 @@ module.exports = function(app, model) {
         model.createUser(user)
             .then(
                 function(doc) {
+                    req.session.currentUser = doc;
                     res.json(doc);
                 },
                 function(err) {
@@ -82,5 +86,26 @@ module.exports = function(app, model) {
                 }
             )
     }
+
+    function login(req, res){
+        console.log("inside server service login");
+        model.findUserByCredentials(req.body).then(
+            function(user){
+                console.log("found user");
+                console.log(user);
+                req.session.currentUser = user;
+                res.json(user);
+            });
+    }
+
+    function loggedin(req, res) {
+        res.json(req.session.currentUser);
+    }
+
+    function logout(req, res) {
+        req.session.destroy();
+        res.send(200);
+    }
+    
 
 };

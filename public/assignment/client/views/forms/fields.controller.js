@@ -8,13 +8,31 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController($scope, $routeParams, $rootScope, FieldService) {
+    function FieldController($scope, $routeParams, $rootScope, FieldService, UserService) {
 
         var formId = $routeParams.formId;
 
-        FieldService.getFieldsForForm(formId).then(function(response) {
-            $scope.fields = response.data;
-        });
+        function init() {
+            UserService
+                .getCurrentUser()
+                .then(function (res) {
+                    console.log(res.data);
+                    $rootScope.currentUser = res.data;
+                    console.log("this is the user");
+                    console.log($rootScope.currentUser);
+                    $scope.message = null;
+
+                    $scope.user = $rootScope.currentUser;
+
+                    FieldService.getFieldsForForm(formId).then(function(response) {
+                        $scope.fields = response.data;
+                    });
+                });
+        }
+
+        init();
+
+
 
         $scope.addField = function(fieldType) {
             if (!fieldType) {

@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService($http) {
+    function UserService($http, $rootScope) {
 
         UserService.findUserByUsername = function(username) {
             var query =  "/api/assignment/user"+"?username="+username;
@@ -37,13 +37,35 @@
             return $http.put(query, user);
         };
 
+        UserService.login = function(user) {
+            console.log("inside user service logn");
+            var query = "/api/assignment/user/login";
+            return $http.post(query, user);
+        };
+
+        UserService.setCurrentUser = function(user) {
+            $rootScope.currentUser = user;
+        };
+
+        UserService.getCurrentUser = function() {
+            return $http.get("/api/assignment/user/loggedin");
+        };
+
+        UserService.logout = function() {
+            return $http.post("/api/assignment/logout");
+        };
+
         return {
             findUserByUsername: UserService.findUserByUsername,
             findUserByCredentials: UserService.findUserByCredentials,
             findAllUsers: UserService.findAllUsers,
             createUser: UserService.createUser,
             deleteUserById: UserService.deleteUserById,
-            updateUser: UserService.updateUser
+            updateUser: UserService.updateUser,
+            login: UserService.login,
+            setCurrentUser: UserService.setCurrentUser,
+            getCurrentUser: UserService.getCurrentUser,
+            logout: UserService.logout
         };
     }
 })();

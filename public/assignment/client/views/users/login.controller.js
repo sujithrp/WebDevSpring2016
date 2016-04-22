@@ -19,15 +19,23 @@
                 $scope.message = "Please provide a password!";
                 return;
             }
-            UserService.findUserByCredentials(user.username,user.password).then(function(res) {
-                if(res.data == null) {
-                    $scope.message = "User does not exist";
+            UserService.login(user).then(
+                function(res) {
+                    if(res.data) {
+                        UserService.setCurrentUser(res.data);
+                        $location.url("/profile");
+                    }
                 }
-                else {
-                    $rootScope.currentUser = res.data;
-                    $location.path('/profile');
-                }
-            });
+            );
+            //UserService.findUserByCredentials(user.username,user.password).then(function(res) {
+            //    if(res.data == null) {
+            //        $scope.message = "User does not exist";
+            //    }
+            //    else {
+            //        $rootScope.currentUser = res.data;
+            //        $location.path('/profile');
+            //    }
+            //});
         };
 
     }

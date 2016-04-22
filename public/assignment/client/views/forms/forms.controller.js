@@ -7,11 +7,28 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($rootScope, $location, $scope, FormService) {
+    function FormController($rootScope, $location, $scope, FormService, UserService) {
 
-        FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
-            $scope.currentFormsArr = response.data;
-        });
+        function init() {
+            UserService
+                .getCurrentUser()
+                .then(function (res) {
+                    console.log(res.data);
+                    $rootScope.currentUser = res.data;
+                    console.log("this is the user");
+                    console.log($rootScope.currentUser);
+                    $scope.message = null;
+
+                    $scope.user = $rootScope.currentUser;
+
+                    FormService.findAllFormsForUser($rootScope.currentUser._id).then(function(response) {
+                        $scope.currentFormsArr = response.data;
+                    });
+                });
+        }
+
+        init();
+
 
         $scope.addForm = function(passedForm) {
             var form = {};
