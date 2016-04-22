@@ -5,6 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var cookieParser  = require('cookie-parser');
+var passport = require('passport');
 var session       = require('express-session');
 var mongoose = require('mongoose');
 
@@ -25,8 +26,13 @@ var db = mongoose.connect(connectString);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({ secret: "this is my secret" }));
+app.use(session({
+    secret: "this is my secret",
+    resave: true,
+    saveUninitialized: true }));
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;

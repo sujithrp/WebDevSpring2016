@@ -15,7 +15,8 @@ module.exports = function(db, mongoose) {
         createUser: createUser,
         addTeamForUser: addTeamForUser,
         deleteTeamForUser: deleteTeamForUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findUserById: findUserById
     };
     return api;
 
@@ -70,6 +71,18 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
+    function findUserById(userId) {
+        var deferred = q.defer();
+        UserModel.findById(userId, function(err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+    }
+
     function updateUser(userId, user) {
 
         var deferred = q.defer();
@@ -82,8 +95,8 @@ module.exports = function(db, mongoose) {
                 } else {
                     doc.username = user.username;
                     doc.password = user.password;
-                    doc.firstName = user.firstName;
-                    doc.lastName = user.lastName;
+                    doc.firstname = user.firstname;
+                    doc.lastname = user.lastname;
                     doc.email = user.email;
                     doc.teams = user.teams;
                     doc.subscribesTo = user.subscribesTo;
@@ -104,11 +117,15 @@ module.exports = function(db, mongoose) {
 
         var deferred = q.defer();
 
+        console.log("ADDING: ");
+        console.log(user);
         UserModel.create(user,
             function(err, doc) {
                 if (err) {
                     deferred.reject(err);
                 } else {
+                    console.log("added user: ");
+                    console.log(doc);
                     deferred.resolve(doc);
                 }
             });

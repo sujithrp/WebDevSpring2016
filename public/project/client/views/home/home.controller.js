@@ -7,14 +7,7 @@
         .controller("HomeController", homeController);
 
     function homeController($http,$scope,$rootScope,$location, UserService, CacheService) {
-        UserService
-            .getCurrentUser()
-            .then(function (res) {
-                $rootScope.currentUser = res.data;
-                $scope.message = null;
 
-                $scope.user = $rootScope.currentUser;
-            });
         var nflFixtureUrl = "/sports/nfl-t1/2015/REG/4/boxscore.json?api_key=c9gmk2hsnccg8hcwhmfyj9uj";
 
         //var resultObj = {

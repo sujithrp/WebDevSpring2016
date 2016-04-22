@@ -20,7 +20,6 @@
         };
 
         UserService.findUserByUsername = function(username) {
-            console.log("client side service");
             var query = "/api/project/user"+"?username="+username;
             return $http.get(query);
         };
@@ -54,7 +53,6 @@
         };
 
         UserService.setCurrentUser = function(user) {
-            console.log("client service setting current user: ");
             $rootScope.currentUser = user;
         };
 
@@ -62,8 +60,8 @@
             return $http.post("/api/project/logout");
         };
 
-        UserService.login = function(credentials) {
-            return $http.post("/api/project/user/login", credentials);
+        UserService.login = function(user) {
+            return $http.post("/api/project/user/login", user);
         };
 
         return {

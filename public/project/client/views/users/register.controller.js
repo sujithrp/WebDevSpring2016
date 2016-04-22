@@ -27,10 +27,21 @@
                 $scope.message = "Passwords must match";
                 return;
             }
-            UserService.createUser(user).then(function(response) {
-                $rootScope.currentUser = response.data;
-                $location.url("/home");
-            })
+            UserService.findUserByUsername(user.username).then(
+                function(response) {
+                    if (response.data && (response.data.username == user.username)) {
+                        $scope.message = "Username already exists! Please provide a different username";
+                    }
+                    else {
+                        console.log("controller: ");
+                        console.log(user);
+                        UserService.createUser(user).then(function(response) {
+                            UserService.setCurrentUser(response.data);
+                            $location.url("/home");
+                        })
+                    }
+                }
+            )
         };
 
     }

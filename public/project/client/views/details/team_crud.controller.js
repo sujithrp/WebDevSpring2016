@@ -16,30 +16,24 @@
         var teams = currentUser.teams.filter (function (v, i, a) { return a.indexOf (v) == i });
         $scope.currentTeamsArr = teams;
 
-        //var addTeamCallback = function(newTeamsArr) {
-        //    $scope.currentTeamsArr = newTeamsArr;
-        //    $scope.leagueItem = '';
-        //    $scope.team = '';
-        //    $scope.message = '';
-        //};
 
-        $scope.addTeam = function(team) {
-            if (!team) {
-                $scope.message = "Enter a team name!";
-                return;
-            }
-            UserService.addTeamForUser(currentUser._id, team).then(function(response) {
-                if (!$scope.currentTeamsArr) {
-                    $scope.currentTeamsArr = [team];
-                }
-                else {
-                    $scope.currentTeamsArr.push(team);
-                }
-                $scope.leagueItem = '';
-                $scope.team = '';
-                $scope.message = '';
-            })
-        };
+        //$scope.addTeam = function(team) {
+        //    if (!team) {
+        //        $scope.message = "Enter a team name!";
+        //        return;
+        //    }
+        //    UserService.addTeamForUser(currentUser._id, team).then(function(response) {
+        //        if (!$scope.currentTeamsArr) {
+        //            $scope.currentTeamsArr = [team];
+        //        }
+        //        else {
+        //            $scope.currentTeamsArr.push(team);
+        //        }
+        //        $scope.leagueItem = '';
+        //        $scope.team = '';
+        //        $scope.message = '';
+        //    })
+        //};
 
         //var deleteTeamCallback = function(newTeamsArr) {
         //    $scope.currentTeamsArr = newTeamsArr;

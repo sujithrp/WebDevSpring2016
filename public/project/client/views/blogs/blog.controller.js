@@ -9,17 +9,25 @@
 
     function BlogController($scope, $rootScope, $location, BlogService, UserService) {
 
-        UserService
-            .getCurrentUser()
-            .then(function (res) {
-                $rootScope.currentUser = res.data;
-                $scope.message = null;
+        //UserService
+        //    .getCurrentUser()
+        //    .then(function (res) {
+        //        $rootScope.currentUser = res.data;
+        //        $scope.message = null;
+        //
+        //        $scope.user = $rootScope.currentUser;
+        //        $scope.message = false;
+        //        $scope.deleteButtonToBeDisplayed = false;
+        //        //var currentUser = $rootScope.currentUser;
+        //    });
 
-                $scope.user = $rootScope.currentUser;
-                $scope.message = false;
-                $scope.deleteButtonToBeDisplayed = false;
-                //var currentUser = $rootScope.currentUser;
-            });
+        function init() {
+            $scope.user = $rootScope.currentUser;
+            $scope.message = false;
+            $scope.deleteButtonToBeDisplayed = false;
+        }
+
+        init();
 
         BlogService.getAllBlogs().then(function(response) {
             $scope.blogsArr = response.data;
@@ -110,6 +118,12 @@
             $scope.blogsArr = null;
             UserService.findUserByUsername($scope.user.username).then(function(response) {
                 var usernamesArr = response.data.subscribesTo;
+                if (usernamesArr.length == 0) {
+                    $scope.message = "You haven't subscribed to anyone. Showing all blogs!";
+                    BlogService.getAllBlogs().then(function(response) {
+                        $scope.blogsArr = response.data;
+                    })
+                }
                 var index;
                 for (index in usernamesArr) {
                     BlogService.getBlogsForUser(usernamesArr[index]).then(function(response) {
@@ -123,6 +137,7 @@
                                 $scope.blogsArr.push(response.data[blogIndex]);
                             }
                         }
+                        console.log("flag value");
                         if (flag == 0) {
                             $scope.message = "No subscribed blogs! Showing all blogs";
                             BlogService.getAllBlogs().then(function(response) {
@@ -139,6 +154,7 @@
 
         $scope.viewAllBlogs = function() {
             BlogService.getAllBlogs().then(function(response) {
+                $scope.message = null;
                 $scope.blogsArr = response.data;
             })
         };

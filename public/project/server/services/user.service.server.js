@@ -1,5 +1,10 @@
+var passport = require("passport");
+var LocalStrategy = require("passport-local").Strategy;
+//var mongoose = require("mongoose");
+
 module.exports = function(app, model) {
-    app.post("/api/project/user/login", login);
+    var auth = "authorized";
+    app.post("/api/project/user/login", passport.authenticate("local"), login);
     app.get("/api/project/user/loggedin", loggedin);
     app.get("/api/project/user", getUsers);
     app.put("/api/project/user/:id", updateProfile);
@@ -8,6 +13,46 @@ module.exports = function(app, model) {
     app.post("/api/project/user", register);
     app.delete("/api/project/user/:id", deleteUser);
     app.post("/api/project/logout", logout);
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function localStrategy(username, password, done) {
+        model
+            .findUserByCredentials({username: username, password: password})
+            .then(
+                function (user) {
+                    if (!user) {
+                        return done(null, false);
+                    } else {
+                        return done(null, user);
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            );
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        model
+            .findUserById(user._id)
+            .then(
+                function (response) {
+                    done(null, response);
+                },
+                function (err) {
+                    done(err, null);
+                }
+            );
+    }
 
     function getUsers(req, res) {
         if (Object.keys(req.query).length == 0) {
@@ -22,7 +67,7 @@ module.exports = function(app, model) {
         }
         else {
             var query = req.query;
-            if (query.hasOwnProperty('password')) {
+            if (query.hasOwnProperty("password")) {
                 var credentials = query;
                 model.findUserByCredentials(credentials)
                     .then(
@@ -94,8 +139,18 @@ module.exports = function(app, model) {
         var newUser = req.body;
         model.createUser(newUser).then(
             function(user) {
-                req.session.currentUser = user;
-                res.json(user);
+                if(user){
+                    req.login(user, function(err){
+                        if(err){
+                            console.log("error case: ");
+                            res.status(400).send(err);
+                        } else {
+                            console.log("service server: ");
+                            console.log(user);
+                            res.json(user);
+                        }
+                    });
+                }
             },
             function(err) {
                 res.status(400).send(err);
@@ -117,28 +172,32 @@ module.exports = function(app, model) {
     }
 
     function loggedin(req, res) {
-        res.json(req.session.currentUser);
+        if (req.isAuthenticated()) {
+            res.send(req.user);
+        } else {
+            res.send(null);
+        }
     }
 
     function login(req, res) {
-        var credentials = req.body;
-        model.findUserByCredentials(credentials)
-            .then(
-                function (doc) {
-                    console.log("server side find user by creds");
-                    req.session.currentUser = doc;
-                    res.json(doc);
-                },
-                // send error if promise rejected
-                function ( err ) {
-                    res.status(400).send(err);
-                }
-            )
+        var user = req.user;
+        res.json(user);
     }
 
 
+
     function logout(req, res) {
-        req.session.destroy();
+        req.logout();
         res.send(200);
+    }
+
+    function authorized (req,res,next){
+        if(!req.isAuthenticated())
+        {
+            res.send(401);
+        }
+        else{
+            next();
+        }
     }
 };

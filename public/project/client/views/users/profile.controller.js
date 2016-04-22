@@ -13,18 +13,21 @@
     function ProfileController($rootScope, $scope, UserService) {
 
 
-        UserService
-            .getCurrentUser()
-            .then(function (res) {
-                console.log(res.data);
-                $rootScope.currentUser = res.data;
-                console.log("this is the user");
-                $scope.message = null;
+        //UserService
+        //    .getCurrentUser()
+        //    .then(function (res) {
+        //        $rootScope.currentUser = res.data;
+        //        $scope.message = null;
+        //
+        //        $scope.user = $rootScope.currentUser;
+        //    });
 
-                $scope.user = $rootScope.currentUser;
-            });
+        function init() {
+            $scope.message = null;
+            $scope.user = $rootScope.currentUser;
+        }
 
-
+        init();
 
         $scope.update = function(user) {
             UserService.updateUser($scope.user._id,user).then(function(response) {

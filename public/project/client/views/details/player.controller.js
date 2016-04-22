@@ -9,14 +9,21 @@
 
     function PlayerController($scope, $location, $rootScope, $http, $routeParams, CacheService, UserService) {
 
-        UserService
-            .getCurrentUser()
-            .then(function (res) {
-                $rootScope.currentUser = res.data;
-                $scope.message = null;
+        //UserService
+        //    .getCurrentUser()
+        //    .then(function (res) {
+        //        $rootScope.currentUser = res.data;
+        //        $scope.message = null;
+        //
+        //        $scope.user = $rootScope.currentUser;
+        //    });
 
-                $scope.user = $rootScope.currentUser;
-            });
+        function init() {
+            $scope.user = $rootScope.currentUser;
+            $scope.message = null;
+        }
+
+        init();
 
         var id;
         var leagueName;
