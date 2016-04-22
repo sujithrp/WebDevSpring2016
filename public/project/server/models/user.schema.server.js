@@ -6,8 +6,8 @@ module.exports = function(mongoose) {
     var UserSchema = mongoose.Schema({
         username: String,
         password: String,
-        firstname: String,
-        lastname: String,
+        firstName: String,
+        lastName: String,
         email: String,
         teams: [String],
         subscribesTo: [String]

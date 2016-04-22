@@ -95,8 +95,8 @@ module.exports = function(db, mongoose) {
                 } else {
                     doc.username = user.username;
                     doc.password = user.password;
-                    doc.firstname = user.firstname;
-                    doc.lastname = user.lastname;
+                    doc.firstName = user.firstName;
+                    doc.lastName = user.lastName;
                     doc.email = user.email;
                     doc.teams = user.teams;
                     doc.subscribesTo = user.subscribesTo;
