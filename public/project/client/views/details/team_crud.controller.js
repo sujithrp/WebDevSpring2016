@@ -16,6 +16,10 @@
         var teams = currentUser.teams.filter (function (v, i, a) { return a.indexOf (v) == i });
         $scope.currentTeamsArr = teams;
 
+        if (!$scope.currentTeamsArr || $scope.currentTeamsArr.length == 0) {
+            $scope.message = "You currently have no favorite teams. Go to team details page to like teams!"
+        }
+
 
         //$scope.addTeam = function(team) {
         //    if (!team) {
