@@ -14,10 +14,10 @@ module.exports = function(app, model) {
 
         var user = req.body;
 
-        user = model.createUser(user)
+        model.createUser(user)
             .then(
                 function(doc) {
-                    res.json(user);
+                    res.json(doc);
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -31,7 +31,7 @@ module.exports = function(app, model) {
 
         if(username && password) {
             var credentials = req.query;
-            var user = model.findUserByCredentials(credentials)
+            model.findUserByCredentials(credentials)
                 .then(
                     function(user) {
                         res.json(user);
@@ -45,7 +45,7 @@ module.exports = function(app, model) {
 
     function findUserById(req, res) {
         var userId = req.params.id;
-        var user = model.findUserById(userId)
+        model.findUserById(userId)
             .then(
                 function(doc) {
                     res.json(doc);

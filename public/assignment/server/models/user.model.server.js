@@ -34,11 +34,11 @@ module.exports = function(db, mongoose) {
         var deferred = q.defer();
 
         UserModel.create(user,
-            function(doc, err) {
-                if (doc) {
-                    deferred.resolve(doc);
-                } else {
+            function(err, doc) {
+                if (err) {
                     deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
                 }
             });
 
@@ -91,10 +91,9 @@ module.exports = function(db, mongoose) {
                 } else {
                     doc.username = user.username;
                     doc.password = user.password;
-                    doc.firstName = user.firstName;
-                    doc.lastName = user.lastName;
-                    doc.emails = user.emails;
-                    doc.phones = user.phones;
+                    doc.firstname = user.firstname;
+                    doc.lastname = user.lastname;
+                    doc.email = user.email;
                     doc.save(function(err, savedDoc) {
                        if (err) {
                            deferred.reject(err);
