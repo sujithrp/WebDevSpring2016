@@ -6,7 +6,8 @@ var codeMock = require("./codeCache.mock.json");
 module.exports = function() {
     var api = {
         nameToId: nameToId,
-        codeToName: codeToName
+        codeToName: codeToName,
+        nameToCode: nameToCode
     };
     return api;
 
@@ -48,15 +49,22 @@ module.exports = function() {
 
         for (index in codeMock) {
             var codeInDB = codeMock[index].code;
-            console.log("one set");
-            console.log(codeInDB);
-            console.log(code);
             if (codeInDB.replace(/ /g,"").trim() == code.replace(/ /g,"").trim()) {
-                console.log("matches");
                 return codeMock[index].name;
             }
         }
 
+    }
+
+    function nameToCode(name) {
+        var index;
+
+        for (index in codeMock) {
+            var nameInDB = codeMock[index].name;
+            if (nameInDB.replace(/ /g,"").trim() == name.replace(/ /g,"").trim()) {
+                return codeMock[index].code;
+            }
+        }
     }
 
 };

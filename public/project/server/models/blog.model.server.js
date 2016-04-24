@@ -1,7 +1,6 @@
 /**
  * Created by SujithNarayan on 3/23/2016.
  */
-//var mock = require("./blog.mock.json");
 var q = require("q");
 module.exports = function(db,mongoose) {
     var BlogSchema = require("./blog.schema.server.js")(mongoose);

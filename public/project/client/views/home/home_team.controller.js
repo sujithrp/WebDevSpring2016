@@ -11,9 +11,9 @@
 
     function homeTeamController($http,$scope,$rootScope,$location, CacheService) {
         var teamName = $rootScope.clickedTeam;
-        CacheService.nameToId(teamName).then(function(response) {
-            console.log(response.data.id);
-            var id = response.data.id;
+        CacheService.nameToCode(teamName).then(function(response) {
+            console.log(response.data);
+            var id = response.data;
             var url = "/sports/nfl-t1/teams/"+id+"/roster.json?api_key=c9gmk2hsnccg8hcwhmfyj9uj";
 
             $http.get(url)
