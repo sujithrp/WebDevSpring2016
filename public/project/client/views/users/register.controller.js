@@ -7,7 +7,7 @@
         .module("SportsApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($rootScope, $scope, $location, UserService) {
+    function RegisterController($scope, $location, UserService) {
 
         $scope.register = function(user) {
             $scope.message = null;

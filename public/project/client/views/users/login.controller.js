@@ -7,7 +7,7 @@
         .module("SportsApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $scope, $location, UserService) {
+    function LoginController($scope, $location, UserService) {
 
         $scope.login = function(user) {
             $scope.message = null;
@@ -22,11 +22,14 @@
             UserService
                 .login(user)
                 .then(function(response){
-                    if(response.data) {
-                        UserService.setCurrentUser(response.data);
-                        $location.url("/home");
-                    }
-                });
+                        if(response.data) {
+                            UserService.setCurrentUser(response.data);
+                            $location.url("/home");
+                        }
+                    },
+                    function (err) {
+                        $scope.message = "Invalid Login Credentials. Please register if you are a new user";
+                    });
         };
 
     }
