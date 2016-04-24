@@ -12,11 +12,11 @@
         $scope.register = function(user) {
             $scope.message = null;
             if (!user) {
-                $scope.message = "Please provide the required details";
+                $scope.message = "Please provide the required details!";
                 return;
             }
             if (!user.username) {
-                $scope.message = "Please provide a username";
+                $scope.message = "Please provide a username!";
                 return;
             }
             if (!user.password || !user.verifyPassword) {
